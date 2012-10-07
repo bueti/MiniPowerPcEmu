@@ -1,4 +1,4 @@
-package ch.zhaw.mppce;
+package ch.zhaw.mppce.CPU;
 
 /**
  * Created with IntelliJ IDEA.
@@ -6,5 +6,5 @@ package ch.zhaw.mppce;
  * Date: 07.10.12
  * Time: 15:49
  */
-public class Accumulator extends Register {
+public class DataMemory extends Memory {
 }

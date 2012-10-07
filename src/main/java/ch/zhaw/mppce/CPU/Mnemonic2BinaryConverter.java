@@ -1,4 +1,4 @@
-package ch.zhaw.mppce;
+package ch.zhaw.mppce.CPU;
 
 /**
  * Created with IntelliJ IDEA.

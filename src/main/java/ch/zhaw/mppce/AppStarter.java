@@ -1,5 +1,7 @@
 package ch.zhaw.mppce;
 
+import ch.zhaw.mppce.CPU.CPU;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu

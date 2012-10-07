@@ -1,4 +1,4 @@
-package ch.zhaw.mppce;
+package ch.zhaw.mppce.CPU;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,9 +9,9 @@ package ch.zhaw.mppce;
 public class CPU {
 
     // Instance Variables
+    private Register register0;
     private Register register1;
     private Register register2;
-    private Register register3;
     private Register accu;
     private Register commandRegister;
 
@@ -26,12 +26,12 @@ public class CPU {
      */
     public CPU() {
         // Initialize Registers
+        register0 = new Register();
         register1 = new Register();
         register2 = new Register();
-        register3 = new Register();
 
         accu = new Accumulator();
-        commandRegister = new CommandRegister();
+        commandRegister = new InstructionRegister();
 
         // Initialize Memory
         programMemory = new ProgramMemory();
