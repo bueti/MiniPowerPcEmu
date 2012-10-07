@@ -5,7 +5,6 @@ package ch.zhaw.mppce;
  * User: bbu
  * Date: 07.10.12
  * Time: 15:47
- * To change this template use File | Settings | File Templates.
  */
-public class ProgramMemory {
+public class ProgramMemory extends Memory {
 }

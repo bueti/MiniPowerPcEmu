@@ -4,7 +4,7 @@ package ch.zhaw.mppce;
  * Created with IntelliJ IDEA.
  * User: bbu
  * Date: 07.10.12
- * Time: 15:49
+ * Time: 16:15
  */
-public class Accumulator extends Register {
+public class Mnemonic2BinaryConverter {
 }
