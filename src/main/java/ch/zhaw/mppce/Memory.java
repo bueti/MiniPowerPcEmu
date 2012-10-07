@@ -7,5 +7,5 @@ package ch.zhaw.mppce;
  * Time: 15:47
  * To change this template use File | Settings | File Templates.
  */
-public class Memory {
+public abstract class Memory {
 }

@@ -7,5 +7,5 @@ package ch.zhaw.mppce;
  * Time: 15:49
  * To change this template use File | Settings | File Templates.
  */
-public class Register {
+public abstract class Register {
 }
