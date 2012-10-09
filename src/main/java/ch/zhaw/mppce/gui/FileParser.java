@@ -1,6 +1,8 @@
 package ch.zhaw.mppce.gui;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,11 +35,16 @@ public class FileParser {
             String command = delim[1];
 
             // Get Parameters
-            String[] params;
+            ArrayList<String> params = new ArrayList<String>();
+            int i = 2;
+            while(i<delim.length) {
+                params.add(delim[i]);
+                i++;
+            }
 
-            // Store in memory
+            // Return line or store it?
 
-            System.out.println(address + " " + command);
+
         }
     }
 
