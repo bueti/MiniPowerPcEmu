@@ -17,6 +17,8 @@ public class AppStarter {
 
     public static void main(String[] args) {
 
+        CPU cpu = new CPU();
+
         // Load file
         FileLoader fl = new FileLoader();
         List<String> program = new ArrayList<String>();
@@ -31,9 +33,6 @@ public class AppStarter {
 
         // Parse file
         new FileParser(program);
-
-        // Create CPU
-        CPU cpu = new CPU();
 
         // Run Program
 
