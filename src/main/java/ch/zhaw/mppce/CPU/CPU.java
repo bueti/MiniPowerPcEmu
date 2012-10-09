@@ -1,4 +1,7 @@
-package ch.zhaw.mppce.CPU;
+package ch.zhaw.mppce.cpu;
+
+import ch.zhaw.mppce.compiler.AssemblerCompiler;
+import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +23,8 @@ public class CPU {
 
     private int commandCounter;
     private Mnemonic2BinaryConverter m2b;
+    private AssemblerCompiler compiler;
+
 
     /**
      * Constructor
@@ -29,7 +34,6 @@ public class CPU {
         register0 = new Register();
         register1 = new Register();
         register2 = new Register();
-
         accu = new Accumulator();
         commandRegister = new InstructionRegister();
 
@@ -39,7 +43,10 @@ public class CPU {
 
         // Misc
         commandCounter = 0;
+
+        // Compiler
         m2b = new Mnemonic2BinaryConverter();
+        compiler = new AssemblerCompiler();
 
     }
 }
