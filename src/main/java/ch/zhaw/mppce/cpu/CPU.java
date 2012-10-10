@@ -4,8 +4,6 @@ import ch.zhaw.mppce.compiler.AssemblerCompiler;
 import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
-import java.util.HashMap;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -15,9 +13,9 @@ import java.util.HashMap;
 public class CPU {
 
     // Instance Variables
-    private Register register0;
     private Register register1;
     private Register register2;
+    private Register register3;
     private Register accu;
     private Register commandRegister;
 
@@ -34,9 +32,9 @@ public class CPU {
      */
     public CPU() {
         // Initialize Registers
-        register0 = new Register();
         register1 = new Register();
         register2 = new Register();
+        register3 = new Register();
         accu = new Accumulator();
         commandRegister = new InstructionRegister();
 
