@@ -7,4 +7,12 @@ package ch.zhaw.mppce.compiler.instructions;
  * Time: 20:38
  */
 public class Instruction {
+    private String command;
+    private String params;
+
+    public Instruction() {};
+    public Instruction(String command, String params) {
+        this.command = command;
+        this.params = params;
+    }
 }

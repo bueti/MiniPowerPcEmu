@@ -2,6 +2,9 @@ package ch.zhaw.mppce.cpu;
 
 import ch.zhaw.mppce.compiler.AssemblerCompiler;
 import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
+import ch.zhaw.mppce.compiler.instructions.Instruction;
+
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -51,4 +54,12 @@ public class CPU {
     }
 
 
+    //
+    public void addCommandToProgramMemory(int address, Instruction command) {
+        programMemory.storeCommand(address, command);
+    }
+
+    public Memory getProgramMemory() {
+        return programMemory;
+    }
 }

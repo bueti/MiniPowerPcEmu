@@ -1,9 +1,5 @@
 package ch.zhaw.mppce.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -34,12 +30,12 @@ public class FileParser {
         String params = "";
         int i = 2;
         while(i<delim.length) {
-            params = params + "," + delim[i];
+            params = params + " " + delim[i];
             i++;
         }
         parsedLine[2] = params;
 
-        // Return line or store it?
+        // Return line
         return parsedLine;
 
 

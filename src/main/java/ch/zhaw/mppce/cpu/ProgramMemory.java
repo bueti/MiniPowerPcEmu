@@ -14,7 +14,9 @@ public class ProgramMemory extends Memory {
 
     private HashMap<Integer, Instruction> programMemory;
 
+
     public ProgramMemory() {
+        super();
         programMemory = new HashMap<Integer, Instruction>();
     }
 
@@ -33,6 +35,7 @@ public class ProgramMemory extends Memory {
     /**
      * Get given command by address
      *
+     *
      * @param address
      * @return command
      *
@@ -40,5 +43,9 @@ public class ProgramMemory extends Memory {
     public Instruction getCommand(int address) {
         return programMemory.get(address);
 
+    }
+
+    public HashMap<Integer, Instruction> getMemory() {
+        return programMemory;
     }
 }

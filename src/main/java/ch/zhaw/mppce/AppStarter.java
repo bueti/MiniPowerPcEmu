@@ -1,11 +1,17 @@
 package ch.zhaw.mppce;
 
+import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.gui.FileLoader;import ch.zhaw.mppce.gui.FileParser;
+import ch.zhaw.mppce.cpu.Memory;
+import ch.zhaw.mppce.gui.FileLoader;
+import ch.zhaw.mppce.gui.FileParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,15 +42,19 @@ public class AppStarter {
         for(String line : program) {
             String[] parsedLine = fp.parseLine(line);
 
-            // Store address
-            // Store code
+            // Store address, Store code
+            Instruction instr = new Instruction(parsedLine[1], parsedLine[2]);
+            cpu.addCommandToProgramMemory(Integer.parseInt(parsedLine[0]), instr);
+
             // Store params
         }
 
-
         // Run Program
-
+        try {
+            sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
-
 
 }

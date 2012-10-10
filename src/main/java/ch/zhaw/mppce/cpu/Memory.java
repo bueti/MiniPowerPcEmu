@@ -1,5 +1,9 @@
 package ch.zhaw.mppce.cpu;
 
+import ch.zhaw.mppce.compiler.instructions.Instruction;
+
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -7,4 +11,9 @@ package ch.zhaw.mppce.cpu;
  * Time: 15:47
  */
 public abstract class Memory {
+
+    public abstract void storeCommand(int address, Instruction command);
+    public abstract Instruction getCommand(int address);
+    public abstract HashMap<Integer, Instruction> getMemory();
+
 }
