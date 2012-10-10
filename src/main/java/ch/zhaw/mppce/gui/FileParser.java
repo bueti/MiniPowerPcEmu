@@ -14,38 +14,35 @@ import java.util.StringTokenizer;
  *
  */
 public class FileParser {
-    public FileParser(List<String> program) {
-        parseFile(program);
-    }
 
-    private void parseFile(List<String> program) {
+    public String[] parseLine(String line) {
+        String[] parsedLine = new String[3];
         String[] delim;
 
-        for(String line : program) {
+        // Remove Comments
+        delim = line.split(";");
+        String restOfLine = delim[0];
 
-            // Remove Comments
-            delim = line.split(";");
-            String restOfLine = delim[0];
+        // Get Address
+        delim = restOfLine.split(" ");
+        parsedLine[0] = delim[0];
 
-            // Get Address
-            delim = restOfLine.split(" ");
-            int address = Integer.parseInt( delim[0] );
+        // Get Command
+        parsedLine[1] = delim[1];
 
-            // Get Command
-            String command = delim[1];
-
-            // Get Parameters
-            ArrayList<String> params = new ArrayList<String>();
-            int i = 2;
-            while(i<delim.length) {
-                params.add(delim[i]);
-                i++;
-            }
-
-            // Return line or store it?
-
-
+        // Get Parameters
+        String params = "";
+        int i = 2;
+        while(i<delim.length) {
+            params = params + "," + delim[i];
+            i++;
         }
+        parsedLine[2] = params;
+
+        // Return line or store it?
+        return parsedLine;
+
+
     }
 
 }

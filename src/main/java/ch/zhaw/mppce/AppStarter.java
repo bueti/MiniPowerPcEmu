@@ -16,7 +16,7 @@ import java.util.List;
 public class AppStarter {
 
     public static void main(String[] args) {
-
+        // CPU
         CPU cpu = new CPU();
 
         // Load file
@@ -32,7 +32,15 @@ public class AppStarter {
         }
 
         // Parse file
-        new FileParser(program);
+        FileParser fp = new FileParser();
+        for(String line : program) {
+            String[] parsedLine = fp.parseLine(line);
+
+            // Store address
+            // Store code
+            // Store params
+        }
+
 
         // Run Program
 
