@@ -7,6 +7,7 @@ import ch.zhaw.mppce.gui.FileLoader;
 import ch.zhaw.mppce.gui.FileParser;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,18 +44,40 @@ public class AppStarter {
             String[] parsedLine = fp.parseLine(line);
 
             // Store address, Store code
-            Instruction instr = new Instruction(parsedLine[1], parsedLine[2]);
-            cpu.addCommandToProgramMemory(Integer.parseInt(parsedLine[0]), instr);
+            //command = prefix + command;
+            if(parsedLine[1].equals("ADD")) {
+                Class cl = null;
+                Instruction newCommand;
+                try {
+                    cl = Class.forName("ch.zhaw.mppce.compiler.instructions." + parsedLine[1]);
+                    java.lang.reflect.Constructor co = cl.getConstructor();
+                    newCommand = (Instruction) co.newInstance(null);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (InstantiationException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
 
-            // Store params
+
+            }
+            //Instruction instr = new Instruction(parsedLine[1], parsedLine[2]);
+            //cpu.addCommandToProgramMemory(Integer.parseInt(parsedLine[0]), instr);
         }
 
-        // Run Program
-        try {
-            sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+
+        // Convert Mnemonics to Binary
+        //for(Instruction instr : cpu.getProgramMemory()) {
+            //instr.convertToBinary(instr);
+
+            //String simpleClassName = instr[1].getSimpleName();
+        //}
+
     }
 
 }

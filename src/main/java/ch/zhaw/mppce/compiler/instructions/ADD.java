@@ -18,6 +18,7 @@ public class ADD extends Instruction {
      * @param  registerNr  the number of the register
      *
      */
+    public ADD() {};
     public ADD(int registerNr) {
         add(registerNr);
     }
