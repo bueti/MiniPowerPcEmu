@@ -5,33 +5,35 @@ package ch.zhaw.mppce.compiler.instructions;
  * User: bbu
  * Date: 09.10.12
  * Time: 20:48
+ *
+ *  ADDD #Address
+ *
+ * Addition der 16-Bit-Zahl im Akku mit der 15-Bit-Zahl als direkten Operanden
+ * im 2er -Komplement; bei Überlauf wird das Carry-Flag gesetzt (=1),
+ * sonst auf den Wert 0 . Vor der Addition wird die 15-Bit-Zahl des Operanden
+ * auf 16 Bit erweitert (mit MSb des MSB auf 1 wenn negativ, sonst auf 0 ).
+ *
+ *
  */
 public class ADDD extends Instruction {
-    public ADDD() {
-    }
+    // Instance Variable
 
     /**
-     * ADDD #Address
+     * Constructor
      *
-     * Addition der 16-Bit-Zahl im Akku mit der 15-Bit-Zahl als direkten Operanden
-     * im 2er -Komplement; bei Überlauf wird das Carry-Flag gesetzt (=1),
-     * sonst auf den Wert 0 . Vor der Addition wird die 15-Bit-Zahl des Operanden
-     * auf 16 Bit erweitert (mit MSb des MSB auf 1 wenn negativ, sonst auf 0 ).
-     *
-     * @param  address  the number of the register
-     *
+     * @param parameters
      */
-
-    public ADDD(int address) {
-        addd(address);
+    public ADDD(String parameters) {
+        super(parameters);
     }
 
     // Methods
-    public void addd(int address) {
-        // get data
+    @Override
+    public String convertToBinary() {
+        String address = getParameters();
+        // TODO: Get Value from Address
+        String value = null;
 
-        // addition
-
-        // store data
+        return "1" + value;
     }
 }

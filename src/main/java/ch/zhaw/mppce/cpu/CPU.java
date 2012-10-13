@@ -4,6 +4,8 @@ import ch.zhaw.mppce.compiler.AssemblerCompiler;
 import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -53,11 +55,15 @@ public class CPU {
 
 
     //
-    public void addCommandToProgramMemory(int address, Instruction command) {
-        programMemory.storeCommand(address, command);
+    public void addCommandToProgramMemory(String instructionNr, Instruction command) {
+        programMemory.storeCommand(instructionNr, command);
     }
 
-    public Memory getProgramMemory() {
-        return programMemory;
+    public HashMap<String, Instruction> getProgramMemory() {
+        return programMemory.getMemory();
+    }
+
+    public void addCommandToDataMemory(String dataNr, String data) {
+        dataMemory.storeData(dataNr, data);
     }
 }

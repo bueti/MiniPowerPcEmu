@@ -12,40 +12,45 @@ import java.util.HashMap;
  */
 public class ProgramMemory extends Memory {
 
-    private HashMap<Integer, Instruction> programMemory;
+    private HashMap<String, Instruction> programMemory;
 
 
     public ProgramMemory() {
         super();
-        programMemory = new HashMap<Integer, Instruction>();
+        programMemory = new HashMap<String, Instruction>();
     }
 
     /**
      * Store a given command
      *
-     * @param address   Address of command
+     * @param instructionNr   Address of command
      * @param command   commando
      *
      */
-    public void storeCommand(int address, Instruction command) {
-        programMemory.put(address, command);
-
+    public void storeCommand(String instructionNr, Instruction command) {
+        programMemory.put(instructionNr, command);
     }
 
     /**
      * Get given command by address
      *
      *
-     * @param address
+     * @param instructionNr
      * @return command
      *
      */
-    public Instruction getCommand(int address) {
-        return programMemory.get(address);
-
+    @Override
+    public Instruction getCommand(String instructionNr) {
+        return programMemory.get(instructionNr);
     }
 
-    public HashMap<Integer, Instruction> getMemory() {
+    @Override
+    public HashMap<String, Instruction> getMemory() {
         return programMemory;
+    }
+
+    @Override
+    public void storeData(String dataNr, String data) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

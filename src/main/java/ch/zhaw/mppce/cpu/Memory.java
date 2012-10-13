@@ -12,8 +12,8 @@ import java.util.HashMap;
  */
 public abstract class Memory {
 
-    public abstract void storeCommand(int address, Instruction command);
-    public abstract Instruction getCommand(int address);
-    public abstract HashMap<Integer, Instruction> getMemory();
-
+    public abstract void storeCommand(String instruction, Instruction command);
+    public abstract Instruction getCommand(String instruction);
+    public abstract HashMap<String, Instruction> getMemory();
+    public abstract void storeData(String dataNr, String data);
 }

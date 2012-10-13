@@ -12,17 +12,22 @@ import java.util.HashMap;
  */
 public class DataMemory extends Memory {
     @Override
-    public void storeCommand(int address, Instruction command) {
+    public void storeCommand(String instruction, Instruction command) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public Instruction getCommand(int address) {
+    public Instruction getCommand(String instruction) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public HashMap<Integer, Instruction> getMemory() {
+    public HashMap<String, Instruction> getMemory() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void storeData(String dataNr, String data) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

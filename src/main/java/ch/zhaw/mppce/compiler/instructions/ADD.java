@@ -5,30 +5,33 @@ package ch.zhaw.mppce.compiler.instructions;
  * User: bbu
  * Date: 09.10.12
  * Time: 20:48
+ *
+ * ADD Rnr
+ *
+ * Addition zweier 16-Bit-Zahlen (Zahl im Akku und Zahl im Register «Rxx »;
+ * 00 bis 11 für Akku, R-1, R-2 bzw. R-3) im 2er -Komplement; bei Überlauf
+ * wird das Carry-Flag gesetzt (= 1), sonst auf den Wert 0.
+ *
  */
 public class ADD extends Instruction {
+     // Instance Variables
 
     /**
-     * ADD Rnr
+     * Constructor
      *
-     * Addition zweier 16-Bit-Zahlen (Zahl im Akku und Zahl im Register «Rxx »;
-     * 00 bis 11 für Akku, R-1, R-2 bzw. R-3) im 2er -Komplement; bei Überlauf
-     * wird das Carry-Flag gesetzt (= 1), sonst auf den Wert 0.
-     *
-     * @param  registerNr  the number of the register
-     *
+     * @param  parameters  the number of the register
      */
-    public ADD() {};
-    public ADD(int registerNr) {
-        add(registerNr);
+    public ADD(String parameters) {
+        super(parameters);
     }
+
 
     // Methods
-    public void add(int registerNr) {
-        // get data
+    @Override
+    public String convertToBinary() {
+        String register = getParameters().trim().replaceAll("[^\\d]","");
 
-        // addition
-
-        // store data
+        return "0000" + register + "1010000000";
     }
+
 }

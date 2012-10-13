@@ -1,5 +1,6 @@
 package ch.zhaw.mppce;
 
+import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
@@ -11,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.lang.Thread.sleep;
 
@@ -23,59 +25,81 @@ import static java.lang.Thread.sleep;
 public class AppStarter {
 
     public static void main(String[] args) {
-        // CPU
+        // cpu
         CPU cpu = new CPU();
 
         // Load file
-        FileLoader fl = new FileLoader();
+        FileLoader flp = new FileLoader();
+        FileLoader fld = new FileLoader();
         List<String> program = new ArrayList<String>();
+        List<String> data = new ArrayList<String>();
 
         try {
-            program = fl.loadFile("/var/tmp/test");
+            program = flp.loadFile("/var/tmp/test");
+            data = fld.loadFile("/var/tmp/test2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        // Parse file
+        // Load Assembler File
         FileParser fp = new FileParser();
         for(String line : program) {
             String[] parsedLine = fp.parseLine(line);
 
             // Store address, Store code
-            //command = prefix + command;
-                Class cl = null;
-                Instruction newCommand;
-                try {
-                    cl = Class.forName("ch.zhaw.mppce.compiler.instructions." + parsedLine[1]);
-                    java.lang.reflect.Constructor co = cl.getConstructor();
-                    newCommand = (Instruction) co.newInstance(null);
-                } catch (ClassNotFoundException e) {
-                    System.out.println("Instruction " + parsedLine[1] + " not implemented yet");
-                    //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch (InstantiationException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            Class cl = null;
+            Instruction instr = null;
+            try {
+                cl = Class.forName("ch.zhaw.mppce.compiler.instructions." + parsedLine[1]);
+
+                if(parsedLine[2] != null) {
+                    instr =(Instruction) cl.getConstructor(String.class).newInstance(parsedLine[2]);
+                } else {
+                    java.lang.reflect.Constructor co = cl.getConstructor(null);
+                    instr = (Instruction) co.newInstance(null);
                 }
+            } catch (ClassNotFoundException e) {
+                System.out.println("Instruction " + parsedLine[1] + " not implemented yet");
+                //e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
 
-
-            //Instruction instr = new Instruction(parsedLine[1], parsedLine[2]);
-            //cpu.addCommandToProgramMemory(Integer.parseInt(parsedLine[0]), instr);
+            // Save Instruction to program memory
+            cpu.addCommandToProgramMemory(parsedLine[0], instr);
         }
 
+        // TODO: Load Parameters
+        // Load Data File
+        for(String line : data ) {
+            String[] parsedLine = fp.parseLine(line);
+            cpu.addCommandToDataMemory(parsedLine[0], parsedLine[1]);
+        }
 
-        // Convert Mnemonics to Binary
-        //for(Instruction instr : cpu.getProgramMemory()) {
-            //instr.convertToBinary(instr);
+        // TODO: Convert Mnemonics to Binary
+        HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
 
-            //String simpleClassName = instr[1].getSimpleName();
-        //}
+        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
+            String key = entry.getKey();
+            Instruction instr = entry.getValue();
+            if(instr != null)
+                System.out.println(instr.convertToBinary());
+            // TODO: Save to command register
+
+        }
+
+        // TODO: Save converted commands into command register
+
+        // Run that shit
+
 
     }
 

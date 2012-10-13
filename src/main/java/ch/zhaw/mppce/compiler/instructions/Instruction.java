@@ -7,16 +7,21 @@ package ch.zhaw.mppce.compiler.instructions;
  * Time: 20:38
  */
 public abstract class Instruction {
-    private String command;
-    private String params;
+    private String parameters;
 
     public Instruction() {};
 
-    public Instruction(String command, String params) {
-        this.command = command;
-        this.params = params;
+    public Instruction(String parameters) {
+        this.parameters = parameters;
     }
 
-    public Instruction convertToBinary(Instruction instr) { return instr; }
+    public abstract String convertToBinary();
 
+    public String getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(String parameters) {
+        this.parameters = parameters;
+    }
 }

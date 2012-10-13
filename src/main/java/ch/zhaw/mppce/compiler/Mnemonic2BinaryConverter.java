@@ -1,5 +1,7 @@
 package ch.zhaw.mppce.compiler;
 
+import ch.zhaw.mppce.compiler.instructions.Instruction;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -9,6 +11,8 @@ package ch.zhaw.mppce.compiler;
 public class Mnemonic2BinaryConverter {
 
 
+    public String convert(Instruction instruction) {
 
-
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }
