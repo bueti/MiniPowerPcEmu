@@ -45,7 +45,6 @@ public class AppStarter {
 
             // Store address, Store code
             //command = prefix + command;
-            if(parsedLine[1].equals("ADD")) {
                 Class cl = null;
                 Instruction newCommand;
                 try {
@@ -53,7 +52,8 @@ public class AppStarter {
                     java.lang.reflect.Constructor co = cl.getConstructor();
                     newCommand = (Instruction) co.newInstance(null);
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    System.out.println("Instruction " + parsedLine[1] + " not implemented yet");
+                    //e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 } catch (NoSuchMethodException e) {
@@ -65,7 +65,6 @@ public class AppStarter {
                 }
 
 
-            }
             //Instruction instr = new Instruction(parsedLine[1], parsedLine[2]);
             //cpu.addCommandToProgramMemory(Integer.parseInt(parsedLine[0]), instr);
         }

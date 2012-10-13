@@ -4,6 +4,9 @@ package ch.zhaw.mppce.compiler.instructions;
 public class CLR extends Instruction {
     // Instance Variables
 
+    public CLR() {
+    }
+
     /**
      * CLR Rnr
      *
@@ -13,6 +16,7 @@ public class CLR extends Instruction {
      * @param  registerNr  the number of the register
      *
      */
+
     public CLR(int registerNr) {
         clr(registerNr);
     }

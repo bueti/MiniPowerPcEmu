@@ -7,6 +7,9 @@ package ch.zhaw.mppce.compiler.instructions;
  * Time: 20:48
  */
 public class ADDD extends Instruction {
+    public ADDD() {
+    }
+
     /**
      * ADDD #Address
      *
@@ -18,6 +21,7 @@ public class ADDD extends Instruction {
      * @param  address  the number of the register
      *
      */
+
     public ADDD(int address) {
         addd(address);
     }
