@@ -1,7 +1,8 @@
 package ch.zhaw.mppce.compiler.instructions;
 
 import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.cpu.Memory;
+
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,8 +32,8 @@ public class LWDD extends Instruction {
         String address = params[2].replace("#", "");
 
         // Get Value from Address
-        Memory data = CPU.getDataMemory();
-        String value = data.getValue(address);
+        HashMap<String, String> data = CPU.getDataMemory();
+        String value = data.get(address);
 
         return "0100--" + register + value;
     }

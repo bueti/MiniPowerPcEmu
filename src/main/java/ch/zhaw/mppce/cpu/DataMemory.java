@@ -1,9 +1,5 @@
 package ch.zhaw.mppce.cpu;
 
-import ch.zhaw.mppce.compiler.instructions.Instruction;
-
-import java.util.HashMap;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu

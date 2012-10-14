@@ -1,7 +1,5 @@
 package ch.zhaw.mppce.compiler.instructions;
 
-import ch.zhaw.mppce.cpu.Memory;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu

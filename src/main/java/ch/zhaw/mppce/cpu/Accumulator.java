@@ -13,6 +13,7 @@ public class Accumulator extends Register {
 
     public Accumulator() {
         setAccu(new ArrayList<String>());
+        addToAccu("");
     }
 
     public ArrayList<String> getAccu() {
@@ -21,5 +22,9 @@ public class Accumulator extends Register {
 
     public void setAccu(ArrayList<String> accu) {
         this.accu = accu;
+    }
+
+    public void addToAccu(String value) {
+        accu.add(value);
     }
 }

@@ -14,7 +14,7 @@ public class Register {
 
     // Constructor
     public Register() {
-        setRegister(new ArrayList<String>());
+        register = new ArrayList<String>();
 
     }
 
@@ -27,7 +27,20 @@ public class Register {
         this.register = register;
     }
 
-    public String getValue() {
-        return register.get(0);
+    // Return value at position i or 0 if register is empty
+    public String getValue(int i) {
+        if(register.size() == 0) {
+            return "0";
+        }
+        return register.get(i);
+    }
+
+    // Save Binary Command to Command Register
+    public void storeCommand(String command) {
+        register.add(command);
+    }
+
+    public void setValue(int i, String value) {
+        register.set(i, value);
     }
 }

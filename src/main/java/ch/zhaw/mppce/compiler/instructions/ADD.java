@@ -38,19 +38,19 @@ public class ADD extends Instruction {
         Register registerData = null;
 
         // Get Register
-        String register = getParameters().trim().replaceAll("[^\\d]","");
-        if(register.equals("1")) {
+        String register = getParameters().replaceAll("[^\\d]", "");
+        if(register.equals("0")) {
             registerData = CPU.getRegister1();
-        } else if (register.equals("10")) {
+        } else if (register.equals("1")) {
             registerData = CPU.getRegister2();
         } else {
             registerData = CPU.getRegister3();
         }
 
         // Calculate: accu = accu + registerData
-        result = accu.getValue() + "-" + registerData.getValue();
+        accu.setValue(0, accu.getValue(0) + " + " + registerData.getValue(0));
 
-        return result;
+        return accu.getValue(0);
     }
 
     @Override

@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -23,18 +21,18 @@ import static java.lang.Thread.sleep;
 public class AppStarter {
 
     public static void main(String[] args) {
-        // cpu
+        // Initialize COU
         CPU cpu = new CPU();
+        cpu.init();
 
-        // Load file
-        FileLoader flp = new FileLoader();
-        FileLoader fld = new FileLoader();
+        // Load files
+        FileLoader fl = new FileLoader();
         List<String> program = new ArrayList<String>();
         List<String> data = new ArrayList<String>();
 
         try {
-            program = flp.loadFile("/var/tmp/test");
-            data = fld.loadFile("/var/tmp/test2");
+            program = fl.loadFile("/var/tmp/test");
+            data = fl.loadFile("/var/tmp/test2");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -55,8 +53,8 @@ public class AppStarter {
                 if(parsedLine[2] != null) {
                     instr =(Instruction) cl.getConstructor(String.class).newInstance(parsedLine[2]);
                 } else {
-                    java.lang.reflect.Constructor co = cl.getConstructor(null);
-                    instr = (Instruction) co.newInstance(null);
+                    java.lang.reflect.Constructor co = cl.getConstructor();
+                    instr = (Instruction) co.newInstance();
                 }
             } catch (ClassNotFoundException e) {
                 System.out.println("Instruction " + parsedLine[1] + " not implemented yet");
@@ -78,27 +76,30 @@ public class AppStarter {
         // Load Data File
         for(String line : data ) {
             String[] parsedLine = fp.parseLine(line);
+            // Save command to data memory
             cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
         }
 
-        // Convert Mnemonics to Binary
+        // Convert Mnemonics to Binary and save it to the command register
         HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
 
         for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
             String key = entry.getKey();
             Instruction instr = entry.getValue();
-            if(instr != null) {
-                System.out.println(instr.convertToBinary());
-                // TODO: Save to command register
-                System.out.println("doit: " + instr.doIt());
-            }
-
+            CPU.storeToCommandRegister(instr.convertToBinary());
         }
 
-        // TODO: Save converted commands into command register
+        // Print Command Register
+        cpu.printCommandRegister();
 
-        // Run that shit
+        // Print Accumulator
+        cpu.printAccumulator();
 
+        // Print ProgramMemory
+        cpu.printProgramMemory();
+
+        // Print DataMemory
+        cpu.printDataMemory();
 
     }
 
