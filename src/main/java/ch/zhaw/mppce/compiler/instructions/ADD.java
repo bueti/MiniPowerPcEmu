@@ -3,6 +3,8 @@ package ch.zhaw.mppce.compiler.instructions;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Register;
 
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -32,7 +34,8 @@ public class ADD extends Instruction {
     // Methods
 
     @Override
-    public String doIt() {
+    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory,
+                       Register accu2, Register register1, Register register2, Register register3) {
         String result = null;
         Register accu = CPU.getAccu();
         Register registerData = null;
@@ -48,9 +51,11 @@ public class ADD extends Instruction {
         }
 
         // Calculate: accu = accu + registerData
-        accu.setValue(0, accu.getValue(0) + " + " + registerData.getValue(0));
+        String accuVal = accu.getValue(0);
+        String regVal = registerData.getValue(0);
+        accu.setValue(0, accuVal + " + " + regVal);
 
-        return accu.getValue(0);
+        //return accu.getValue(0);
     }
 
     @Override

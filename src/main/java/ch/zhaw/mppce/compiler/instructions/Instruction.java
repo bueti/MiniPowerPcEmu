@@ -1,5 +1,9 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Register;
+
+import java.util.HashMap;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -19,7 +23,7 @@ public abstract class Instruction {
 
     // Abstract Methods
     public abstract String convertToBinary();
-    public abstract String doIt();
+    public abstract void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Register accu, Register register1, Register register2, Register register3);
 
     // Methods
     public String getParameters() {

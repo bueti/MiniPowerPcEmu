@@ -31,6 +31,19 @@ public class CPU {
      * Constructor
      */
     public CPU() {
+        // Initialize Registers
+        register1 = new Register();
+        register2 = new Register();
+        register3 = new Register();
+        accu = new Accumulator();
+        commandRegister = new InstructionRegister();
+
+        // Initialize Memory
+        programMemory = new Memory();
+        dataMemory = new Memory();
+
+        // Misc
+        commandCounter = 0;
 
     }
 
@@ -64,23 +77,6 @@ public class CPU {
     }
 
     // Methods
-    public void init() {
-        // Initialize Registers
-        register1 = new Register();
-        register2 = new Register();
-        register3 = new Register();
-        accu = new Accumulator();
-        commandRegister = new InstructionRegister();
-
-        // Initialize Memory
-        programMemory = new Memory();
-        dataMemory = new Memory();
-
-        // Misc
-        commandCounter = 0;
-
-    }
-
     public void addCommandToMemory(String instructionNr, Instruction command) {
         programMemory.storeCommand(instructionNr, command);
     }

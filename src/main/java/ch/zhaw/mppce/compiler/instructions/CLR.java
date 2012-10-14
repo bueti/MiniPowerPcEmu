@@ -1,5 +1,9 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Register;
+
+import java.util.HashMap;
+
 /**
  * CLR Rnr
  *
@@ -21,8 +25,7 @@ public class CLR extends Instruction {
     // Methods
 
     @Override
-    public String doIt() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Register accu, Register register1, Register register2, Register register3) {
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Register {
     // Constructor
     public Register() {
         register = new ArrayList<String>();
-
+        register.add("");
     }
 
     // Getter & Setter

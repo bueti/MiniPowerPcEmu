@@ -23,7 +23,6 @@ public class AppStarter {
     public static void main(String[] args) {
         // Initialize COU
         CPU cpu = new CPU();
-        cpu.init();
 
         // Load files
         FileLoader fl = new FileLoader();
@@ -90,16 +89,16 @@ public class AppStarter {
         }
 
         // Print Command Register
-        cpu.printCommandRegister();
+        //cpu.printCommandRegister();
 
         // Print Accumulator
-        cpu.printAccumulator();
+        //cpu.printAccumulator();
 
         // Print ProgramMemory
-        cpu.printProgramMemory();
+        //cpu.printProgramMemory();
 
         // Print DataMemory
-        cpu.printDataMemory();
+        //cpu.printDataMemory();
 
         // Create Emulator
         Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
