@@ -11,25 +11,12 @@ import java.util.HashMap;
  * Time: 15:47
  */
 public class ProgramMemory extends Memory {
-
     private HashMap<String, Instruction> programMemory;
-
 
     public ProgramMemory() {
         super();
-        programMemory = new HashMap<String, Instruction>();
     }
 
-    /**
-     * Store a given command
-     *
-     * @param instructionNr   Address of command
-     * @param command   commando
-     *
-     */
-    public void storeCommand(String instructionNr, Instruction command) {
-        programMemory.put(instructionNr, command);
-    }
 
     /**
      * Get given command by address
@@ -39,18 +26,18 @@ public class ProgramMemory extends Memory {
      * @return command
      *
      */
-    @Override
-    public Instruction getCommand(String instructionNr) {
-        return programMemory.get(instructionNr);
-    }
-
-    @Override
-    public HashMap<String, Instruction> getMemory() {
-        return programMemory;
-    }
-
-    @Override
-    public void storeData(String dataNr, String data) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
+//    @Override
+//    public Instruction getCommand(String instructionNr) {
+//        return programMemory.get(instructionNr);
+//    }
+//
+//    @Override
+//    public HashMap<String, Instruction> getMemory() {
+//        return programMemory;
+//    }
+//
+//    @Override
+//    public void storeData(String dataNr, String data) {
+//        //To change body of implemented methods use File | Settings | File Templates.
+//    }
 }

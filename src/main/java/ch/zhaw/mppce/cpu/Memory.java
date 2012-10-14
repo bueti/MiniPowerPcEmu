@@ -11,9 +11,41 @@ import java.util.HashMap;
  * Time: 15:47
  */
 public abstract class Memory {
+    // Instance Variables
+    private HashMap<String, Instruction> programMemory;
+    private HashMap<String, String> dataMemory;
 
-    public abstract void storeCommand(String instruction, Instruction command);
-    public abstract Instruction getCommand(String instruction);
-    public abstract HashMap<String, Instruction> getMemory();
-    public abstract void storeData(String dataNr, String data);
+    public Memory() {
+        programMemory = new HashMap<String, Instruction>();
+        dataMemory = new HashMap<String, String>();
+    }
+
+//    public abstract HashMap<String, Instruction> getMemory();
+
+    /**
+     * Store a given command
+     *
+     * @param instructionNr   Address of command
+     * @param command   commando
+     *
+     */
+    public void storeCommand(String instructionNr, Instruction command) {
+        programMemory.put(instructionNr, command);
+    }
+
+    public void storeData(String dataNr, String data) {
+        dataMemory.put(dataNr, data);
+    }
+
+    public Instruction getCommand(String instructionNr) {
+        return programMemory.get(instructionNr);
+    }
+
+    public HashMap<String, Instruction> getProgramMemory() {
+        return programMemory;
+    }
+
+    public HashMap<String, String> getDataMemory() {
+        return dataMemory;
+    }
 }

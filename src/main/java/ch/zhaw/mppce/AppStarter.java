@@ -1,9 +1,7 @@
 package ch.zhaw.mppce;
 
-import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.gui.FileLoader;
 import ch.zhaw.mppce.gui.FileParser;
 

@@ -12,8 +12,8 @@ package ch.zhaw.mppce.gui;
 public class FileParser {
 
     public String[] parseLine(String line) {
-        String[] parsedLine = new String[3];
-        String[] delim;
+        String[] parsedLine = new String[5];
+        String[] delim = null;
 
         // Remove Comments
         delim = line.split(";");
@@ -27,13 +27,18 @@ public class FileParser {
         parsedLine[1] = delim[1];
 
         // Get Parameters
-        String params = "";
-        int i = 2;
-        while(i<delim.length) {
-            params = params + " " + delim[i];
-            i++;
+        if(delim.length > 2) {
+            String params = null;
+            int i = 2;
+            while(i<delim.length) {
+                params = params + " " + delim[i];
+                i++;
+            }
+            parsedLine[2] = params;
+        } else {
+            parsedLine[0] = delim[0];
+            parsedLine[1] = delim[1];
         }
-        parsedLine[2] = params;
 
         // Return line
         return parsedLine;

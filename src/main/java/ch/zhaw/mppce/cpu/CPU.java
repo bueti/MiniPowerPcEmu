@@ -1,7 +1,5 @@
 package ch.zhaw.mppce.cpu;
 
-import ch.zhaw.mppce.compiler.AssemblerCompiler;
-import ch.zhaw.mppce.compiler.Mnemonic2BinaryConverter;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
 import java.util.HashMap;
@@ -25,8 +23,6 @@ public class CPU {
     private Memory dataMemory;
 
     private int commandCounter;
-    private Mnemonic2BinaryConverter m2b;
-    private AssemblerCompiler compiler;
 
 
     /**
@@ -47,20 +43,16 @@ public class CPU {
         // Misc
         commandCounter = 0;
 
-        // Compiler
-        m2b = new Mnemonic2BinaryConverter();
-        compiler = new AssemblerCompiler();
-
     }
 
 
-    //
+    // Methods
     public void addCommandToProgramMemory(String instructionNr, Instruction command) {
         programMemory.storeCommand(instructionNr, command);
     }
 
     public HashMap<String, Instruction> getProgramMemory() {
-        return programMemory.getMemory();
+        return programMemory.getProgramMemory();
     }
 
     public void addCommandToDataMemory(String dataNr, String data) {
