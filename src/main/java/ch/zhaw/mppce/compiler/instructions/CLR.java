@@ -19,6 +19,12 @@ public class CLR extends Instruction {
     }
 
     // Methods
+
+    @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     @Override
     public String convertToBinary() {
         String register = getParameters().trim().replaceAll("[^\\d]","");

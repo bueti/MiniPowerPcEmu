@@ -1,5 +1,8 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Register;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -27,9 +30,31 @@ public class ADD extends Instruction {
 
 
     // Methods
+
+    @Override
+    public String doIt() {
+        String result = null;
+        Register accu = CPU.getAccu();
+        Register registerData = null;
+
+        // Get Register
+        String register = getParameters().trim().replaceAll("[^\\d]","");
+        if(register.equals("1")) {
+            registerData = CPU.getRegister1();
+        } else if (register.equals("10")) {
+            registerData = CPU.getRegister2();
+        } else {
+            registerData = CPU.getRegister3();
+        }
+
+        // Calculate: accu = accu + registerData
+        result = accu.getValue() + "-" + registerData.getValue();
+
+        return result;
+    }
+
     @Override
     public String convertToBinary() {
-        //String register = getParameters().trim().replaceAll("[^\\d]","");
         String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));
 
         return "0000" + register + "1010000000";

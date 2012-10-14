@@ -10,20 +10,24 @@ import java.util.ArrayList;
  */
 public class Register {
     // Instance Variables
-    private ArrayList<Integer> register;
+    private ArrayList<String> register;
 
     // Constructor
     public Register() {
-        setRegister(new ArrayList<Integer>());
+        setRegister(new ArrayList<String>());
 
     }
 
     // Getter & Setter
-    public ArrayList<Integer> getRegister() {
+    public ArrayList<String> getRegister() {
         return register;
     }
 
-    public void setRegister(ArrayList<Integer> register) {
+    public void setRegister(ArrayList<String> register) {
         this.register = register;
+    }
+
+    public String getValue() {
+        return register.get(0);
     }
 }

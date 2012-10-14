@@ -9,6 +9,12 @@ package ch.zhaw.mppce.compiler.instructions;
 public class DEC extends Instruction {
 
     @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+
     public String convertToBinary() {
         return "0000010000000000";
     }

@@ -13,11 +13,11 @@ import java.util.HashMap;
 public class CPU {
 
     // Instance Variables
-    private Register register1;
-    private Register register2;
-    private Register register3;
-    private Register accu;
-    private Register commandRegister;
+    private static Register register1;
+    private static Register register2;
+    private static Register register3;
+    private static Register accu;
+    private static Register commandRegister;
 
     private static Memory programMemory;
     private static Memory dataMemory;
@@ -54,6 +54,21 @@ public class CPU {
         return programMemory.getProgramMemory();
     }
 
+    public static Register getAccu() {
+        return accu;
+    }
+
+    public static Register getRegister1() {
+        return register1;
+    }
+
+    public static Register getRegister2() {
+        return register2;
+    }
+
+    public static Register getRegister3() {
+        return register3;
+    }
 
     // Methods
     public void addCommandToMemory(String instructionNr, Instruction command) {

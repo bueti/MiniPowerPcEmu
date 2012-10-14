@@ -18,6 +18,12 @@ public class LWDD extends Instruction {
     }
 
     // Methods
+
+    @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     @Override
     public String convertToBinary() {
         String[] params = getParameters().split(" ");
@@ -28,6 +34,6 @@ public class LWDD extends Instruction {
         Memory data = CPU.getDataMemory();
         String value = data.getValue(address);
 
-        return "0100" + register + value;
+        return "0100--" + register + value;
     }
 }

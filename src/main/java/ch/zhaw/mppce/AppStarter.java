@@ -87,9 +87,11 @@ public class AppStarter {
         for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
             String key = entry.getKey();
             Instruction instr = entry.getValue();
-            if(instr != null)
+            if(instr != null) {
                 System.out.println(instr.convertToBinary());
-            // TODO: Save to command register
+                // TODO: Save to command register
+                System.out.println("doit: " + instr.doIt());
+            }
 
         }
 

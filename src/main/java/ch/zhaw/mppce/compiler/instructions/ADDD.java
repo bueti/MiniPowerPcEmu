@@ -28,6 +28,12 @@ public class ADDD extends Instruction {
     }
 
     // Methods
+
+    @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     @Override
     public String convertToBinary() {
         String address = getParameters();

@@ -15,6 +15,11 @@ public class SWDD extends Instruction {
     }
 
     @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public String convertToBinary() {
         String params = getParameters();
         String register = convertRegister(Integer.parseInt(params.split(",")[0].trim().replaceAll("[^\\d]", "").replace(",", "")));
@@ -25,6 +30,6 @@ public class SWDD extends Instruction {
         Memory data = CPU.getDataMemory();
         String value = data.getValue(address);
 
-        return "0111" + register + value;
+        return "011---" + register + value;
     }
 }

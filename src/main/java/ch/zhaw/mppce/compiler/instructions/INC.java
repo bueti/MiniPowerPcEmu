@@ -9,6 +9,11 @@ package ch.zhaw.mppce.compiler.instructions;
 public class INC extends Instruction {
 
     @Override
+    public String doIt() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public String convertToBinary() {
         return "0000000100000000";
     }

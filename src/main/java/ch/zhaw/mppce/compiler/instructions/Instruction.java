@@ -21,6 +21,7 @@ public abstract class Instruction {
 
     // Abstract Methods
     public abstract String convertToBinary();
+    public abstract String doIt();
 
     // Methods
     public String getParameters() {
