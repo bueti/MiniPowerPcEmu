@@ -38,8 +38,17 @@ public class AppStarter {
             e.printStackTrace();
         }
 
-        // Load Assembler File
+        // Create File Parser
         FileParser fp = new FileParser();
+
+        // Load Data File
+        for (String line : data) {
+            String[] parsedLine = fp.parseLine(line);
+            // Save command to data memory
+            cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
+        }
+
+        // Load Assembler File
         for (String line : program) {
             String[] parsedLine = fp.parseLine(line);
 
@@ -70,13 +79,6 @@ public class AppStarter {
 
             // Save Instruction to program memory
             cpu.addCommandToMemory(parsedLine[0], instr);
-        }
-
-        // Load Data File
-        for (String line : data) {
-            String[] parsedLine = fp.parseLine(line);
-            // Save command to data memory
-            cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
         }
 
         // Convert Mnemonics to Binary and save it to the command register

@@ -16,7 +16,7 @@ import java.util.Map;
 public class Emulator {
     // Startwerte des Memories
     private static final int PROGRAM_START = 100;
-    private static final int DATA_START = 500;
+    private static final int DATA_START = 200;
 
     // Instance Variables
     private final HashMap<String, Instruction> programMemory;
