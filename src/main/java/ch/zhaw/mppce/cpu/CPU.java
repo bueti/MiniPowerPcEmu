@@ -80,6 +80,7 @@ public class CPU {
         commandCounter = 0;
 
     }
+
     public void addCommandToMemory(String instructionNr, Instruction command) {
         programMemory.storeCommand(instructionNr, command);
     }
@@ -94,13 +95,13 @@ public class CPU {
 
     // Display the whole command register
     public void printCommandRegister() {
-        for(String command : getCommandRegister()) {
+        for (String command : getCommandRegister()) {
             System.out.println("CR: " + command);
         }
     }
 
     public void printAccumulator() {
-        System.out.println(accu.getRegister());
+        System.out.println("Accu: " + accu.getRegister());
     }
 
     public void printProgramMemory() {

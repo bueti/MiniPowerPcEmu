@@ -29,7 +29,7 @@ public class Register {
 
     // Return value at position i or 0 if register is empty
     public String getValue(int i) {
-        if(register.size() == 0) {
+        if (register.size() == 0) {
             return "0";
         }
         return register.get(i);

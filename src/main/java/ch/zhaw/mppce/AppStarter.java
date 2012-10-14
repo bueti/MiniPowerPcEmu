@@ -41,7 +41,7 @@ public class AppStarter {
 
         // Load Assembler File
         FileParser fp = new FileParser();
-        for(String line : program) {
+        for (String line : program) {
             String[] parsedLine = fp.parseLine(line);
 
             // Store address, Store code
@@ -50,8 +50,8 @@ public class AppStarter {
             try {
                 cl = Class.forName("ch.zhaw.mppce.compiler.instructions." + parsedLine[1]);
 
-                if(parsedLine[2] != null) {
-                    instr =(Instruction) cl.getConstructor(String.class).newInstance(parsedLine[2]);
+                if (parsedLine[2] != null) {
+                    instr = (Instruction) cl.getConstructor(String.class).newInstance(parsedLine[2]);
                 } else {
                     java.lang.reflect.Constructor co = cl.getConstructor();
                     instr = (Instruction) co.newInstance();
@@ -74,7 +74,7 @@ public class AppStarter {
         }
 
         // Load Data File
-        for(String line : data ) {
+        for (String line : data) {
             String[] parsedLine = fp.parseLine(line);
             // Save command to data memory
             cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
@@ -86,7 +86,7 @@ public class AppStarter {
         for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
             String key = entry.getKey();
             Instruction instr = entry.getValue();
-            CPU.storeToCommandRegister(instr.convertToBinary());
+            cpu.storeToCommandRegister(instr.convertToBinary());
         }
 
         // Print Command Register
@@ -101,6 +101,9 @@ public class AppStarter {
         // Print DataMemory
         cpu.printDataMemory();
 
+        // Create Emulator
+        Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
+        emu.run();
     }
 
 }

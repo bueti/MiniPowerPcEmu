@@ -25,9 +25,8 @@ public class Memory {
     /**
      * Store a given command
      *
-     * @param instructionNr   Address of command
-     * @param command   commando
-     *
+     * @param instructionNr Address of command
+     * @param command       commando
      */
     public void storeCommand(String instructionNr, Instruction command) {
         programMemory.put(instructionNr, command);
