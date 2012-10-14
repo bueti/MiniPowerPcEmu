@@ -32,7 +32,7 @@ public class ADDD extends Instruction {
     public String convertToBinary() {
         String address = getParameters();
         // TODO: Get Value from Address
-        String value = null;
+        String value = " v: ";
 
         return "1" + value;
     }

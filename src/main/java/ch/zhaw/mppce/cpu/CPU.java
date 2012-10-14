@@ -19,8 +19,8 @@ public class CPU {
     private Register accu;
     private Register commandRegister;
 
-    private Memory programMemory;
-    private Memory dataMemory;
+    private static Memory programMemory;
+    private static Memory dataMemory;
 
     private int commandCounter;
 
@@ -37,25 +37,31 @@ public class CPU {
         commandRegister = new InstructionRegister();
 
         // Initialize Memory
-        programMemory = new ProgramMemory();
-        dataMemory = new DataMemory();
+        programMemory = new Memory();
+        dataMemory = new Memory();
 
         // Misc
         commandCounter = 0;
 
     }
 
-
-    // Methods
-    public void addCommandToProgramMemory(String instructionNr, Instruction command) {
-        programMemory.storeCommand(instructionNr, command);
+    // Getter & Setter
+    public static Memory getDataMemory() {
+        return dataMemory;
     }
 
     public HashMap<String, Instruction> getProgramMemory() {
         return programMemory.getProgramMemory();
     }
 
-    public void addCommandToDataMemory(String dataNr, String data) {
-        dataMemory.storeData(dataNr, data);
+
+    // Methods
+    public void addCommandToMemory(String instructionNr, Instruction command) {
+        programMemory.storeCommand(instructionNr, command);
     }
+
+    public void addCommandToMemory(String dataNr, String data) {
+        dataMemory.storeCommand(dataNr, data);
+    }
+
 }

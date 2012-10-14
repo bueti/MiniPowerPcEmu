@@ -29,7 +29,8 @@ public class ADD extends Instruction {
     // Methods
     @Override
     public String convertToBinary() {
-        String register = getParameters().trim().replaceAll("[^\\d]","");
+        //String register = getParameters().trim().replaceAll("[^\\d]","");
+        String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));
 
         return "0000" + register + "1010000000";
     }

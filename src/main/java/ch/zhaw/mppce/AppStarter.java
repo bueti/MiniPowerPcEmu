@@ -72,17 +72,16 @@ public class AppStarter {
             }
 
             // Save Instruction to program memory
-            cpu.addCommandToProgramMemory(parsedLine[0], instr);
+            cpu.addCommandToMemory(parsedLine[0], instr);
         }
 
-        // TODO: Load Parameters
         // Load Data File
         for(String line : data ) {
             String[] parsedLine = fp.parseLine(line);
-            cpu.addCommandToDataMemory(parsedLine[0], parsedLine[1]);
+            cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
         }
 
-        // TODO: Convert Mnemonics to Binary
+        // Convert Mnemonics to Binary
         HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
 
         for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {

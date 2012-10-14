@@ -1,5 +1,8 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Memory;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -14,13 +17,13 @@ public class SWDD extends Instruction {
     @Override
     public String convertToBinary() {
         String params = getParameters();
-        String register = params.split(",")[0].trim().replaceAll("[^\\d]","");
-        if(register.equals("0"))
-            register = "00";
+        String register = convertRegister(Integer.parseInt(params.split(",")[0].trim().replaceAll("[^\\d]", "").replace(",", "")));
 
         String address =  params.split(",")[1].trim().replaceAll("[^\\d]","");
-        // TODO: get value from address
-        String value = address;
+
+        // Get Value from Address
+        Memory data = CPU.getDataMemory();
+        String value = data.getValue(address);
 
         return "0111" + register + value;
     }

@@ -10,7 +10,7 @@ import java.util.HashMap;
  * Date: 07.10.12
  * Time: 15:47
  */
-public abstract class Memory {
+public class Memory {
     // Instance Variables
     private HashMap<String, Instruction> programMemory;
     private HashMap<String, String> dataMemory;
@@ -33,9 +33,10 @@ public abstract class Memory {
         programMemory.put(instructionNr, command);
     }
 
-    public void storeData(String dataNr, String data) {
+    public void storeCommand(String dataNr, String data) {
         dataMemory.put(dataNr, data);
     }
+
 
     public Instruction getCommand(String instructionNr) {
         return programMemory.get(instructionNr);
@@ -47,5 +48,9 @@ public abstract class Memory {
 
     public HashMap<String, String> getDataMemory() {
         return dataMemory;
+    }
+
+    public String getValue(String address) {
+        return dataMemory.get(address);
     }
 }

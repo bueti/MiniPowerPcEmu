@@ -1,5 +1,8 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Memory;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -7,18 +10,23 @@ package ch.zhaw.mppce.compiler.instructions;
  * Time: 16:04
  */
 public class LWDD extends Instruction {
+    // Instance Vars
 
+    // Constructor
     public LWDD(String parameters) {
         super(parameters);
     }
 
+    // Methods
     @Override
     public String convertToBinary() {
-        String params = getParameters().trim();
-        String register = params.substring(0).trim().replaceAll("[^\\d]","");
-        String address = params.substring(1);
-        // TODO: Get Value from Address
-        String value = "WERT";
+        String[] params = getParameters().split(" ");
+        String register = convertRegister(Integer.parseInt(params[1].replace("R", "").replace(",", "")));
+        String address = params[2].replace("#", "");
+
+        // Get Value from Address
+        Memory data = CPU.getDataMemory();
+        String value = data.getValue(address);
 
         return "0100" + register + value;
     }

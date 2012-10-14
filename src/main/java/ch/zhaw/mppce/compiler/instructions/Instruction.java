@@ -1,5 +1,7 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Memory;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -7,16 +9,20 @@ package ch.zhaw.mppce.compiler.instructions;
  * Time: 20:38
  */
 public abstract class Instruction {
+    // Instance Vars
     private String parameters;
 
+    // Constructors
     public Instruction() {};
 
     public Instruction(String parameters) {
         this.parameters = parameters;
     }
 
+    // Abstract Methods
     public abstract String convertToBinary();
 
+    // Methods
     public String getParameters() {
         return parameters;
     }
@@ -24,4 +30,11 @@ public abstract class Instruction {
     public void setParameters(String parameters) {
         this.parameters = parameters;
     }
+
+    public String convertRegister(int i) {
+        String register = null;
+        register = register.format("%2s", Integer.toBinaryString(i)).replace(' ', '0');
+        return register;
+    }
+
 }
