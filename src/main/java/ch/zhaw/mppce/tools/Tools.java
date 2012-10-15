@@ -77,4 +77,9 @@ public class Tools {
         String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
         return Integer.parseInt(address);
     }
+
+    // TODO: Convert Binary String to Two's Complemet
+    public String convertBinToTwosComplement(String result) {
+        return "0000000000000000";
+    }
 }

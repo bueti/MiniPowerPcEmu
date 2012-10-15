@@ -46,12 +46,18 @@ public class LWDD extends Instruction {
         // Get values from address and address + 1
         String value1 = dataMemory.getValue(Integer.toString(address));
         String value2 = dataMemory.getValue(Integer.toString(address) + 1);
+        if (value2 == null)
+            value2 = "0000000000000000";
 
         // Add value1 + value2
-        String result = "0011001100110011";
+        int i = Integer.parseInt(value1, 2);
+        int j = Integer.parseInt(value2, 2);
+        String result = Integer.toBinaryString(i + j);
 
+        // Convert result to two's complement,
+        String converted = tools.convertBinToTwosComplement(result);
         // Write it into the Register
-        registerData.setRegister(result);
+        registerData.setRegister(converted);
 
     }
 
