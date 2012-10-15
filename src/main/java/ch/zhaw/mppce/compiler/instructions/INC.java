@@ -1,9 +1,7 @@
 package ch.zhaw.mppce.compiler.instructions;
 
-import ch.zhaw.mppce.cpu.Accumulator;
+import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
-
-import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +12,7 @@ import java.util.HashMap;
 public class INC extends Instruction {
 
     @Override
-    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Accumulator accu, Register register1, Register register2, Register register3) {
+    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
     }
 
     @Override

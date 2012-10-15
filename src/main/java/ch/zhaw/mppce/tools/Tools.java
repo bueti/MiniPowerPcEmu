@@ -1,5 +1,8 @@
 package ch.zhaw.mppce.tools;
 
+import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Register;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -37,8 +40,8 @@ public class Tools {
     public String convertToBin(int value) {
         char[] array = new char[16];
         String valString = String.valueOf(value);
-
-        final String rvalue = valString.substring(1);
+        // TODO: TEST
+        final String rvalue = valString.substring(2);
         if (rvalue.equals("")) {
             value = 0;
         } else {
@@ -57,5 +60,21 @@ public class Tools {
             return converted.replaceFirst("0", "1");
         }
         return new String(array);
+    }
+
+    public Register getRegisterFromParams(String params) {
+        String register = params.replaceAll("[^\\d]", "");
+        if (register.equals("1")) {
+            return CPU.getRegister1();
+        } else if (register.equals("2")) {
+            return CPU.getRegister2();
+        } else {
+            return CPU.getRegister3();
+        }
+    }
+
+    public int getAddressFromParams(String params) {
+        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
+        return Integer.parseInt(address);
     }
 }

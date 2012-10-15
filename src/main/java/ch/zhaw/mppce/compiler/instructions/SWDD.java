@@ -1,10 +1,7 @@
 package ch.zhaw.mppce.compiler.instructions;
 
-import ch.zhaw.mppce.cpu.Accumulator;
-import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
-
-import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +15,7 @@ public class SWDD extends Instruction {
     }
 
     @Override
-    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Accumulator accu, Register register1, Register register2, Register register3) {
+    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
     }
 
     @Override
@@ -29,8 +26,9 @@ public class SWDD extends Instruction {
         String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
 
         // Get Value from Address
-        HashMap<String, String> data = CPU.getDataMemory();
-        String value = data.get(address);
+        //HashMap<String, String> data = CPU.getDataMemory();
+        //String value = data.get(address);
+        String value = "n/a";
 
         return "011---" + register + value;
     }

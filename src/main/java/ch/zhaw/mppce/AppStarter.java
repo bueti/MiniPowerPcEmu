@@ -8,9 +8,7 @@ import ch.zhaw.mppce.gui.FileParser;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,7 +28,7 @@ public class AppStarter {
         List<String> data = new ArrayList<String>();
 
         try {
-            program = fl.loadFile("/var/tmp/test");
+            program = fl.loadFile("/var/tmp/Addition");
             data = fl.loadFile("/var/tmp/test2");
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,17 +79,17 @@ public class AppStarter {
             cpu.addCommandToMemory(parsedLine[0], instr);
         }
 
-        // Convert Mnemonics to Binary and save it to the command register
-        HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
-
-        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
-            String key = entry.getKey();
-            Instruction instr = entry.getValue();
-            cpu.storeToCommandRegister(instr.convertToBinary());
-        }
+        // TODO: Convert Mnemonics to Binary and save it to the command register
+//        HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
+//
+//        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
+//            String key = entry.getKey();
+//            Instruction instr = entry.getValue();
+//            //cpu.storeToCommandRegister(instr.convertToBinary());
+//        }
 
         // Print Command Register
-        cpu.printCommandRegister();
+//        cpu.printCommandRegister();
 
         // Print Accumulator
         //cpu.printAccumulator();

@@ -1,11 +1,9 @@
 package ch.zhaw.mppce;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
-import ch.zhaw.mppce.cpu.Accumulator;
+import ch.zhaw.mppce.cpu.CommandRegister;
+import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,20 +17,18 @@ public class Emulator {
     private static final int DATA_START = 200;
 
     // Instance Variables
-    private final HashMap<String, Instruction> programMemory;
-    private final HashMap<String, String> dataMemory;
-    private final ArrayList<String> commandRegister;
-    private final Accumulator accu;
+    private final Memory programMemory;
+    private final Memory dataMemory;
+    private final CommandRegister commandRegister;
+    private final Register accu;
     private final Register register1;
     private final Register register2;
     private final Register register3;
     private int commandCounter;
 
     // Constructor
-    public Emulator(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory,
-                    ArrayList<String> commandRegister, Accumulator accu, Register register1,
-                    Register register2, Register register3) {
-
+    public Emulator(Memory programMemory, Memory dataMemory, CommandRegister commandRegister,
+                    Register accu, Register register1, Register register2, Register register3) {
         this.programMemory = programMemory;
         this.dataMemory = dataMemory;
         this.commandRegister = commandRegister;
@@ -48,7 +44,7 @@ public class Emulator {
     // Run the program stored in programMemory
     public void run() {
         while (commandCounter < DATA_START) {
-            Instruction instr = programMemory.get(Integer.toString(commandCounter));
+            Instruction instr = programMemory.getCommand(Integer.toString(commandCounter));
             if (instr != null) {
                 instr.doIt(programMemory, dataMemory, accu, register1, register2, register3);
             }

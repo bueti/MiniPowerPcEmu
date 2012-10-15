@@ -1,11 +1,8 @@
 package ch.zhaw.mppce.compiler.instructions;
 
-import ch.zhaw.mppce.cpu.Accumulator;
-import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
-
-import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,36 +32,34 @@ public class ADD extends Instruction {
     // Methods
 
     @Override
-    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory,
-                     Accumulator accu, Register register1, Register register2, Register register3) {
-        String result = null;
+    public void doIt(Memory programMemory, Memory dataMemory,
+                     Register accu, Register register1, Register register2, Register register3) {
         Register registerData = null;
         Tools tools = new Tools();
 
-        // Get Register
-        String register = getParameters().replaceAll("[^\\d]", "");
-        if (register.equals("0")) {
-            registerData = CPU.getRegister1();
-        } else if (register.equals("1")) {
-            registerData = CPU.getRegister2();
-        } else {
-            registerData = CPU.getRegister3();
-        }
+        // Get Register from Params
+        registerData = tools.getRegisterFromParams(getParameters());
 
         // Calculate: accu = accu + registerData
-        String accuVal = accu.getAccu();
-        String regVal = registerData.getValue(0);
+        String accuVal = accu.getRegister();
+        String regVal = registerData.getRegister();
 
-        // Convert to two's complement
+        // String Values to int
         int accuVal2 = Integer.parseInt(accuVal);
         int regVal2 = Integer.parseInt(regVal);
+
+        // Do the math
         int finalValue = accuVal2 + regVal2;
 
-        String converted = tools.convertToBin(finalValue);
+        // Convert to two's complement
+        if (finalValue == 0) {
+            accu.setRegister("0000000000000000");
+        } else {
+            String converted = tools.convertToBin(finalValue);
+            // Save it to the accu
+            accu.setRegister(converted);
+        }
 
-        accu.setValue(0, converted);
-
-        //return accu.getValue(0);
     }
 
     @Override

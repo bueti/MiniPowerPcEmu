@@ -2,10 +2,6 @@ package ch.zhaw.mppce.cpu;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -18,8 +14,8 @@ public class CPU {
     private static Register register1;
     private static Register register2;
     private static Register register3;
-    private static Accumulator accu;
-    private static Register commandRegister;
+    private static Register accu;
+    private static CommandRegister commandRegister;
 
     private static Memory programMemory;
     private static Memory dataMemory;
@@ -35,8 +31,8 @@ public class CPU {
         register1 = new Register();
         register2 = new Register();
         register3 = new Register();
-        accu = new Accumulator();
-        commandRegister = new InstructionRegister();
+        accu = new Register();
+        commandRegister = new CommandRegister();
 
         // Initialize Memory
         programMemory = new Memory();
@@ -48,15 +44,15 @@ public class CPU {
     }
 
     // Getter & Setter
-    public static HashMap<String, String> getDataMemory() {
-        return dataMemory.getDataMemory();
+    public static Memory getDataMemory() {
+        return dataMemory;
     }
 
-    public static HashMap<String, Instruction> getProgramMemory() {
-        return programMemory.getProgramMemory();
+    public static Memory getProgramMemory() {
+        return programMemory;
     }
 
-    public static Accumulator getAccu() {
+    public static Register getAccu() {
         return accu;
     }
 
@@ -72,8 +68,8 @@ public class CPU {
         return register3;
     }
 
-    public static ArrayList<String> getCommandRegister() {
-        return commandRegister.getRegister();
+    public static CommandRegister getCommandRegister() {
+        return commandRegister;
     }
 
     // Methods
@@ -85,36 +81,36 @@ public class CPU {
         dataMemory.storeCommand(dataNr, data);
     }
 
-    public static void storeToCommandRegister(String command) {
-        commandRegister.storeCommand(command);
-    }
-
-    // Display the whole command register
-    public void printCommandRegister() {
-        for (String command : getCommandRegister()) {
-            System.out.println("CR: " + command);
-        }
-    }
-
     public void printAccumulator() {
         System.out.println("Accu: " + accu.getRegister());
     }
 
-    public void printProgramMemory() {
-        for (Map.Entry<String, Instruction> entry : getProgramMemory().entrySet()) {
-            String address = entry.getKey();
-            Instruction instr = entry.getValue();
-            // ..
-            System.out.println(address + " -> " + instr.getClass());
-        }
+//    public void printProgramMemory() {
+//        for (Map.Entry<String, Instruction> entry : getProgramMemory().entrySet()) {
+//            String address = entry.getKey();
+//            Instruction instr = entry.getValue();
+//            // ..
+//            System.out.println(address + " -> " + instr.getClass());
+//        }
+//    }
+//
+//    public void printDataMemory() {
+//        for (Map.Entry<String, String> entry : getDataMemory().entrySet()) {
+//            String address = entry.getKey();
+//            String value = entry.getValue();
+//            // ..
+//            System.out.println(address + " -> " + value);
+//        }
+//    }
+
+    public static void storeToCommandRegister(String command) {
+        commandRegister.addCommand(command);
     }
 
-    public void printDataMemory() {
-        for (Map.Entry<String, String> entry : getDataMemory().entrySet()) {
-            String address = entry.getKey();
-            String value = entry.getValue();
-            // ..
-            System.out.println(address + " -> " + value);
-        }
-    }
+    // Display the whole command register
+//    public void printCommandRegister() {
+//        for (String command : getCommandRegister()) {
+//            System.out.println("CR: " + command);
+//        }
+//    }
 }
