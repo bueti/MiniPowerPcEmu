@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Accumulator;
 import ch.zhaw.mppce.cpu.Register;
 
 import java.util.HashMap;
@@ -9,15 +10,13 @@ import java.util.HashMap;
  * User: bbu
  * Date: 09.10.12
  * Time: 20:48
- *
- *  ADDD #Address
- *
+ * <p/>
+ * ADDD #Address
+ * <p/>
  * Addition der 16-Bit-Zahl im Akku mit der 15-Bit-Zahl als direkten Operanden
  * im 2er -Komplement; bei Überlauf wird das Carry-Flag gesetzt (=1),
  * sonst auf den Wert 0 . Vor der Addition wird die 15-Bit-Zahl des Operanden
  * auf 16 Bit erweitert (mit MSb des MSB auf 1 wenn negativ, sonst auf 0 ).
- *
- *
  */
 public class ADDD extends Instruction {
     // Instance Variable
@@ -34,7 +33,7 @@ public class ADDD extends Instruction {
     // Methods
 
     @Override
-    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Accumulator accu, Register register1, Register register2, Register register3) {
     }
 
     @Override

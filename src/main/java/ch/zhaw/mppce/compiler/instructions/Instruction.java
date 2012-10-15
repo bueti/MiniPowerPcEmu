@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Accumulator;
 import ch.zhaw.mppce.cpu.Register;
 
 import java.util.HashMap;
@@ -15,7 +16,10 @@ public abstract class Instruction {
     private String parameters;
 
     // Constructors
-    public Instruction() {};
+    public Instruction() {
+    }
+
+    ;
 
     public Instruction(String parameters) {
         this.parameters = parameters;
@@ -23,7 +27,9 @@ public abstract class Instruction {
 
     // Abstract Methods
     public abstract String convertToBinary();
-    public abstract void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Register accu, Register register1, Register register2, Register register3);
+
+    public abstract void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory,
+                              Accumulator accu, Register register1, Register register2, Register register3);
 
     // Methods
     public String getParameters() {

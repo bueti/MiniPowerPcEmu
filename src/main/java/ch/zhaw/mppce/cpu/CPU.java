@@ -18,7 +18,7 @@ public class CPU {
     private static Register register1;
     private static Register register2;
     private static Register register3;
-    private static Register accu;
+    private static Accumulator accu;
     private static Register commandRegister;
 
     private static Memory programMemory;
@@ -56,7 +56,7 @@ public class CPU {
         return programMemory.getProgramMemory();
     }
 
-    public static Register getAccu() {
+    public static Accumulator getAccu() {
         return accu;
     }
 

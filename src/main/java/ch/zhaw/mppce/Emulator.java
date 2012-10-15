@@ -1,11 +1,11 @@
 package ch.zhaw.mppce;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
+import ch.zhaw.mppce.cpu.Accumulator;
 import ch.zhaw.mppce.cpu.Register;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +22,7 @@ public class Emulator {
     private final HashMap<String, Instruction> programMemory;
     private final HashMap<String, String> dataMemory;
     private final ArrayList<String> commandRegister;
-    private final Register accu;
+    private final Accumulator accu;
     private final Register register1;
     private final Register register2;
     private final Register register3;
@@ -30,7 +30,7 @@ public class Emulator {
 
     // Constructor
     public Emulator(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory,
-                    ArrayList<String> commandRegister, Register accu, Register register1,
+                    ArrayList<String> commandRegister, Accumulator accu, Register register1,
                     Register register2, Register register3) {
 
         this.programMemory = programMemory;
@@ -47,9 +47,9 @@ public class Emulator {
 
     // Run the program stored in programMemory
     public void run() {
-        while(commandCounter < DATA_START ) {
+        while (commandCounter < DATA_START) {
             Instruction instr = programMemory.get(Integer.toString(commandCounter));
-            if(instr != null) {
+            if (instr != null) {
                 instr.doIt(programMemory, dataMemory, accu, register1, register2, register3);
             }
             incCommandCounter();

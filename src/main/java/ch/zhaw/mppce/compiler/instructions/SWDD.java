@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.Accumulator;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Register;
 
@@ -17,7 +18,7 @@ public class SWDD extends Instruction {
     }
 
     @Override
-    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(HashMap<String, Instruction> programMemory, HashMap<String, String> dataMemory, Accumulator accu, Register register1, Register register2, Register register3) {
     }
 
     @Override
@@ -25,7 +26,7 @@ public class SWDD extends Instruction {
         String params = getParameters();
         String register = convertRegister(Integer.parseInt(params.split(",")[0].trim().replaceAll("[^\\d]", "").replace(",", "")));
 
-        String address =  params.split(",")[1].trim().replaceAll("[^\\d]","");
+        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
 
         // Get Value from Address
         HashMap<String, String> data = CPU.getDataMemory();
