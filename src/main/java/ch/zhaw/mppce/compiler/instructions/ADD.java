@@ -3,6 +3,7 @@ package ch.zhaw.mppce.compiler.instructions;
 import ch.zhaw.mppce.cpu.Accumulator;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Register;
+import ch.zhaw.mppce.tools.Tools;
 
 import java.util.HashMap;
 
@@ -38,6 +39,7 @@ public class ADD extends Instruction {
                      Accumulator accu, Register register1, Register register2, Register register3) {
         String result = null;
         Register registerData = null;
+        Tools tools = new Tools();
 
         // Get Register
         String register = getParameters().replaceAll("[^\\d]", "");
@@ -52,7 +54,15 @@ public class ADD extends Instruction {
         // Calculate: accu = accu + registerData
         String accuVal = accu.getAccu();
         String regVal = registerData.getValue(0);
-        accu.setValue(0, accuVal + " + " + regVal);
+
+        // Convert to two's complement
+        int accuVal2 = Integer.parseInt(accuVal);
+        int regVal2 = Integer.parseInt(regVal);
+        int finalValue = accuVal2 + regVal2;
+
+        String converted = tools.convertToBin(finalValue);
+
+        accu.setValue(0, converted);
 
         //return accu.getValue(0);
     }
