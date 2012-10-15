@@ -14,7 +14,7 @@ import ch.zhaw.mppce.cpu.Register;
 public class Emulator {
     // Startwerte des Memories
     private static final int PROGRAM_START = 100;
-    private static final int DATA_START = 200;
+    private static final int DATA_START = 500;
 
     // Instance Variables
     private final Memory programMemory;
