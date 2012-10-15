@@ -91,7 +91,7 @@ public class AppStarter {
         }
 
         // Print Command Register
-        //cpu.printCommandRegister();
+        cpu.printCommandRegister();
 
         // Print Accumulator
         //cpu.printAccumulator();

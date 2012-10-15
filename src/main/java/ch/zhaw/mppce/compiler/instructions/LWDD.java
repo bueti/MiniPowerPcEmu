@@ -28,13 +28,21 @@ public class LWDD extends Instruction {
 
     @Override
     public String convertToBinary() {
+        String address;
+        String value;
+
+        HashMap<String, String> data = CPU.getDataMemory();
         String[] params = getParameters().split(" ");
         String register = convertRegister(Integer.parseInt(params[1].replace("R", "").replace(",", "")));
-        String address = params[2].replace("#", "");
 
-        // Get Value from Address
-        HashMap<String, String> data = CPU.getDataMemory();
-        String value = data.get(address);
+        if(params[2].contains("#")) {
+            // Get Value from Address
+            address = params[2].replace("#", "");
+            value = data.get(address);
+        } else {
+            // TODO: Konstante in Binary konvertieren
+            value = "";
+        }
 
         return "0100--" + register + value;
     }
