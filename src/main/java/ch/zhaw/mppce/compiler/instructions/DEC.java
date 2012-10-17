@@ -17,7 +17,7 @@ public class DEC extends Instruction {
 
     @Override
 
-    public String convertToBinary() {
+    public String convertToOpcode() {
         return "0000010000000000";
     }
 }

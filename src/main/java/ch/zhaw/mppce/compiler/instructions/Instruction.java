@@ -22,7 +22,7 @@ public abstract class Instruction {
     }
 
     // Abstract Methods
-    public abstract String convertToBinary();
+    public abstract String convertToOpcode();
 
     public abstract void doIt(Memory programMemory, Memory dataMemory,
                               Register accu, Register register1, Register register2, Register register3);

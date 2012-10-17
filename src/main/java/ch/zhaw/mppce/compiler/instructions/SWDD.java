@@ -19,7 +19,7 @@ public class SWDD extends Instruction {
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         String params = getParameters();
         String register = convertRegister(Integer.parseInt(params.split(",")[0].trim().replaceAll("[^\\d]", "").replace(",", "")));
 

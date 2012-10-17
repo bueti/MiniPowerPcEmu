@@ -85,7 +85,7 @@ public class AppStarter {
 //        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
 //            String key = entry.getKey();
 //            Instruction instr = entry.getValue();
-//            //cpu.storeToCommandRegister(instr.convertToBinary());
+//            //cpu.storeToCommandRegister(instr.convertToOpcode());
 //        }
 
         // Print Command Register

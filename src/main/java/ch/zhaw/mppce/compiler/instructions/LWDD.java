@@ -52,17 +52,18 @@ public class LWDD extends Instruction {
         // Add value1 + value2
         int i = Integer.parseInt(value1, 2);
         int j = Integer.parseInt(value2, 2);
-        String result = Integer.toBinaryString(i + j);
+        int result = i + j;
 
         // Convert result to two's complement,
-        String converted = tools.convertBinToTwosComplement(result);
+        String converted = tools.twoComplement(result);
+
         // Write it into the Register
         registerData.setRegister(converted);
 
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         String address;
         String value;
 

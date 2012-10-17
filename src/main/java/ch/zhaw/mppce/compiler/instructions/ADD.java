@@ -63,7 +63,7 @@ public class ADD extends Instruction {
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));
 
         return "0000" + register + "1010000000";

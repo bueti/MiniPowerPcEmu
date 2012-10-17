@@ -27,7 +27,7 @@ public class CLR extends Instruction {
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         String register = getParameters().trim().replaceAll("[^\\d]", "");
         return "0000" + register + "1010000000";
     }

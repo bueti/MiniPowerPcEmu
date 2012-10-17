@@ -35,7 +35,7 @@ public class ADDD extends Instruction {
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         String address = getParameters();
         // TODO: Get Value from Address
         String value = " v: ";

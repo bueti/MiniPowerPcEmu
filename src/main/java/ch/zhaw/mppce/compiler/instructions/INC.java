@@ -16,7 +16,7 @@ public class INC extends Instruction {
     }
 
     @Override
-    public String convertToBinary() {
+    public String convertToOpcode() {
         return "0000000100000000";
     }
 }
