@@ -15,13 +15,18 @@ public class INC extends Instruction {
     @Override
     public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
         Tools tools = new Tools();
+        Boolean overflow = false;
 
         // Get Value in Accumulator);
         String accuValue = accu.getRegister();
 
-        // TODO: Check for overflow and set carry bit.
         // Convert to Dec
         int a = Integer.parseInt(accuValue);
+
+        // Check for overflow
+        if (a >= 65536) {
+            overflow = true;
+        }
 
         // +1
         a++;
@@ -31,6 +36,10 @@ public class INC extends Instruction {
 
         // Save
         accu.setRegister(accuValue);
+
+        // Set carry bit if necessary
+        if (overflow)
+            accu.setCarryBit();
     }
 
     @Override
