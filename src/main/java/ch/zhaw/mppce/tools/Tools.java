@@ -68,7 +68,7 @@ public class Tools {
                 }
             }
             // if last sign == 0 then just replace it by a 1
-            if (invertstr.substring(invertstr.length() - 1).equals(0)) {
+            if (invertstr.substring(invertstr.length() - 1).equals("0")) {
                 return invertstr.substring(0, invertstr.length() - 1) + "1";
             } else {
                 // add in decimal system 1 and convert back to binary
