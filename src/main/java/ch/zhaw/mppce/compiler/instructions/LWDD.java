@@ -66,6 +66,7 @@ public class LWDD extends Instruction {
     public String convertToOpcode() {
         String address;
         String value;
+        Tools tools = new Tools();
 
         Memory data = CPU.getDataMemory();
         String[] params = getParameters().split(" ");
@@ -76,8 +77,7 @@ public class LWDD extends Instruction {
             address = params[2].replace("#", "");
             value = data.getValue(address);
         } else {
-            // TODO: Konstante in Binary konvertieren
-            value = "";
+            value = tools.convertToBin(Integer.valueOf(params[2]));
         }
 
         return "0100--" + register + value;

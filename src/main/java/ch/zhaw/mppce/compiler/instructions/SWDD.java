@@ -1,7 +1,9 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
+import ch.zhaw.mppce.tools.Tools;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,15 +22,19 @@ public class SWDD extends Instruction {
 
     @Override
     public String convertToOpcode() {
-        String params = getParameters();
-        String register = convertRegister(Integer.parseInt(params.split(",")[0].trim().replaceAll("[^\\d]", "").replace(",", "")));
+        String value;
+        Tools tools = new Tools();
 
-        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
+        Memory data = CPU.getDataMemory();
+        String[] params = getParameters().split(" ");
+        String register = convertRegister(Integer.parseInt(params[1].replace("R", "").replace(",", "")));
 
-        // Get Value from Address
-        //HashMap<String, String> data = CPU.getDataMemory();
-        //String value = data.get(address);
-        String value = "n/a";
+        if (params[2].contains("#")) {
+            // Get Value from Address
+            value = data.getValue(params[2].replace("#", ""));
+        } else {
+            value = tools.convertToBin(Integer.valueOf(params[2]));
+        }
 
         return "011---" + register + value;
     }

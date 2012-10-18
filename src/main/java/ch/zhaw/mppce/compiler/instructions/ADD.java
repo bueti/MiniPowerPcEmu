@@ -36,6 +36,7 @@ public class ADD extends Instruction {
                      Register accu, Register register1, Register register2, Register register3) {
         Register registerData = null;
         Tools tools = new Tools();
+        boolean overflow = false;
 
         // Get Register from Params
         registerData = tools.getRegisterFromParams(getParameters());
@@ -51,6 +52,10 @@ public class ADD extends Instruction {
         // Do the math
         int finalValue = accuVal2 + regVal2;
 
+        // Check if Carry Bit is necessary:
+        if (finalValue >= 16384)
+            overflow = true;
+
         // Convert to two's complement
         if (finalValue == 0) {
             accu.setRegister("0000000000000000");
@@ -58,6 +63,8 @@ public class ADD extends Instruction {
             String converted = tools.convertToBin(finalValue);
             // Save it to the accu
             accu.setRegister(converted);
+            if (overflow)
+                accu.setCarryBit();
         }
 
     }
