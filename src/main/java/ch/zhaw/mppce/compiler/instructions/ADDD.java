@@ -3,6 +3,7 @@ package ch.zhaw.mppce.compiler.instructions;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
+import ch.zhaw.mppce.tools.Tools;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,11 +34,16 @@ public class ADDD extends Instruction {
 
     @Override
     public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+        Tools tools = new Tools();
 
         // Get value from accu
+        String accuVal = accu.getRegister();
 
         // Get value from parameter
-        // Convert to 16 bit (Msb MSB)
+        String value = tools.getValueFromParams(1, getParameters());
+
+        // TODO: Convert to 16 bit (Msb MSB)
+        String converted = tools.convertTo16Bit(value);
 
         // Convert both to dec
 

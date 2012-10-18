@@ -51,6 +51,11 @@ public class Tools {
         return Integer.parseInt(address);
     }
 
+    public String getValueFromParams(int i, String params) {
+        String value = params.split(",")[i].trim().replaceAll("[^\\d]", "");
+        return value;
+    }
+
     // this function converts a decimal number into two's complement
     // Geklaut vom Domo, Danke ;-)
     public String twoComplement(int x) {
@@ -80,5 +85,11 @@ public class Tools {
             return convertToBin(x);
         }
 
+    }
+
+    // TODO: Implement this method
+    // Takes a binary string and converts if from 15bit to 16 bit. will use Msb to MSB conversion
+    public String convertTo16Bit(String value) {
+        return null;
     }
 }
