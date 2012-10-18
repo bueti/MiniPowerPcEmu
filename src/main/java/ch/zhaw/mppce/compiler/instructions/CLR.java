@@ -2,6 +2,7 @@ package ch.zhaw.mppce.compiler.instructions;
 
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
+import ch.zhaw.mppce.tools.Tools;
 
 /**
  * CLR Rnr
@@ -23,13 +24,19 @@ public class CLR extends Instruction {
 
     @Override
     public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
-        accu.setRegister("0000000000000000");
+        Tools tools = new Tools();
+
+        // Get Register from Params
+        Register registerData = tools.getRegisterFromParams(getParameters());
+
+        registerData.setRegister("0000000000000000");
+
     }
 
     @Override
     public String convertToOpcode() {
         String register = getParameters().trim().replaceAll("[^\\d]", "");
-        return "0000" + register + "1010000000";
+        return "0000" + register + "101-------";
     }
 
 }
