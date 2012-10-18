@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
 
@@ -32,13 +33,29 @@ public class ADDD extends Instruction {
 
     @Override
     public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+
+        // Get value from accu
+
+        // Get value from parameter
+        // Convert to 16 bit (Msb MSB)
+
+        // Convert both to dec
+
+        // Calculate
+
+        // Check for overflow
+
+        // Convert to twos complement
+
+        // save it
     }
 
+    // TODO: Test
     @Override
     public String convertToOpcode() {
         String address = getParameters();
-        // TODO: Get Value from Address
-        String value = " v: ";
+        Memory dataMemory = CPU.getDataMemory();
+        String value = dataMemory.getValue(address);
 
         return "1" + value;
     }
