@@ -25,5 +25,6 @@ public class SLA extends Instruction {
 
         accu.setRegister(tools.convertToBin(accuValDec * 2));
 
+        // TODO: MSB Handling
     }
 }

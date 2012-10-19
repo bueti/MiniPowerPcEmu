@@ -25,5 +25,7 @@ public class SRA extends Instruction {
         int accuValDec = tools.convertToDec(accuVal);
 
         accu.setRegister(tools.convertToBin(accuValDec / 2));
+
+        // TODO: MSB Handling
     }
 }
