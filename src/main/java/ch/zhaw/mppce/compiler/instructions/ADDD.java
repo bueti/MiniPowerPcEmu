@@ -42,9 +42,6 @@ public class ADDD extends Instruction {
         // Get value from parameter
         String value = tools.getValueFromParams(1, getParameters());
 
-        // TODO: Convert to 16 bit (Msb MSB)
-        String converted = tools.convertTo16Bit(value);
-
         // Convert both to dec
 
         // Calculate

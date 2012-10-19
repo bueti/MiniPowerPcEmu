@@ -11,7 +11,8 @@ import ch.zhaw.mppce.cpu.Register;
  */
 public class Tools {
 
-    public int parseSignedInt(final String binary) {
+    // Takes a two's complement binary string and returns a decimal int
+    public int convertToDec(String binary) {
         final boolean minus = binary.charAt(0) == '1';
         final String value = binary.substring(1);
         if (minus) {
@@ -21,18 +22,11 @@ public class Tools {
         }
     }
 
+    // Takes a decimal int and returns a two's complement 16 bit string
     public String convertToBin(int value) {
-        char[] array = new char[16];
-        String valString = String.valueOf(value);
+        String a = Integer.toBinaryString(value);
 
-        for (int i = 0; i < 16; i++) {
-            if (value % 2 == 0)
-                array[15 - i] = '0';
-            else if (value % 2 == 1)
-                array[15 - i] = '1';
-            value = value / 2;
-        }
-        return new String(array);
+        return String.format("%16s", a).replace(' ', '0');
     }
 
     public Register getRegisterFromParams(String params) {
@@ -85,11 +79,5 @@ public class Tools {
             return convertToBin(x);
         }
 
-    }
-
-    // TODO: Implement this method
-    // Takes a binary string and converts if from 15bit to 16 bit. will use Msb to MSB conversion
-    public String convertTo16Bit(String value) {
-        return null;
     }
 }
