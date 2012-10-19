@@ -22,10 +22,11 @@ public class SRA extends Instruction {
 
         String accuVal = accu.getRegister();
 
-        int accuValDec = tools.convertToDec(accuVal);
+        int accuValInt = Integer.getInteger(accuVal, 2);
 
-        accu.setRegister(tools.convertToBin(accuValDec / 2));
+        int accuShifted = accuValInt >> 1;
 
-        // TODO: MSB Handling
+        accu.setRegister(tools.convertToBin(accuShifted));
+
     }
 }

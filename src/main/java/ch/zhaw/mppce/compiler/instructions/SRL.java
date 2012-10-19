@@ -22,10 +22,12 @@ public class SRL extends Instruction {
         Tools tools = new Tools();
 
         String accuVal = accu.getRegister();
-        int accuValDec = tools.convertToDec(accuVal);
 
-        accu.setRegister(tools.convertToBin(accuValDec / 2));
+        int accuValInt = Integer.getInteger(accuVal, 2);
 
-        // TODO: MSB Handling
+        int accuShifted = accuValInt << 1;
+
+        accu.setRegister(tools.convertToBin(accuShifted));
+
     }
 }
