@@ -19,7 +19,7 @@ public class Emulator {
     // Instance Variables
     private final Memory programMemory;
     private final Memory dataMemory;
-    private final CommandRegister commandRegister;
+    private final CommandRegister commandRegister;   // TODO: Fill Command Register
     private final Register accu;
     private final Register register1;
     private final Register register2;

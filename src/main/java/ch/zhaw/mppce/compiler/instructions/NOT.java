@@ -14,7 +14,7 @@ public class NOT extends Instruction {
 
     @Override
     public String convertToOpcode() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return "000000001-------";
     }
 
     @Override
