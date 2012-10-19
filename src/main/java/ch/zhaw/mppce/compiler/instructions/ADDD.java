@@ -43,14 +43,19 @@ public class ADDD extends Instruction {
         String value = tools.getValueFromParams(1, getParameters());
 
         // Convert both to dec
+        int accuValDec = tools.convertToDec(accuVal);
+        int valueDec = tools.convertToDec(value);
 
         // Calculate
+        int result = accuValDec + valueDec;
 
-        // Check for overflow
+        // TODO: Check for overflow   -- really necessary??
 
         // Convert to twos complement
+        String convertedResult = tools.convertToBin(result);
 
         // save it
+        accu.setRegister(convertedResult);
     }
 
     // TODO: Test
