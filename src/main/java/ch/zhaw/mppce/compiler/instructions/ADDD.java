@@ -44,7 +44,7 @@ public class ADDD extends Instruction {
 
         // Convert both to dec
         int accuValDec = tools.convertToDec(accuVal);
-        int valueDec = tools.convertToDec(value);
+        int valueDec = Integer.valueOf(value);
 
         // Calculate
         int result = accuValDec + valueDec;

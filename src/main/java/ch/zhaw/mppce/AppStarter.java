@@ -28,7 +28,7 @@ public class AppStarter {
         List<String> data = new ArrayList<String>();
 
         try {
-            program = fl.loadFile("/var/tmp/Addition");
+            program = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/bsp1.asm");
             data = fl.loadFile("/var/tmp/test2");
         } catch (IOException e) {
             e.printStackTrace();

@@ -46,7 +46,7 @@ public class Tools {
     }
 
     public String getValueFromParams(int i, String params) {
-        String value = params.split(",")[i].trim().replaceAll("[^\\d]", "");
+        String value = params.replace(",", " ").split(" ")[i].trim().replaceAll("[^\\d]", "");
         return value;
     }
 
