@@ -21,9 +21,6 @@ public class NOT extends Instruction {
     public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
         Tools tools = new Tools();
 
-        // Get Register from Params
-        Register registerData = tools.getRegisterFromParams(getParameters());
-
         String accuVal = accu.getRegister();
 
         int accuValInt = Integer.getInteger(accuVal, 2);
