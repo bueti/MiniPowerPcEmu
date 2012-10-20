@@ -32,4 +32,11 @@ public class Register {
     }
 
 
+    public boolean hasCarryBit() {
+        if (register[0].substring(1, 1).equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
