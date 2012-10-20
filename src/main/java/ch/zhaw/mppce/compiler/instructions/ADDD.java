@@ -53,7 +53,7 @@ public class ADDD extends Instruction {
         // TODO: Check for overflow   -- really necessary??
 
         // Convert to twos complement
-        String convertedResult = tools.convertToBin(result);
+        String convertedResult = tools.convertToBin(result, 16);
 
         // save it
         accu.setRegister(convertedResult);

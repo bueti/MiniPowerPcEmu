@@ -77,4 +77,13 @@ public class Memory {
             System.out.println(key + ": " + value);
         }
     }
+
+    // Convert Mnemonics to Binary and save it to the command register
+    public void convertMnemonics2Binary(CPU cpu) {
+        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
+            String key = entry.getKey();
+            Instruction instr = entry.getValue();
+            cpu.storeToCommandRegister(instr.convertToOpcode(cpu.getDataMemory()));
+        }
+    }
 }

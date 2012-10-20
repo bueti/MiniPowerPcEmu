@@ -45,7 +45,7 @@ public class AND extends Instruction {
 
         int shifted = accuValInt & regValInt;
 
-        accu.setRegister(tools.convertToBin(shifted));
+        accu.setRegister(tools.convertToBin(shifted, 16));
 
         // Increase command counter
         cpu.incCommandPointer();

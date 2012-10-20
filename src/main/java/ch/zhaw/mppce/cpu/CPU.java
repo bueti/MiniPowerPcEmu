@@ -80,7 +80,7 @@ public class CPU {
 
     // Display the whole command register
     public void printCommandRegister() {
-        // TODO: implement
+        commandRegister.printCommandRegister();
     }
 
     // Getter & Setter

@@ -29,7 +29,7 @@ public class SRL extends Instruction {
 
         int accuShifted = accuValInt << 1;
 
-        accu.setRegister(tools.convertToBin(accuShifted));
+        accu.setRegister(tools.convertToBin(accuShifted, 16));
 
         // Increase command counter
         cpu.incCommandPointer();

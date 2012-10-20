@@ -63,7 +63,7 @@ public class SWDD extends Instruction {
             // Get Value from Address
             value = data.getValue(params[2].replace("#", ""));
         } else {
-            value = tools.convertToBin(Integer.valueOf(params[2]));
+            value = tools.convertToBin(Integer.valueOf(params[2]), 10);
         }
 
         return "011---" + register + value;
