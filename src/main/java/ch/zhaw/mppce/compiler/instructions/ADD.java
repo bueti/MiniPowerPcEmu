@@ -68,6 +68,9 @@ public class ADD extends Instruction {
                 accu.setCarryBit();
         }
 
+        // Increase command counter
+        cpu.incCommandPointer();
+
     }
 
     @Override

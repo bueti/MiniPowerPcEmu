@@ -30,5 +30,8 @@ public class NOT extends Instruction {
         int shifted = ~accuValInt;
 
         accu.setRegister(tools.convertToBin(shifted));
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 }

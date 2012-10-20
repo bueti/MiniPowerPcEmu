@@ -52,4 +52,12 @@ public class Memory {
     public String getValue(String address) {
         return dataMemory.get(address);
     }
+
+    public void setValue(int address, String value) {
+        // Remove old entry if existing
+        dataMemory.remove(Integer.toString(address));
+        // Store new
+        dataMemory.put(Integer.toString(address), value);
+
+    }
 }

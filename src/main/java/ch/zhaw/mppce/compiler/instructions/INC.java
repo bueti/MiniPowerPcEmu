@@ -23,7 +23,7 @@ public class INC extends Instruction {
         String accuValue = accu.getRegister();
 
         // Convert to Dec
-        int a = Integer.parseInt(accuValue);
+        int a = tools.convertToDec(accuValue);
 
         // Check for overflow
         if (a >= 65536) {
@@ -34,7 +34,7 @@ public class INC extends Instruction {
         a++;
 
         // Convert to Twos Complement
-        accuValue = tools.twoComplement(a);
+        accuValue = tools.convertToBin(a);
 
         // Save
         accu.setRegister(accuValue);
@@ -42,6 +42,9 @@ public class INC extends Instruction {
         // Set carry bit if necessary
         if (overflow)
             accu.setCarryBit();
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 
     @Override

@@ -30,5 +30,8 @@ public class SRA extends Instruction {
 
         accu.setRegister(tools.convertToBin(accuShifted));
 
+        // Increase command counter
+        cpu.incCommandPointer();
+
     }
 }

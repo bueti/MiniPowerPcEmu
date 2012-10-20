@@ -23,8 +23,6 @@ public class Emulator {
     private int commandCounter;
 
     // Constructor
-//    public Emulator(Memory programMemory, Memory dataMemory, CommandRegister commandRegister,
-//                    Register accu, Register register1, Register register2, Register register3) {
     public Emulator(CPU cpu) {
         this.cpu = cpu;
         this.programMemory = cpu.getProgramMemory();
@@ -37,12 +35,12 @@ public class Emulator {
     // Run the program stored in programMemory
     public void run() {
         Instruction instr;
-        while (commandCounter < DATA_START) {
-            instr = programMemory.getCommand(Integer.toString(commandCounter));
+        while (cpu.getCommandPointer() < DATA_START) {
+            instr = programMemory.getCommand(Integer.toString(cpu.getCommandPointer()));
             if (instr != null) {
                 instr.doIt(cpu);
             }
-            incCommandCounter();
+            cpu.incCommandCounter();
 
         }
         System.out.println(getCommandCounter());
@@ -67,7 +65,4 @@ public class Emulator {
         this.commandCounter = commandCounter;
     }
 
-    public void incCommandCounter() {
-        commandCounter = commandCounter + 2;
-    }
 }

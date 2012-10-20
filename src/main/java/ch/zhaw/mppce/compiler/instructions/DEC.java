@@ -24,7 +24,7 @@ public class DEC extends Instruction {
         String accuValue = accu.getRegister();
 
         // Convert to Dec
-        int a = Integer.parseInt(accuValue);
+        int a = tools.convertToDec(accuValue);
 
         // Check for overflow
         if (a <= -65536) {
@@ -43,6 +43,9 @@ public class DEC extends Instruction {
         // Set carry bit if necessary
         if (overflow)
             accu.setCarryBit();
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 
     @Override

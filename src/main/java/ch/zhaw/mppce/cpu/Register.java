@@ -31,37 +31,12 @@ public class Register {
         register[0] = carryBit;
     }
 
-//    // Instance Variables
-//    private ArrayList<String> register;
-//
-//    // Constructor
-//    public Register() {
-//        register = new ArrayList<String>();
-//        register.add("0000000000000000");
-//    }
-//
-//    // Getter & Setter
-//    public ArrayList<String> getRegister() {
-//        return register;
-//    }
-//
-//    public void setRegister(ArrayList<String> register) {
-//        this.register = register;
-//    }
-//
-//    // Return value at position i or 0 if register is empty
-//    public String getValue(int i) {
-//        return register.get(i);
-//    }
-//
-//    // Save Binary Command to Command Register
-//    public void storeCommand(String command) {
-//        register.add(command);
-//    }
-//
-//    public void setValue(int i, String value) {
-//        register.set(i, value);
-//    }
-//
 
+    public boolean hasCarryBit() {
+        if (register[0].substring(1, 1).equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
