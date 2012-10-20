@@ -4,7 +4,6 @@ import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.CommandRegister;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,12 +19,7 @@ public class Emulator {
     // Instance Variables
     private CPU cpu;
     private Memory programMemory;
-    private Memory dataMemory;
-    private CommandRegister sdfscommandRegister;   // TODO: Fill Command Register
-    private Register accu;
-    private Register register1;
-    private Register register2;
-    private Register register3;
+    private CommandRegister commandRegister;   // TODO: Fill Command Register
     private int commandCounter;
 
     // Constructor
@@ -34,12 +28,7 @@ public class Emulator {
     public Emulator(CPU cpu) {
         this.cpu = cpu;
         this.programMemory = cpu.getProgramMemory();
-        this.dataMemory = cpu.getDataMemory();
         this.commandRegister = cpu.getCommandRegister();
-        this.accu = cpu.getAccu();
-        this.register1 = cpu.getRegister1();
-        this.register2 = cpu.getRegister2();
-        this.register3 = cpu.getRegister3();
 
         setCommandCounter(PROGRAM_START);
 
