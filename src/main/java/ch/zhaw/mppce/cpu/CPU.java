@@ -81,36 +81,24 @@ public class CPU {
         dataMemory.storeCommand(dataNr, data);
     }
 
-    public void printAccumulator() {
-        System.out.println("Accu: " + accu.getRegister());
-    }
-
-//    public void printProgramMemory() {
-//        for (Map.Entry<String, Instruction> entry : getProgramMemory().entrySet()) {
-//            String address = entry.getKey();
-//            Instruction instr = entry.getValue();
-//            // ..
-//            System.out.println(address + " -> " + instr.getClass());
-//        }
-//    }
-//
-//    public void printDataMemory() {
-//        for (Map.Entry<String, String> entry : getDataMemory().entrySet()) {
-//            String address = entry.getKey();
-//            String value = entry.getValue();
-//            // ..
-//            System.out.println(address + " -> " + value);
-//        }
-//    }
-
     public void storeToCommandRegister(String command) {
         commandRegister.addCommand(command);
     }
 
+    public void printAccumulator() {
+        System.out.println("Accu: " + accu.getRegister());
+    }
+
+    public void printProgramMemory() {
+        // TODO: implement
+    }
+
+    public void printDataMemory() {
+        // TODO: implement
+    }
+
     // Display the whole command register
-//    public void printCommandRegister() {
-//        for (String command : getCommandRegister()) {
-//            System.out.println("CR: " + command);
-//        }
-//    }
+    public void printCommandRegister() {
+        // TODO: implement
+    }
 }

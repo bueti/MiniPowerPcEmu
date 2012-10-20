@@ -50,7 +50,7 @@ public class Emulator {
         cpu.printAccumulator();
 
         // Print ProgramMemory
-//        cpu.printProgramMemory();
+        cpu.printProgramMemory();
 
         // Print DataMemory
 //        cpu.printDataMemory();
