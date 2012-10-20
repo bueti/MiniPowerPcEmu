@@ -32,6 +32,9 @@ public class CLR extends Instruction {
 
         registerData.setRegister("0000000000000000");
 
+        // Increase command counter
+        cpu.incCommandPointer();
+
     }
 
     @Override

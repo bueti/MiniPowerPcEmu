@@ -37,5 +37,8 @@ public class OR extends Instruction {
         int shifted = accuValInt ^ regValInt;
 
         accu.setRegister(tools.convertToBin(shifted));
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 }

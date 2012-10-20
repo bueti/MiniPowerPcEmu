@@ -26,6 +26,8 @@ public class BNZ extends Instruction {
             // branch to address
             String address = getParameters();
             cpu.setCommandPointer(Integer.getInteger(address));
+        } else {
+            cpu.incCommandPointer();
         }
     }
 }

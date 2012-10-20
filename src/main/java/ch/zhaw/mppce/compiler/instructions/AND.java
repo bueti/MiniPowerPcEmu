@@ -38,5 +38,8 @@ public class AND extends Instruction {
 
         accu.setRegister(tools.convertToBin(shifted));
 
+        // Increase command counter
+        cpu.incCommandPointer();
+
     }
 }

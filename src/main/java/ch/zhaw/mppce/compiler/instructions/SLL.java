@@ -29,5 +29,8 @@ public class SLL extends Instruction {
         accu.setRegister(tools.convertToBin(accuValDec * 2));
 
         // TODO: MSB Handling
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 }

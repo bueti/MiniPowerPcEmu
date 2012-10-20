@@ -44,6 +44,9 @@ public class SWDD extends Instruction {
         // Save them to the memory
         dataMemory.setValue(address, val2);
         dataMemory.setValue(address + 1, val1);
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 
     @Override

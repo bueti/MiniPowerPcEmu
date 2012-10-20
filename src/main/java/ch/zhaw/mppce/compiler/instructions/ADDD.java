@@ -57,6 +57,9 @@ public class ADDD extends Instruction {
 
         // save it
         accu.setRegister(convertedResult);
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 
     // TODO: Test

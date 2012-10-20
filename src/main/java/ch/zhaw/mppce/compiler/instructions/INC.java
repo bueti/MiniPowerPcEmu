@@ -42,6 +42,9 @@ public class INC extends Instruction {
         // Set carry bit if necessary
         if (overflow)
             accu.setCarryBit();
+
+        // Increase command counter
+        cpu.incCommandPointer();
     }
 
     @Override

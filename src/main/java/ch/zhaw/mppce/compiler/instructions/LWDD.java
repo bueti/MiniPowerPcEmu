@@ -56,6 +56,9 @@ public class LWDD extends Instruction {
         // Write it into the Register
         registerData.setRegister(totalValue);
 
+        // Increase command counter
+        cpu.incCommandPointer();
+
     }
 
     @Override
