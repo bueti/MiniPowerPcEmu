@@ -13,6 +13,15 @@ import ch.zhaw.mppce.tools.Tools;
  */
 public class AND extends Instruction {
 
+    /**
+     * Constructor
+     *
+     * @param parameters the number of the register
+     */
+    public AND(String parameters) {
+        super(parameters);
+    }
+
     @Override
     public String convertToOpcode(Memory dataMemory) {
         String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));

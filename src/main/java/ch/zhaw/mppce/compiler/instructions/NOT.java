@@ -12,7 +12,6 @@ import ch.zhaw.mppce.tools.Tools;
  * Time: 22:32
  */
 public class NOT extends Instruction {
-
     @Override
     public String convertToOpcode(Memory dataMemory) {
         return "000000001-------";

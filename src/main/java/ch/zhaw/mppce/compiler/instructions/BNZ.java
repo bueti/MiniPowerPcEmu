@@ -12,6 +12,17 @@ import ch.zhaw.mppce.tools.Tools;
  * Time: 15:39
  */
 public class BNZ extends Instruction {
+
+    /**
+     * Constructor
+     *
+     * @param parameters the number of the register
+     */
+    public BNZ(String parameters) {
+        super(parameters);
+    }
+
+
     @Override
     public String convertToOpcode(Memory dataMemory) {
         String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));

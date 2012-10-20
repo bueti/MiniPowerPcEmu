@@ -12,6 +12,7 @@ import ch.zhaw.mppce.tools.Tools;
  * Time: 20:11
  */
 public class SLA extends Instruction {
+
     @Override
     public String convertToOpcode(Memory dataMemory) {
         return "00001000--------";

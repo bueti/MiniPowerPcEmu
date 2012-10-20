@@ -12,6 +12,17 @@ import ch.zhaw.mppce.tools.Tools;
  * Time: 15:58
  */
 public class BZD extends Instruction {
+
+    /**
+     * Constructor
+     *
+     * @param parameters the number of the register
+     */
+    public BZD(String parameters) {
+        super(parameters);
+    }
+
+
     @Override
     public String convertToOpcode(Memory dataMemory) {
         Tools tools = new Tools();

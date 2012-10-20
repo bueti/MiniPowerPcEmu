@@ -13,6 +13,16 @@ import ch.zhaw.mppce.tools.Tools;
  */
 public class BD extends Instruction {
 
+    /**
+     * Constructor
+     *
+     * @param parameters the number of the register
+     */
+    public BD(String parameters) {
+        super(parameters);
+    }
+
+
     @Override
     public String convertToOpcode(Memory dataMemory) {
         Tools tools = new Tools();

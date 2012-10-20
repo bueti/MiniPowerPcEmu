@@ -12,6 +12,7 @@ import ch.zhaw.mppce.tools.Tools;
  * Time: 16:11
  */
 public class SWDD extends Instruction {
+
     public SWDD(String parameters) {
         super(parameters);
     }

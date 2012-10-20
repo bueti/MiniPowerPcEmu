@@ -47,8 +47,17 @@ public class Tools {
     }
 
     public int getAddressFromParams(String params) {
-        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
-        return Integer.parseInt(address);
+//        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
+        if (params.contains(",")) {
+            String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
+            return Integer.parseInt(address);
+        } else if (params.contains(" ")) {
+            String address = params.split(" ")[1].trim().replaceAll("[^\\d]", "");
+            return Integer.parseInt(address);
+        } else {
+            System.out.println("Don't know how to handle " + params);
+            return 0;
+        }
     }
 
     public String getValueFromParams(int i, String params) {

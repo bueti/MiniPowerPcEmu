@@ -10,7 +10,6 @@ import ch.zhaw.mppce.cpu.Memory;
  * Time: 20:52
  */
 public class END extends Instruction {
-
     @Override
     public String convertToOpcode(Memory dataMemory) {
         return "0000000000000000";
