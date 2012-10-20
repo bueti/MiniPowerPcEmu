@@ -34,7 +34,7 @@ public class INC extends Instruction {
         a++;
 
         // Convert to Twos Complement
-        accuValue = tools.twoComplement(a);
+        accuValue = tools.convertToBin(a);
 
         // Save
         accu.setRegister(accuValue);
