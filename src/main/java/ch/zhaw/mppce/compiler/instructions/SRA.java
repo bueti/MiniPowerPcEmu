@@ -24,7 +24,7 @@ public class SRA extends Instruction {
 
         String accuVal = accu.getRegister();
 
-        int accuValInt = Integer.getInteger(accuVal, 2);
+        int accuValInt = Integer.parseInt(accuVal, 2);
 
         int accuShifted = accuValInt >> 1;
 
