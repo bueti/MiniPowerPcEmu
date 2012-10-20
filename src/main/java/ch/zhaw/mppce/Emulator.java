@@ -42,13 +42,15 @@ public class Emulator {
             }
             cpu.incCommandCounter();
 
+            // Print Accumulator
+            cpu.printAccumulator();
+
+            // Print ProgramMemory
+            programMemory.printProgramMemory();
+
         }
         System.out.println(getCommandCounter());
-        // Print Accumulator
-        cpu.printAccumulator();
 
-        // Print ProgramMemory
-        cpu.printProgramMemory();
 
         // Print DataMemory
 //        cpu.printDataMemory();

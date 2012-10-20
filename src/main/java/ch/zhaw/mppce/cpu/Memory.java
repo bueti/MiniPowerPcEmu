@@ -3,6 +3,7 @@ package ch.zhaw.mppce.cpu;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -59,5 +60,13 @@ public class Memory {
         // Store new
         dataMemory.put(Integer.toString(address), value);
 
+    }
+
+    public void printProgramMemory() {
+        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
+            String key = entry.getKey();
+            Instruction instr = entry.getValue();
+            System.out.println(key + " + " + instr);
+        }
     }
 }
