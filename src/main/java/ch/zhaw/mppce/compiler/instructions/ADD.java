@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
@@ -32,25 +33,25 @@ public class ADD extends Instruction {
     // Methods
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory,
-                     Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         Register registerData = null;
+        Register accu = cpu.getAccu();
         Tools tools = new Tools();
         boolean overflow = false;
 
         // Get Register from Params
-        registerData = tools.getRegisterFromParams(getParameters());
+        registerData = tools.getRegisterFromParams(cpu, getParameters());
 
         // Calculate: accu = accu + registerData
         String accuVal = accu.getRegister();
         String regVal = registerData.getRegister();
 
         // String Values to int
-        int accuVal2 = Integer.parseInt(accuVal);
-        int regVal2 = Integer.parseInt(regVal);
+        int accuValDec = tools.convertToDec(accuVal);
+        int regValDec = tools.convertToDec(regVal);
 
         // Do the math
-        int finalValue = accuVal2 + regVal2;
+        int finalValue = accuValDec + regValDec;
 
         // Check if Carry Bit is necessary:
         if (finalValue >= 16384)
@@ -70,7 +71,7 @@ public class ADD extends Instruction {
     }
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));
 
         return "0000" + register + "1010000000";

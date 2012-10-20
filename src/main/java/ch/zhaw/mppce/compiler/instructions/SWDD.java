@@ -2,7 +2,6 @@ package ch.zhaw.mppce.compiler.instructions;
 
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
 
 /**
@@ -17,15 +16,16 @@ public class SWDD extends Instruction {
     }
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
+        // TODO: Implement
     }
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         String value;
         Tools tools = new Tools();
 
-        Memory data = CPU.getDataMemory();
+        Memory data = dataMemory;
         String[] params = getParameters().split(" ");
         String register = convertRegister(Integer.parseInt(params[1].replace("R", "").replace(",", "")));
 

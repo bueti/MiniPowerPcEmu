@@ -1,9 +1,9 @@
 package ch.zhaw.mppce;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.CommandRegister;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,25 +17,18 @@ public class Emulator {
     private static final int DATA_START = 500;
 
     // Instance Variables
-    private final Memory programMemory;
-    private final Memory dataMemory;
-    private final CommandRegister commandRegister;   // TODO: Fill Command Register
-    private final Register accu;
-    private final Register register1;
-    private final Register register2;
-    private final Register register3;
+    private CPU cpu;
+    private Memory programMemory;
+    private CommandRegister commandRegister;   // TODO: Fill Command Register
     private int commandCounter;
 
     // Constructor
-    public Emulator(Memory programMemory, Memory dataMemory, CommandRegister commandRegister,
-                    Register accu, Register register1, Register register2, Register register3) {
-        this.programMemory = programMemory;
-        this.dataMemory = dataMemory;
-        this.commandRegister = commandRegister;
-        this.accu = accu;
-        this.register1 = register1;
-        this.register2 = register2;
-        this.register3 = register3;
+//    public Emulator(Memory programMemory, Memory dataMemory, CommandRegister commandRegister,
+//                    Register accu, Register register1, Register register2, Register register3) {
+    public Emulator(CPU cpu) {
+        this.cpu = cpu;
+        this.programMemory = cpu.getProgramMemory();
+        this.commandRegister = cpu.getCommandRegister();
 
         setCommandCounter(PROGRAM_START);
 
@@ -43,15 +36,24 @@ public class Emulator {
 
     // Run the program stored in programMemory
     public void run() {
+        Instruction instr;
         while (commandCounter < DATA_START) {
-            Instruction instr = programMemory.getCommand(Integer.toString(commandCounter));
+            instr = programMemory.getCommand(Integer.toString(commandCounter));
             if (instr != null) {
-                instr.doIt(programMemory, dataMemory, accu, register1, register2, register3);
+                instr.doIt(cpu);
             }
             incCommandCounter();
 
         }
         System.out.println(getCommandCounter());
+        // Print Accumulator
+        cpu.printAccumulator();
+
+        // Print ProgramMemory
+        cpu.printProgramMemory();
+
+        // Print DataMemory
+//        cpu.printDataMemory();
 
     }
 

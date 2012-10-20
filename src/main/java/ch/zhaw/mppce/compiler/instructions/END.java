@@ -1,7 +1,7 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,12 +12,12 @@ import ch.zhaw.mppce.cpu.Register;
 public class END extends Instruction {
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         return "0000000000000000";
     }
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         System.out.println("Ende erreicht.");
     }
 }

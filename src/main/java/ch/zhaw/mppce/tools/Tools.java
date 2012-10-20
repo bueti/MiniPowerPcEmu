@@ -29,14 +29,15 @@ public class Tools {
         return String.format("%16s", a).replace(' ', '0');
     }
 
-    public Register getRegisterFromParams(String params) {
+    public Register getRegisterFromParams(CPU cpu, String params) {
         String register = params.replaceAll("[^\\d]", "");
+
         if (register.equals("1")) {
-            return CPU.getRegister1();
+            return cpu.getRegister1();
         } else if (register.equals("2")) {
-            return CPU.getRegister2();
+            return cpu.getRegister2();
         } else {
-            return CPU.getRegister3();
+            return cpu.getRegister3();
         }
     }
 

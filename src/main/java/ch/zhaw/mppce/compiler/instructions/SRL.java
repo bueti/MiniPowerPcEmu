@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
@@ -13,17 +14,18 @@ import ch.zhaw.mppce.tools.Tools;
 public class SRL extends Instruction {
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         return "00001001--------";
     }
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         Tools tools = new Tools();
+        Register accu = cpu.getAccu();
 
         String accuVal = accu.getRegister();
 
-        int accuValInt = Integer.getInteger(accuVal, 2);
+        int accuValInt = Integer.parseInt(accuVal, 2);
 
         int accuShifted = accuValInt << 1;
 

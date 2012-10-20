@@ -1,7 +1,7 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,10 +22,9 @@ public abstract class Instruction {
     }
 
     // Abstract Methods
-    public abstract String convertToOpcode();
+    public abstract String convertToOpcode(Memory dataMemory);
 
-    public abstract void doIt(Memory programMemory, Memory dataMemory,
-                              Register accu, Register register1, Register register2, Register register3);
+    public abstract void doIt(CPU cpu);
 
     // Methods
     public String getParameters() {

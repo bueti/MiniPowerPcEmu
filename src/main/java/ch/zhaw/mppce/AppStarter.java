@@ -20,7 +20,7 @@ import ch.zhaw.mppce.gui.PcEmuGUI;
 public class AppStarter {
 
     public static void main(String[] args) {
-        // Initialize COU
+        // Initialize CPU
         CPU cpu = new CPU();
      
 
@@ -30,8 +30,8 @@ public class AppStarter {
         List<String> data = new ArrayList<String>();
 
         try {
-            program = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/bsp1.asm");
-            data = fl.loadFile("/var/tmp/test2");
+            program = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/addition.asm");
+            data = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/addition.data");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -82,28 +82,20 @@ public class AppStarter {
         }
 
         // TODO: Convert Mnemonics to Binary and save it to the command register
-//        HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
+//        Memory programMemory = cpu.getProgramMemory();
 //
 //        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
 //            String key = entry.getKey();
 //            Instruction instr = entry.getValue();
-//            //cpu.storeToCommandRegister(instr.convertToOpcode());
+//            cpu.storeToCommandRegister(instr.convertToOpcode(cpu.getDataMemory()));
 //        }
 
         // Print Command Register
 //        cpu.printCommandRegister();
 
-        // Print Accumulator
-        //cpu.printAccumulator();
-
-        // Print ProgramMemory
-        //cpu.printProgramMemory();
-
-        // Print DataMemory
-        //cpu.printDataMemory();
-
         // Create Emulator
-        Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
+//        Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
+        Emulator emu = new Emulator(cpu);
         emu.run();
     }
 
