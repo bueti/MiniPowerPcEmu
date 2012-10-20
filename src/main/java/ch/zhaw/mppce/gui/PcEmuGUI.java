@@ -1,6 +1,7 @@
 package ch.zhaw.mppce.gui;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -49,9 +50,13 @@ public class PcEmuGUI {
 		left.setLayout(new BorderLayout());
 		
 		left.add(operate, BorderLayout.NORTH);
-		left.add(load, BorderLayout.SOUTH);
-		left.add(slow, BorderLayout.SOUTH);
-		left.add(fast, BorderLayout.SOUTH);
+		JPanel button = new JPanel();
+		button.setLayout(new FlowLayout(FlowLayout.CENTER));
+		button.add(load);
+		button.add(slow);
+		button.add(fast);
+		left.add(button, BorderLayout.SOUTH);
+		
 		
 		right.add(prgmMem, BorderLayout.NORTH);
 		right.add(dataMem, BorderLayout.NORTH);
