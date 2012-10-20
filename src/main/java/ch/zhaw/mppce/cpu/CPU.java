@@ -20,6 +20,7 @@ public class CPU {
     private Memory programMemory;
     private Memory dataMemory;
 
+    private int commandPointer;
     private int commandCounter;
 
 
@@ -39,8 +40,47 @@ public class CPU {
         dataMemory = new Memory();
 
         // Misc
+        commandPointer = 100;
         commandCounter = 0;
 
+    }
+
+    // Methods
+    public void addCommandToMemory(String instructionNr, Instruction command) {
+        programMemory.storeCommand(instructionNr, command);
+    }
+
+    public void addCommandToMemory(String dataNr, String data) {
+        dataMemory.storeCommand(dataNr, data);
+    }
+
+    public void storeToCommandRegister(String command) {
+        commandRegister.addCommand(command);
+    }
+
+    public void incCommandPointer() {
+        commandPointer = commandPointer + 2;
+    }
+
+    public void incCommandCounter() {
+        commandCounter++;
+    }
+
+    public void printAccumulator() {
+        System.out.println("Accu: " + accu.getRegister());
+    }
+
+    public void printProgramMemory() {
+        // TODO: implement
+    }
+
+    public void printDataMemory() {
+        // TODO: implement
+    }
+
+    // Display the whole command register
+    public void printCommandRegister() {
+        // TODO: implement
     }
 
     // Getter & Setter
@@ -72,33 +112,19 @@ public class CPU {
         return commandRegister;
     }
 
-    // Methods
-    public void addCommandToMemory(String instructionNr, Instruction command) {
-        programMemory.storeCommand(instructionNr, command);
+    public int getCommandPointer() {
+        return commandPointer;
     }
 
-    public void addCommandToMemory(String dataNr, String data) {
-        dataMemory.storeCommand(dataNr, data);
+    public void setCommandPointer(int commandPointer) {
+        this.commandPointer = commandPointer;
     }
 
-    public void storeToCommandRegister(String command) {
-        commandRegister.addCommand(command);
+    public int getCommandCounter() {
+        return commandCounter;
     }
 
-    public void printAccumulator() {
-        System.out.println("Accu: " + accu.getRegister());
-    }
-
-    public void printProgramMemory() {
-        // TODO: implement
-    }
-
-    public void printDataMemory() {
-        // TODO: implement
-    }
-
-    // Display the whole command register
-    public void printCommandRegister() {
-        // TODO: implement
+    public void setCommandCounter(int commandCounter) {
+        this.commandCounter = commandCounter;
     }
 }
