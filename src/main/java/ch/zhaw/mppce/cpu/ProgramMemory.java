@@ -17,27 +17,4 @@ public class ProgramMemory extends Memory {
         super();
     }
 
-
-    /**
-     * Get given command by address
-     *
-     *
-     * @param instructionNr
-     * @return command
-     *
-     */
-//    @Override
-//    public Instruction getCommand(String instructionNr) {
-//        return programMemory.get(instructionNr);
-//    }
-//
-//    @Override
-//    public HashMap<String, Instruction> getMemory() {
-//        return programMemory;
-//    }
-//
-//    @Override
-//    public void storeData(String dataNr, String data) {
-//        //To change body of implemented methods use File | Settings | File Templates.
-//    }
 }
