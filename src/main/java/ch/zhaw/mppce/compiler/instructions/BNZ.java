@@ -3,6 +3,7 @@ package ch.zhaw.mppce.compiler.instructions;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
+import ch.zhaw.mppce.tools.Tools;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,12 +21,16 @@ public class BNZ extends Instruction {
 
     @Override
     public void doIt(CPU cpu) {
+        Tools tools = new Tools();
         Register accu = cpu.getAccu();
+        Register register = tools.getRegisterFromParams(cpu, getParameters());
 
         if (!accu.getRegister().equals("0000000000000000")) {
+            // convert register value to decimal
+            int newAddr = tools.convertToDec(register.getRegister());
+
             // branch to address
-            String address = getParameters();
-            cpu.setCommandPointer(Integer.getInteger(address));
+            cpu.setCommandPointer(newAddr);
         } else {
             cpu.incCommandPointer();
         }

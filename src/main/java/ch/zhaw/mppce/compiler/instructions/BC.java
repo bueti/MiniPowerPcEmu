@@ -26,8 +26,11 @@ public class BC extends Instruction {
         Register register = tools.getRegisterFromParams(cpu, address);
 
         if (register.hasCarryBit()) {
+            // convert register value to decimal
+            int newAddr = tools.convertToDec(register.getRegister());
+
             // branch to address
-            cpu.setCommandPointer(Integer.getInteger(address));
+            cpu.setCommandPointer(newAddr);
         } else {
             cpu.incCommandPointer();
         }
