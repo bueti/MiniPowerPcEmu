@@ -3,7 +3,6 @@ package ch.zhaw.mppce.compiler.instructions;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
-import ch.zhaw.mppce.tools.Tools;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +20,6 @@ public class BZ extends Instruction {
 
     @Override
     public void doIt(CPU cpu) {
-        Tools tools = new Tools();
         Register accu = cpu.getAccu();
 
         if (accu.getRegister().equals("0000000000000000")) {
