@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class PcEmuGUI {
 
@@ -38,8 +40,11 @@ public class PcEmuGUI {
 		JTextArea register	= new JTextArea();
 		JTextArea akku = new JTextArea();
 		JTextArea befRegister = new JTextArea();
+		JTextField param1 = new JTextField(8);
+		JTextField param2 = new JTextField(8);
+		JLabel eingabeparam = new JLabel("Eingabeparameter");
 		
-		
+		// Buttons erstellen
 		JButton load = new JButton("Load File");
 		load.addActionListener(new LoadActionListener());
 		JButton slow = new JButton("Slow");
@@ -47,6 +52,7 @@ public class PcEmuGUI {
 		JButton fast = new JButton("Fast");
 		fast.addActionListener(new FastActionListener());
 		
+		// Linke Seite GUI erstellen
 		left.setLayout(new BorderLayout());
 		
 		left.add(operate, BorderLayout.NORTH);
@@ -57,14 +63,30 @@ public class PcEmuGUI {
 		button.add(fast);
 		left.add(button, BorderLayout.SOUTH);
 		
-		
-		right.add(prgmMem, BorderLayout.NORTH);
-		right.add(dataMem, BorderLayout.NORTH);
-		right.add(register, BorderLayout.CENTER);
-		right.add(akku, BorderLayout.CENTER);
-		right.add(befRegister, BorderLayout.SOUTH);
-		frame.getContentPane().add(BorderLayout.WEST, left);
-		frame.getContentPane().add(BorderLayout.EAST, right);
+		// Rechte Seite GUI erstellen
+		right.setLayout(new BorderLayout());
+		JPanel rightnorth = new JPanel();
+		rightnorth.setLayout(new FlowLayout(FlowLayout.CENTER));
+		rightnorth.add(prgmMem);
+		rightnorth.add(dataMem);
+		JPanel rightcenter = new JPanel();
+		rightcenter.setLayout(new BorderLayout());
+		rightcenter.add(register, BorderLayout.NORTH);
+		rightcenter.add(akku, BorderLayout.SOUTH);
+		JPanel rightsouth = new JPanel();
+		rightsouth.setLayout(new BorderLayout());
+		rightsouth.add(befRegister, BorderLayout.NORTH);
+		rightsouth.add(eingabeparam, BorderLayout.CENTER);
+		right.add(rightnorth, BorderLayout.NORTH);
+		right.add(rightcenter, BorderLayout.CENTER);
+		right.add(rightsouth, BorderLayout.SOUTH);
+		JPanel parameter = new JPanel();
+		parameter.setLayout(new FlowLayout(FlowLayout.CENTER));
+		parameter.add(param1);
+		parameter.add(param2);
+		rightsouth.add(parameter, BorderLayout.SOUTH);
+		frame.getContentPane().add(left, BorderLayout.WEST);
+		frame.getContentPane().add(right, BorderLayout.CENTER);
 		
 		frame.setSize(500,500);
 		frame.setVisible(true);
