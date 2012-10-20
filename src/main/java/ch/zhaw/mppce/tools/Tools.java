@@ -24,20 +24,25 @@ public class Tools {
 
     // Takes a decimal int and returns a two's complement 16 bit string
     public String convertToBin(int value) {
-        String a = Integer.toBinaryString(value);
+        String a = Integer.toBinaryString(value & 0xFFFF);
 
         return String.format("%16s", a).replace(' ', '0');
     }
 
     public Register getRegisterFromParams(CPU cpu, String params) {
-        String register = params.replaceAll("[^\\d]", "");
+        String register = params.replace(",", " ").split(" ")[1].trim().replaceAll("[^\\d]", "");
 
-        if (register.equals("1")) {
+        if (register.equals("0")) {
+            return cpu.getAccu();
+        } else if (register.equals("1")) {
             return cpu.getRegister1();
         } else if (register.equals("2")) {
             return cpu.getRegister2();
-        } else {
+        } else if (register.equals("3")) {
             return cpu.getRegister3();
+        } else {
+            System.out.println("Register Nr " + register + " not known.");
+            return null;
         }
     }
 
