@@ -5,15 +5,14 @@ package ch.zhaw.mppce.gui;
  * User: bbu
  * Date: 09.10.12
  * Time: 21:46
- *
+ * <p/>
  * Parses the program and saves it into the ProgramMemory
- *
  */
 public class FileParser {
 
     public String[] parseLine(String line) {
         String[] parsedLine = new String[5];
-        String[] delim = null;
+        String[] delim;
 
         // Remove Comments
         delim = line.split(";");
@@ -27,10 +26,10 @@ public class FileParser {
         parsedLine[1] = delim[1];
 
         // Get Parameters
-        if(delim.length > 2) {
-            String params = null;
+        if (delim.length > 2) {
+            String params = "";
             int i = 2;
-            while(i<delim.length) {
+            while (i < delim.length) {
                 params = params + " " + delim[i];
                 i++;
             }

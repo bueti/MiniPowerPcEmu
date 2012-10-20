@@ -71,11 +71,11 @@ public class CPU {
     }
 
     public void printProgramMemory() {
-        // TODO: implement
+        programMemory.printProgramMemory();
     }
 
     public void printDataMemory() {
-        // TODO: implement
+        dataMemory.printDataMemory();
     }
 
     // Display the whole command register
@@ -126,5 +126,14 @@ public class CPU {
 
     public void setCommandCounter(int commandCounter) {
         this.commandCounter = commandCounter;
+    }
+
+    public void printRegisters() {
+        System.out.print("R1: ");
+        register1.print();
+        System.out.print("R2: ");
+        register2.print();
+        System.out.print("R3: ");
+        register3.print();
     }
 }

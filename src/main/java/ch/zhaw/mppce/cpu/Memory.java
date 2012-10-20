@@ -66,7 +66,15 @@ public class Memory {
         for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
             String key = entry.getKey();
             Instruction instr = entry.getValue();
-            System.out.println(key + " + " + instr);
+            System.out.println(key + ": " + instr.getClass().getSimpleName() + ": " + instr.getParameters());
+        }
+    }
+
+    public void printDataMemory() {
+        for (Map.Entry<String, String> entry : dataMemory.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key + ": " + value);
         }
     }
 }

@@ -39,4 +39,8 @@ public class Register {
             return false;
         }
     }
+
+    public void print() {
+        System.out.println(register[0]);
+    }
 }
