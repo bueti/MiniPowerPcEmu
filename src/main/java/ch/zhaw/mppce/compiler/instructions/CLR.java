@@ -1,5 +1,6 @@
 package ch.zhaw.mppce.compiler.instructions;
 
+import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
@@ -23,18 +24,18 @@ public class CLR extends Instruction {
     // Methods
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         Tools tools = new Tools();
 
         // Get Register from Params
-        Register registerData = tools.getRegisterFromParams(getParameters());
+        Register registerData = tools.getRegisterFromParams(cpu, getParameters());
 
         registerData.setRegister("0000000000000000");
 
     }
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         String register = getParameters().trim().replaceAll("[^\\d]", "");
         return "0000" + register + "101-------";
     }

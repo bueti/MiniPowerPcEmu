@@ -19,7 +19,7 @@ import java.util.List;
 public class AppStarter {
 
     public static void main(String[] args) {
-        // Initialize COU
+        // Initialize CPU
         CPU cpu = new CPU();
 
         // Load files
@@ -80,28 +80,20 @@ public class AppStarter {
         }
 
         // TODO: Convert Mnemonics to Binary and save it to the command register
-//        HashMap<String, Instruction> programMemory = cpu.getProgramMemory();
+//        Memory programMemory = cpu.getProgramMemory();
 //
 //        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
 //            String key = entry.getKey();
 //            Instruction instr = entry.getValue();
-//            //cpu.storeToCommandRegister(instr.convertToOpcode());
+//            cpu.storeToCommandRegister(instr.convertToOpcode(cpu.getDataMemory()));
 //        }
 
         // Print Command Register
 //        cpu.printCommandRegister();
 
-        // Print Accumulator
-        //cpu.printAccumulator();
-
-        // Print ProgramMemory
-        //cpu.printProgramMemory();
-
-        // Print DataMemory
-        //cpu.printDataMemory();
-
         // Create Emulator
-        Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
+//        Emulator emu = new Emulator(CPU.getProgramMemory(), CPU.getDataMemory(), CPU.getCommandRegister(), CPU.getAccu(), CPU.getRegister1(), CPU.getRegister2(), CPU.getRegister3());
+        Emulator emu = new Emulator(cpu);
         emu.run();
     }
 

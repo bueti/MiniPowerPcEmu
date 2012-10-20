@@ -11,14 +11,14 @@ import ch.zhaw.mppce.compiler.instructions.Instruction;
 public class CPU {
 
     // Instance Variables
-    private static Register register1;
-    private static Register register2;
-    private static Register register3;
-    private static Register accu;
-    private static CommandRegister commandRegister;
+    private Register register1;
+    private Register register2;
+    private Register register3;
+    private Register accu;
+    private CommandRegister commandRegister;
 
-    private static Memory programMemory;
-    private static Memory dataMemory;
+    private Memory programMemory;
+    private Memory dataMemory;
 
     private int commandCounter;
 
@@ -44,31 +44,31 @@ public class CPU {
     }
 
     // Getter & Setter
-    public static Memory getDataMemory() {
+    public Memory getDataMemory() {
         return dataMemory;
     }
 
-    public static Memory getProgramMemory() {
+    public Memory getProgramMemory() {
         return programMemory;
     }
 
-    public static Register getAccu() {
+    public Register getAccu() {
         return accu;
     }
 
-    public static Register getRegister1() {
+    public Register getRegister1() {
         return register1;
     }
 
-    public static Register getRegister2() {
+    public Register getRegister2() {
         return register2;
     }
 
-    public static Register getRegister3() {
+    public Register getRegister3() {
         return register3;
     }
 
-    public static CommandRegister getCommandRegister() {
+    public CommandRegister getCommandRegister() {
         return commandRegister;
     }
 
@@ -103,7 +103,7 @@ public class CPU {
 //        }
 //    }
 
-    public static void storeToCommandRegister(String command) {
+    public void storeToCommandRegister(String command) {
         commandRegister.addCommand(command);
     }
 

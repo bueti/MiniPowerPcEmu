@@ -33,8 +33,9 @@ public class ADDD extends Instruction {
     // Methods
 
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory, Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         Tools tools = new Tools();
+        Register accu = cpu.getAccu();
 
         // Get value from accu
         String accuVal = accu.getRegister();
@@ -60,9 +61,8 @@ public class ADDD extends Instruction {
 
     // TODO: Test
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         String address = getParameters();
-        Memory dataMemory = CPU.getDataMemory();
         String value = dataMemory.getValue(address);
 
         return "1" + value;

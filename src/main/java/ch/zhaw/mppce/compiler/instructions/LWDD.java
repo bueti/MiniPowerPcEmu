@@ -27,8 +27,7 @@ public class LWDD extends Instruction {
 
     // Methods
     @Override
-    public void doIt(Memory programMemory, Memory dataMemory,
-                     Register accu, Register register1, Register register2, Register register3) {
+    public void doIt(CPU cpu) {
         /**
          *  Parse Parameters, we need a:
          *  - Register R1, R2 or R3
@@ -36,9 +35,10 @@ public class LWDD extends Instruction {
          */
         Tools tools = new Tools();
         String params = getParameters();
+        Memory dataMemory = cpu.getDataMemory();
 
         // Get Register from Params
-        Register registerData = tools.getRegisterFromParams(params);
+        Register registerData = tools.getRegisterFromParams(cpu, params);
 
         // Get address from Params
         int address = tools.getAddressFromParams(params);
@@ -63,12 +63,12 @@ public class LWDD extends Instruction {
     }
 
     @Override
-    public String convertToOpcode() {
+    public String convertToOpcode(Memory dataMemory) {
         String address;
         String value;
         Tools tools = new Tools();
 
-        Memory data = CPU.getDataMemory();
+        Memory data = dataMemory;
         String[] params = getParameters().split(" ");
         String register = convertRegister(Integer.parseInt(params[1].replace("R", "").replace(",", "")));
 
