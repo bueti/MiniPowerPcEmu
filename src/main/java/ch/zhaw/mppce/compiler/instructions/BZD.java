@@ -26,7 +26,7 @@ public class BZD extends Instruction {
     @Override
     public String convertToOpcode(Memory dataMemory) {
         Tools tools = new Tools();
-        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()));
+        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()), 11);
 
         return "00110" + address;
     }

@@ -76,7 +76,7 @@ public class LWDD extends Instruction {
             address = params[2].replace("#", "");
             value = data.getValue(address);
         } else {
-            value = tools.convertToBin(Integer.valueOf(params[2]));
+            value = tools.convertToBin(Integer.valueOf(params[2]), 10);
         }
 
         return "0100--" + register + value;

@@ -2,7 +2,6 @@ package ch.zhaw.mppce.compiler.instructions;
 
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
 
 /**
@@ -26,7 +25,7 @@ public class BD extends Instruction {
     @Override
     public String convertToOpcode(Memory dataMemory) {
         Tools tools = new Tools();
-        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()));
+        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()), 11);
 
         return "00100" + address;
 
@@ -35,8 +34,6 @@ public class BD extends Instruction {
     @Override
     public void doIt(CPU cpu) {
         Tools tools = new Tools();
-        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()));
-        Register accu = cpu.getAccu();
 
         // branch to address
         cpu.setCommandPointer(tools.getAddressFromParams(getParameters()));

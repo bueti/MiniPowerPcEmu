@@ -25,7 +25,7 @@ public class BCD extends Instruction {
     @Override
     public String convertToOpcode(Memory dataMemory) {
         Tools tools = new Tools();
-        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()));
+        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()), 11);
 
         return "00111" + address;
     }
@@ -33,7 +33,6 @@ public class BCD extends Instruction {
     @Override
     public void doIt(CPU cpu) {
         Tools tools = new Tools();
-        String address = tools.convertToBin(tools.getAddressFromParams(getParameters()));
         Register accu = cpu.getAccu();
 
         if (accu.hasCarryBit()) {

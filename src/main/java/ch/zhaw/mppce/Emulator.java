@@ -35,7 +35,7 @@ public class Emulator {
     // Run the program stored in programMemory
     public void run() {
         Instruction instr;
-        while (cpu.getCommandPointer() < DATA_START) {
+        while (cpu.getCommandCounter() < DATA_START) {
             instr = programMemory.getCommand(Integer.toString(cpu.getCommandPointer()));
             if (instr != null) {
                 instr.doIt(cpu);

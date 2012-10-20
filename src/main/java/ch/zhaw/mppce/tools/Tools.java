@@ -22,11 +22,11 @@ public class Tools {
         }
     }
 
-    // Takes a decimal int and returns a two's complement 16 bit string
-    public String convertToBin(int value) {
+    // Takes a decimal int and returns a two's complement i bit string
+    public String convertToBin(int value, int i) {
         String a = Integer.toBinaryString(value & 0xFFFF);
 
-        return String.format("%16s", a).replace(' ', '0');
+        return String.format("%" + i + "s", a).replace(' ', '0');
     }
 
     public Register getRegisterFromParams(CPU cpu, String params) {
@@ -71,7 +71,7 @@ public class Tools {
 
         if (x < 0) {
             String string = Integer.toString(x);
-            String dec = convertToBin(Integer.parseInt(string.substring(1)));
+            String dec = convertToBin(Integer.parseInt(string.substring(1)), 8);
             String invertstr = "";
             for (int i = 0; i < dec.length(); i++) {
 
@@ -91,7 +91,7 @@ public class Tools {
             }
 
         } else {
-            return convertToBin(x);
+            return convertToBin(x, 8);
         }
 
     }

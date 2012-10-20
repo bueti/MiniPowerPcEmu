@@ -61,7 +61,7 @@ public class ADD extends Instruction {
         if (finalValue == 0) {
             accu.setRegister("0000000000000000");
         } else {
-            String converted = tools.convertToBin(finalValue);
+            String converted = tools.convertToBin(finalValue, 16);
             // Save it to the accu
             accu.setRegister(converted);
             if (overflow)
