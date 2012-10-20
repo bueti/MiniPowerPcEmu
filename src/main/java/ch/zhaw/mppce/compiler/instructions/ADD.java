@@ -46,11 +46,11 @@ public class ADD extends Instruction {
         String regVal = registerData.getRegister();
 
         // String Values to int
-        int accuVal2 = Integer.parseInt(accuVal);
-        int regVal2 = Integer.parseInt(regVal);
+        int accuValDec = tools.convertToDec(accuVal);
+        int regValDec = tools.convertToDec(regVal);
 
         // Do the math
-        int finalValue = accuVal2 + regVal2;
+        int finalValue = accuValDec + regValDec;
 
         // Check if Carry Bit is necessary:
         if (finalValue >= 16384)
