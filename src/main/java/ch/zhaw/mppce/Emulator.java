@@ -53,10 +53,6 @@ public class Emulator {
         }
         System.out.println(getCommandCounter());
 
-
-        // Print DataMemory
-//        cpu.printDataMemory();
-
     }
 
 
