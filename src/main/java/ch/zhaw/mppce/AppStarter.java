@@ -1,14 +1,15 @@
 package ch.zhaw.mppce;
 
-import ch.zhaw.mppce.compiler.instructions.Instruction;
-import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.gui.FileLoader;
-import ch.zhaw.mppce.gui.FileParser;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+
+import ch.zhaw.mppce.compiler.instructions.Instruction;
+import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.gui.FileLoader;
+import ch.zhaw.mppce.gui.FileParser;
+import ch.zhaw.mppce.gui.PcEmuGUI;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +22,7 @@ public class AppStarter {
     public static void main(String[] args) {
         // Initialize CPU
         CPU cpu = new CPU();
+     
 
         // Load files
         FileLoader fl = new FileLoader();
