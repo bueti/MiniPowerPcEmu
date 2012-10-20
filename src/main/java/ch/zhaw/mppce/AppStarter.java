@@ -28,8 +28,8 @@ public class AppStarter {
         List<String> data = new ArrayList<String>();
 
         try {
-            program = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/addition.asm");
-            data = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/addition.data");
+            program = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/bsp1.asm");
+            data = fl.loadFile("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/bsp1.data");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

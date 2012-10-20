@@ -50,6 +50,7 @@ public class LWDD extends Instruction {
         if (value2 == null)
             value2 = "00000000";
 
+        // Concatenate the two strings together to get a 16bit string
         String totalValue = value2 + value1;
 
         // Write it into the Register
