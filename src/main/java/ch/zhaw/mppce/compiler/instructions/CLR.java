@@ -39,7 +39,7 @@ public class CLR extends Instruction {
 
     @Override
     public String convertToOpcode(Memory dataMemory) {
-        String register = getParameters().trim().replaceAll("[^\\d]", "");
+        String register = convertRegister(Integer.parseInt(getParameters().trim().replaceAll("[^\\d]", "")));
         return "0000" + register + "101-------";
     }
 

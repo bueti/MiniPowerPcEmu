@@ -27,7 +27,7 @@ public class DEC extends Instruction {
         int a = tools.convertToDec(accuValue);
 
         // Check for overflow
-        if (a <= -65536) {
+        if (a <= LOWER_LIMIT) {
             overflow = true;
         }
 

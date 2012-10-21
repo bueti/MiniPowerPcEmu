@@ -10,6 +10,10 @@ import ch.zhaw.mppce.cpu.Memory;
  * Time: 20:38
  */
 public abstract class Instruction {
+    // Constants
+    public final static int UPPER_LIMIT = 32767;  // 2^15 - 1
+    public final static int LOWER_LIMIT = -32768; // -2^15
+
     // Instance Vars
     private String parameters;
 
@@ -37,8 +41,7 @@ public abstract class Instruction {
 
     public String convertRegister(int i) {
         String register = null;
-        register = register.format("%2s", Integer.toBinaryString(i)).replace(' ', '0');
-        return register;
+        return register.format("%2s", Integer.toBinaryString(i)).replace(' ', '0');
     }
 
 }

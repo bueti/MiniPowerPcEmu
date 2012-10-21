@@ -54,7 +54,7 @@ public class ADD extends Instruction {
         int finalValue = accuValDec + regValDec;
 
         // Check if Carry Bit is necessary:
-        if (finalValue >= 16384)
+        if (finalValue >= UPPER_LIMIT)
             overflow = true;
 
         // Convert to two's complement

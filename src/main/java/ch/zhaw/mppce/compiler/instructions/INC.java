@@ -26,7 +26,7 @@ public class INC extends Instruction {
         int a = tools.convertToDec(accuValue);
 
         // Check for overflow
-        if (a >= 65536) {
+        if (a >= UPPER_LIMIT) {
             overflow = true;
         }
 
