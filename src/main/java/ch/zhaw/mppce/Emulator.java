@@ -42,16 +42,13 @@ public class Emulator {
             }
             cpu.incCommandCounter();
 
-
-            // Print Accumulator & Registers
-            cpu.printAccumulator();
-            cpu.printRegisters();
-
-            // Print Memory
+            // Print ProgramMemory
             //cpu.printProgramMemory();
             //cpu.printDataMemory();
 
         }
+        cpu.printAccumulator();
+        cpu.printRegisters();
         cpu.printDataMemory();
     }
 
