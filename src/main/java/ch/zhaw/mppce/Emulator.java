@@ -45,7 +45,7 @@ public class Emulator {
             cpu.printRegisters();
 
             // Print Memory
-            cpu.printProgramMemory();
+            //cpu.printProgramMemory();
             cpu.printDataMemory();
 
         }

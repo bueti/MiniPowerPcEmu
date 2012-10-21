@@ -24,6 +24,7 @@ public class CPU {
 
     private int commandPointer;
     private int commandCounter;
+    private boolean carryBit;
 
 
     /**
@@ -44,6 +45,7 @@ public class CPU {
         // Misc
         commandPointer = 100;
         commandCounter = 0;
+        carryBit = false;
 
     }
 
@@ -83,6 +85,15 @@ public class CPU {
     // Return the command register as an ArrayList of Strings
     public ArrayList<String> showCommandRegister() {
         return commandRegister.getCommandRegister();
+    }
+
+    public void printRegisters() {
+        System.out.print("R1: ");
+        register1.print();
+        System.out.print("R2: ");
+        register2.print();
+        System.out.print("R3: ");
+        register3.print();
     }
 
     // Getter & Setter
@@ -130,12 +141,11 @@ public class CPU {
         this.commandCounter = commandCounter;
     }
 
-    public void printRegisters() {
-        System.out.print("R1: ");
-        register1.print();
-        System.out.print("R2: ");
-        register2.print();
-        System.out.print("R3: ");
-        register3.print();
+    public boolean isCarryBit() {
+        return carryBit;
+    }
+
+    public void setCarryBit(boolean carryBit) {
+        this.carryBit = carryBit;
     }
 }

@@ -24,11 +24,19 @@ public class SLA extends Instruction {
         Register accu = cpu.getAccu();
 
         String accuVal = accu.getRegister();
+
+        // Get first bit and set it as carry bit
+        String carryBit = accuVal.substring(0, 0);
+        if (carryBit.equals(0)) {
+            cpu.setCarryBit(false);
+        } else {
+            cpu.setCarryBit(true);
+        }
+
         int accuValDec = tools.convertToDec(accuVal);
 
         accu.setRegister(tools.convertToBin(accuValDec * 2, 16));
 
-        // TODO: MSB Handling
 
         // Increase command counter
         cpu.incCommandPointer();

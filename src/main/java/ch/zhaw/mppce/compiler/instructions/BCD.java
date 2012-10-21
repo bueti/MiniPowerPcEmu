@@ -2,7 +2,6 @@ package ch.zhaw.mppce.compiler.instructions;
 
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.cpu.Register;
 import ch.zhaw.mppce.tools.Tools;
 
 /**
@@ -33,9 +32,8 @@ public class BCD extends Instruction {
     @Override
     public void doIt(CPU cpu) {
         Tools tools = new Tools();
-        Register accu = cpu.getAccu();
 
-        if (accu.hasCarryBit()) {
+        if (cpu.isCarryBit()) {
             // branch to address
             cpu.setCommandPointer(tools.getAddressFromParams(getParameters()));
         } else {

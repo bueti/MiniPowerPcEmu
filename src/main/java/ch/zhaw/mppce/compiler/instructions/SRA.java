@@ -25,8 +25,17 @@ public class SRA extends Instruction {
 
         String accuVal = accu.getRegister();
 
+        // Get last bit and set it as carry bit
+        String carryBit = accuVal.substring(15);
+        if (carryBit.equals(0)) {
+            cpu.setCarryBit(false);
+        } else {
+            cpu.setCarryBit(true);
+        }
+
         int accuValInt = Integer.parseInt(accuVal, 2);
 
+        // Signed right shift (/2)
         int accuShifted = accuValInt >> 1;
 
         accu.setRegister(tools.convertToBin(accuShifted, 16));
