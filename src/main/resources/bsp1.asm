@@ -12,3 +12,4 @@
 122 LWDD R1, #502 ; R1 = j
 124 ADD R1 ; Akku := Akku + R1 (= j - k)
 126 BNZD #104 ; Wenn j - k ≠ 0 springe zu 104 zurück
+128 END
