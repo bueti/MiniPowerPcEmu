@@ -5,6 +5,7 @@ import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.gui.FileLoader;
 import ch.zhaw.mppce.gui.FileParser;
+import ch.zhaw.mppce.gui.PcEmuGUI;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -23,8 +24,13 @@ public class AppStarter {
         // Initialize CPU
         CPU cpu = new CPU();
 
+        // Create GUI
+        PcEmuGUI gui = new PcEmuGUI(cpu);
 
-        // Load files
+
+        // Load Data and Program file. This will later be handled by the GUI.
+        // The Data File will probably not be used anymore and as we enter the data
+        // directly via the GUI. The Program File will always be loaded via the GUI.
         FileLoader fl = new FileLoader();
         List<String> program = new ArrayList<String>();
         List<String> data = new ArrayList<String>();
