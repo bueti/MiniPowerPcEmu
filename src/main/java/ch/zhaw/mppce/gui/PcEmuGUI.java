@@ -1,21 +1,27 @@
 package ch.zhaw.mppce.gui;
 
+import ch.zhaw.mppce.Emulator;
 import ch.zhaw.mppce.cpu.CPU;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class PcEmuGUI {
     // Intanzvariablen GUI
     private static JFrame frame;
     private CPU cpu;
+    private File programFile;
+    private static PcEmuGUI gui;
 
 
     // Konstruktor
     public PcEmuGUI(CPU cpu) {
         this.cpu = cpu;
+        this.gui = this;
         emugui();
     }
 
@@ -82,11 +88,10 @@ public class PcEmuGUI {
 
         frame.setSize(500, 500);
         frame.setVisible(true);
+    }
 
-        // Zugriff auf die CPU - Text darstellen sollte ungefähr so gehen
-        for (String command : cpu.showCommandRegister()) {
-            befRegister.setText(command);
-        }
+    public File getProgramFile() {
+        return programFile;
     }
 
     // Innere Klassen für Actionlistener
@@ -94,7 +99,24 @@ public class PcEmuGUI {
     private class LoadActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            //todo
+            JFileChooser fc = new JFileChooser();
+            fc.setDialogTitle("Mini PowerPC File Loader");
+            fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fc.setApproveButtonText("Choose File");
+            fc.setFileFilter(new FileNameExtensionFilter("Assembler (*.asm)", "asm"));
+            int returnVal = fc.showOpenDialog(new JFrame());
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                programFile = fc.getSelectedFile();
+            }
+
+            FileLoader fl = new FileLoader();
+            fl.parseFile(cpu, gui);
+
+            // Print Command Register, TODO: move this into the gui
+            for (String command : cpu.showCommandRegister()) {
+                System.out.println("CR: " + command);
+            }
         }
     }
 
@@ -108,7 +130,9 @@ public class PcEmuGUI {
     private class FastActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
-            //todo
+            // Create Emulator
+            Emulator emu = new Emulator(cpu);
+            emu.run();
         }
     }
 
