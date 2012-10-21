@@ -1,17 +1,11 @@
 package ch.zhaw.mppce.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-
 import ch.zhaw.mppce.Emulator;
 import ch.zhaw.mppce.cpu.CPU;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -40,40 +34,40 @@ public class PcEmuGUI {
         JPanel right = new JPanel();
         JTextArea operate = new JTextArea();
         operate.setLineWrap(true);
-		operate.setWrapStyleWord(true);
-		operate.setBackground(Color.WHITE);
-		operate.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		operate.setEditable(false);
+        operate.setWrapStyleWord(true);
+        operate.setBackground(Color.WHITE);
+        operate.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        operate.setEditable(false);
         JTextArea prgmMem = new JTextArea();
         prgmMem.setLineWrap(true);
-		prgmMem.setWrapStyleWord(true);
-		prgmMem.setBackground(Color.WHITE);
-		prgmMem.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		prgmMem.setEditable(false);
+        prgmMem.setWrapStyleWord(true);
+        prgmMem.setBackground(Color.WHITE);
+        prgmMem.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        prgmMem.setEditable(false);
         JTextArea dataMem = new JTextArea();
         dataMem.setLineWrap(true);
-		dataMem.setWrapStyleWord(true);
-		dataMem.setBackground(Color.WHITE);
-		dataMem.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		dataMem.setEditable(false);
+        dataMem.setWrapStyleWord(true);
+        dataMem.setBackground(Color.WHITE);
+        dataMem.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        dataMem.setEditable(false);
         JTextArea register = new JTextArea();
         register.setLineWrap(true);
-		register.setWrapStyleWord(true);
-		register.setBackground(Color.WHITE);
-		register.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		register.setEditable(false);
+        register.setWrapStyleWord(true);
+        register.setBackground(Color.WHITE);
+        register.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        register.setEditable(false);
         JTextArea akku = new JTextArea();
         akku.setLineWrap(true);
-		akku.setWrapStyleWord(true);
-		akku.setBackground(Color.WHITE);
-		akku.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		akku.setEditable(false);
+        akku.setWrapStyleWord(true);
+        akku.setBackground(Color.WHITE);
+        akku.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        akku.setEditable(false);
         JTextArea befRegister = new JTextArea();
         befRegister.setLineWrap(true);
-		befRegister.setWrapStyleWord(true);
-		befRegister.setBackground(Color.WHITE);
-		befRegister.setFont(new Font("SansSerif", Font.PLAIN, 11));
-		befRegister.setEditable(false);
+        befRegister.setWrapStyleWord(true);
+        befRegister.setBackground(Color.WHITE);
+        befRegister.setFont(new Font("SansSerif", Font.PLAIN, 11));
+        befRegister.setEditable(false);
         JTextField param1 = new JTextField(8);
         JTextField param2 = new JTextField(8);
         JLabel eingabeparam = new JLabel("Eingabeparameter");
@@ -167,11 +161,10 @@ public class PcEmuGUI {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
-            Emulator emu = new Emulator(cpu);
+            Emulator emu = new Emulator(cpu, gui);
             emu.run();
         }
     }
-
 
 
 }

@@ -27,8 +27,8 @@ public class SLL extends Instruction {
         int accuValDec = tools.convertToDec(accuVal);
 
         // Get first bit and set it as carry bit
-        String carryBit = accuVal.substring(0, 0);
-        if (carryBit.equals(0)) {
+        String carryBit = accuVal.substring(0, 1);
+        if (carryBit.equals("0")) {
             cpu.setCarryBit(false);
         } else {
             cpu.setCarryBit(true);
@@ -39,7 +39,7 @@ public class SLL extends Instruction {
         int accuShifted = accuValInt << 1;
 
         // Save new value
-        accu.setRegister(tools.convertToBin(accuValDec * 2, 16));
+        accu.setRegister(tools.convertToBin(accuShifted, 16));
 
         // Increase command counter
         cpu.incCommandPointer();

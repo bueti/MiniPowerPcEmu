@@ -25,9 +25,9 @@ public class SLA extends Instruction {
 
         String accuVal = accu.getRegister();
 
-        // Get first bit and set it as carry bit
-        String carryBit = accuVal.substring(0, 0);
-        if (carryBit.equals(0)) {
+        // Get second bit and set it as carry bit
+        String carryBit = accuVal.substring(1, 2);
+        if (carryBit.equals("0")) {
             cpu.setCarryBit(false);
         } else {
             cpu.setCarryBit(true);

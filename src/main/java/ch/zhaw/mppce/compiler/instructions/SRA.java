@@ -27,7 +27,7 @@ public class SRA extends Instruction {
 
         // Get last bit and set it as carry bit
         String carryBit = accuVal.substring(15);
-        if (carryBit.equals(0)) {
+        if (carryBit.equals("0")) {
             cpu.setCarryBit(false);
         } else {
             cpu.setCarryBit(true);

@@ -35,7 +35,7 @@ public class DEC extends Instruction {
         a--;
 
         // Convert to Twos Complement
-        accuValue = tools.twoComplement(a);
+        accuValue = tools.convertToBin(a, 16);
 
         // Save
         accu.setRegister(accuValue);
