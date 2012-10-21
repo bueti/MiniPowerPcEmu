@@ -1,15 +1,7 @@
 package ch.zhaw.mppce;
 
-import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.gui.FileLoader;
-import ch.zhaw.mppce.gui.FileParser;
-
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
+import ch.zhaw.mppce.gui.PcEmuGUI;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,11 +15,9 @@ public class AppStarter {
         // Initialize CPU
         CPU cpu = new CPU();
 
+        // Initialize GUI
+        PcEmuGUI gui = new PcEmuGUI(cpu);
 
-     
-        // Create Emulator
-        Emulator emu = new Emulator(cpu);
-        emu.run();
     }
 
 }
