@@ -33,7 +33,7 @@ public class FileLoader {
 
         try {
             program = fl.readFile(gui.getProgramFile());
-            data = fl.readFile(new File("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/bsp1.data"));
+            data = fl.readFile(new File("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/multiply.data"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
