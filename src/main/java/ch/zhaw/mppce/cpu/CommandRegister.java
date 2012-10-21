@@ -22,11 +22,4 @@ public class CommandRegister extends Register {
     public void addCommand(String command) {
         commandRegister.add(command);
     }
-
-    // Display the whole command register
-    public void printCommandRegister() {
-        for (String command : getCommandRegister()) {
-            System.out.println("CR: " + command);
-        }
-    }
 }

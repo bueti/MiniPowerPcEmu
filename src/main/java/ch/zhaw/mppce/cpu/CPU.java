@@ -2,6 +2,8 @@ package ch.zhaw.mppce.cpu;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
+import java.util.ArrayList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -78,9 +80,9 @@ public class CPU {
         dataMemory.printDataMemory();
     }
 
-    // Display the whole command register
-    public void printCommandRegister() {
-        commandRegister.printCommandRegister();
+    // Return the command register as an ArrayList of Strings
+    public ArrayList<String> showCommandRegister() {
+        return commandRegister.getCommandRegister();
     }
 
     // Getter & Setter
