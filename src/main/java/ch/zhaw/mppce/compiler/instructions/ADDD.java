@@ -67,6 +67,8 @@ public class ADDD extends Instruction {
     public String convertToOpcode(Memory dataMemory) {
         String address = getParameters();
         String value = dataMemory.getValue(address);
+        if (value == null)   // TODO: that happens because we run this command before there is data in the data memory
+            value = "000000000000000";
 
         return "1" + value;
     }

@@ -62,10 +62,12 @@ public class SWDD extends Instruction {
         if (params[2].contains("#")) {
             // Get Value from Address
             value = data.getValue(params[2].replace("#", ""));
+            if (value == null)   // TODO: that happens because we run this command before there is data in the data memory
+                value = "0000000000";
         } else {
             value = tools.convertToBin(Integer.valueOf(params[2]), 10);
         }
 
-        return "011---" + register + value;
+        return "011-" + register + value;
     }
 }

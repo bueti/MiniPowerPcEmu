@@ -75,10 +75,12 @@ public class LWDD extends Instruction {
             // Get Value from Address
             address = params[2].replace("#", "");
             value = data.getValue(address);
+            if (value == null)   // TODO: that happens because we run this command before there is data in the data memory
+                value = "0000000000";
         } else {
             value = tools.convertToBin(Integer.valueOf(params[2]), 10);
         }
 
-        return "0100--" + register + value;
+        return "010-" + register + value;
     }
 }
