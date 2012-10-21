@@ -52,5 +52,7 @@ public class Emulator {
             //cpu.printDataMemory();
 
         }
+        cpu.printDataMemory();
     }
+
 }

@@ -45,7 +45,7 @@ public class LWDD extends Instruction {
 
         // Get values from address and address + 1
         String value1 = dataMemory.getValue(Integer.toString(address));
-        String value2 = dataMemory.getValue(Integer.toString(address) + 1);
+        String value2 = dataMemory.getValue(Integer.toString(address + 1));
 
         if (value2 == null)
             value2 = "00000000";
