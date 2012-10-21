@@ -47,7 +47,6 @@ public class Tools {
     }
 
     public int getAddressFromParams(String params) {
-//        String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
         if (params.contains(",")) {
             String address = params.split(",")[1].trim().replaceAll("[^\\d]", "");
             return Integer.parseInt(address);
@@ -61,38 +60,7 @@ public class Tools {
     }
 
     public String getValueFromParams(int i, String params) {
-        String value = params.replace(",", " ").split(" ")[i].trim().replaceAll("[^\\d]", "");
-        return value;
+        return params.replace(",", " ").split(" ")[i].trim().replaceAll("[^\\d]", "");
     }
 
-    // this function converts a decimal number into two's complement
-    // Geklaut vom Domo, Danke ;-)
-    public String twoComplement(int x) {
-
-        if (x < 0) {
-            String string = Integer.toString(x);
-            String dec = convertToBin(Integer.parseInt(string.substring(1)), 8);
-            String invertstr = "";
-            for (int i = 0; i < dec.length(); i++) {
-
-                if (Integer.parseInt(dec.substring(i, i + 1)) == 1) {
-                    invertstr = invertstr + "0";
-                } else {
-                    invertstr = invertstr + "1";
-                }
-            }
-            // if last sign == 0 then just replace it by a 1
-            if (invertstr.substring(invertstr.length() - 1).equals("0")) {
-                return invertstr.substring(0, invertstr.length() - 1) + "1";
-            } else {
-                // add in decimal system 1 and convert back to binary
-                int res = Integer.parseInt(invertstr, 2) + 1;
-                return Integer.toString(res);
-            }
-
-        } else {
-            return convertToBin(x, 8);
-        }
-
-    }
 }
