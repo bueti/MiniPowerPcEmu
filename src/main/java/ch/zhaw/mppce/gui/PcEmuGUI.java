@@ -83,8 +83,10 @@ public class PcEmuGUI {
         frame.setSize(500, 500);
         frame.setVisible(true);
 
-        // Zugriff auf die CPU
-        // befRegister.setText(cpu.printCommandRegister());
+        // Zugriff auf die CPU - Text darstellen sollte ungefähr so gehen
+        for (String command : cpu.showCommandRegister()) {
+            befRegister.setText(command);
+        }
     }
 
     // Innere Klassen für Actionlistener

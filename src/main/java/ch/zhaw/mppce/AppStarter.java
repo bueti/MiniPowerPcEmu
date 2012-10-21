@@ -92,7 +92,9 @@ public class AppStarter {
         memory.convertMnemonics2Binary(cpu);
 
         // Print Command Register
-        cpu.printCommandRegister();
+        for (String command : cpu.showCommandRegister()) {
+            System.out.println("CR: " + command);
+        }
 
         // Create Emulator
         Emulator emu = new Emulator(cpu);
