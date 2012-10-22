@@ -1,16 +1,30 @@
 package ch.zhaw.mppce.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import ch.zhaw.mppce.Emulator;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.tools.Tools;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,6 +57,11 @@ public class Gui {
     private JTextArea dMemoryArea;
     private JTextArea pMemoryArea;
     private JTextArea commandArea;
+    
+    // Scrollbars
+    private JScrollPane scrolldMemory = new JScrollPane();
+    private JScrollPane scrollpMemory = new JScrollPane();
+    private JScrollPane scrollCommand = new JScrollPane();
 
     // Textfields
     private JTextField accuField;
@@ -187,6 +206,9 @@ public class Gui {
         dMemoryArea = new JTextArea();
         dMemoryPanel.add(dMemoryArea);
         dMemoryArea.setText("Data Memory");
+        scrolldMemory.getViewport().setView(dMemoryArea);
+        scrolldMemory.getViewport().add(dMemoryArea, null);
+        centerPanel.add(scrolldMemory, BorderLayout.CENTER);
 
         centerPanel.add(dMemoryPanel);
 
@@ -197,6 +219,9 @@ public class Gui {
         pMemoryArea = new JTextArea();
         pMemoryPanel.add(pMemoryArea);
         pMemoryArea.setText("Program Memory");
+        scrollpMemory.getViewport().setView(pMemoryArea);
+        scrollpMemory.getViewport().add(pMemoryArea, null);
+        centerPanel.add(scrollpMemory, BorderLayout.CENTER);
 
         centerPanel.add(pMemoryPanel);
 
@@ -207,6 +232,9 @@ public class Gui {
         commandArea = new JTextArea();
         commandPanel.add(commandArea);
         commandArea.setText("Command Register");
+        scrollCommand.getViewport().setView(commandArea);
+        scrollCommand.getViewport().add(commandArea, null);
+        centerPanel.add(scrollCommand, BorderLayout.CENTER);
 
         centerPanel.add(commandPanel);
 
