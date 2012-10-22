@@ -4,10 +4,7 @@ import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,7 @@ public class FileLoader {
     public FileLoader() {
     }
 
-    public void parseFile(CPU cpu, PcEmuGUI gui) {
+    public String parseFile(CPU cpu, Gui gui) {
         // Load Data and Program file. This will later be handled by the GUI.
         // The Data File will probably not be used anymore and as we enter the data
         // directly via the GUI. The Program File will always be loaded via the GUI.
@@ -86,8 +83,34 @@ public class FileLoader {
             Memory memory = cpu.getProgramMemory();
             memory.convertMnemonics2Binary(cpu);
 
-        }
+            StringBuilder sb = new StringBuilder();
+            BufferedReader reader = null;
+            File f = gui.getProgramFile();
+            try {
+                reader = new BufferedReader(new FileReader(f));
 
+                line = reader.readLine();
+                while (line != null) {
+                    sb.append(line);
+                    sb.append(System.getProperty("line.separator"));
+                    line = reader.readLine();
+                }
+                return sb.toString();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public List<String> readFile(File file) throws IOException, ClassNotFoundException {

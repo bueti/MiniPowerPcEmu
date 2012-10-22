@@ -3,7 +3,7 @@ package ch.zhaw.mppce;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
-import ch.zhaw.mppce.gui.PcEmuGUI;
+import ch.zhaw.mppce.gui.Gui;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,12 +18,12 @@ public class Emulator {
 
     // Instance Variables
     private CPU cpu;
-    private PcEmuGUI gui;
+    private Gui gui;
     private Memory programMemory;
     private int commandCounter;
 
     // Constructor
-    public Emulator(CPU cpu, PcEmuGUI gui) {
+    public Emulator(CPU cpu, Gui gui) {
         this.cpu = cpu;
         this.gui = gui;
         this.programMemory = cpu.getProgramMemory();

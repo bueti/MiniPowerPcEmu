@@ -1,7 +1,7 @@
 package ch.zhaw.mppce;
 
 import ch.zhaw.mppce.cpu.CPU;
-import ch.zhaw.mppce.gui.PcEmuGUI;
+import ch.zhaw.mppce.gui.Gui;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +16,7 @@ public class AppStarter {
         CPU cpu = new CPU();
 
         // Initialize GUI
-        PcEmuGUI gui = new PcEmuGUI(cpu);
+        Gui gui = new Gui(cpu);
 
     }
 
