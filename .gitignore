@@ -11,3 +11,4 @@
 *.iml
 atlassian-ide-plugin.xml
 target
+*.eml

@@ -61,6 +61,7 @@ public class Gui {
     private JLabel register3Label;
     private JLabel counterLabel;
     private JTextField counterField;
+    private JCheckBox chckbxCarryBit;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -175,7 +176,7 @@ public class Gui {
         counterField.setColumns(10);
         counterField.setEditable(false);
         
-        JCheckBox chckbxCarryBit = new JCheckBox("Carry Bit?");
+        chckbxCarryBit = new JCheckBox("Carry Bit?");
         chckbxCarryBit.setBounds(6, 145, 128, 23);
         registerPanel.add(chckbxCarryBit);
 
@@ -280,6 +281,14 @@ public class Gui {
 
     public void setAccuField(String accu) {
         accuField.setText(accu);
+    }
+
+    public void setCounterField(int counter) {
+        counterField.setText(Integer.toString(counter));
+    }
+
+    public void displayCarryBit(boolean carry) {
+        chckbxCarryBit.enable(carry);
     }
 
     // Inner Classes

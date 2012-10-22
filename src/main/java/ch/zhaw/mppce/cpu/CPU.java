@@ -160,4 +160,8 @@ public class CPU {
     public void setCarryBit(boolean carryBit) {
         this.carryBit = carryBit;
     }
+
+    public boolean getCarryBit() {
+        return carryBit;
+    }
 }

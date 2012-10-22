@@ -14,16 +14,11 @@ import static java.lang.Thread.sleep;
  * Time: 21:58
  */
 public class Emulator {
-    // Startwerte des Memories
-    private static final int PROGRAM_START = 100;
-    private static final int DATA_START = 500;
-
     // Instance Variables
     private CPU cpu;
     private Gui gui;
     private Memory programMemory;
     private Memory dataMemory;
-    private int commandCounter;
 
     // Constructor
     public Emulator(CPU cpu, Gui gui) {
@@ -32,20 +27,13 @@ public class Emulator {
         this.programMemory = cpu.getProgramMemory();
         this.dataMemory = cpu.getDataMemory();
 
-        cpu.setCommandCounter(PROGRAM_START);
     }
 
     // Run the program stored in programMemory
     public void run(String mode) {
         String end = "";
         while (!end.equals("END")) {
-            if(mode.equals("slow")) {
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+
             Instruction instr = programMemory.getCommand(Integer.toString(cpu.getCommandPointer()));
             if (instr != null) {
                 instr.doIt(cpu);
@@ -53,21 +41,17 @@ public class Emulator {
             }
             cpu.incCommandCounter();
 
-            // Print ProgramMemory
-            //cpu.printProgramMemory();
+            // Update GUI TODO: Make it really update
             gui.setpMemoryArea(programMemory.getProgramMemoryAsString());
-            //cpu.printDataMemory();
             gui.setdMemoryArea(dataMemory.getDataMemoryAsString());
-
             gui.setRegister1Field(cpu.printRegister1());
             gui.setRegister2Field(cpu.printRegister2());
             gui.setRegister3Field(cpu.printRegister3());
             gui.setAccuField(cpu.printAccumulator());
+            gui.setCounterField(cpu.getCommandCounter());
+            gui.displayCarryBit(cpu.getCarryBit());
 
         }
-        cpu.printAccumulator();
-        cpu.printRegisters();
-        cpu.printDataMemory();
     }
 
 }
