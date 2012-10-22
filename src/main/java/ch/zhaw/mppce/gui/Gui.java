@@ -54,6 +54,13 @@ public class Gui {
     private JTextField input1Field;
     private JTextField input2Field;
 
+    // Labels
+    private JLabel accuLabel;
+    private JLabel register1Label;
+    private JLabel register2Label;
+    private JLabel register3Label;
+    private JLabel counterLabel;
+    private JTextField counterField;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -111,23 +118,66 @@ public class Gui {
 
         // Create Register Panel
         registerPanel = new JPanel();
-        registerPanel.setLayout(new GridLayout(4,0));
 
-        // TODO: Split Register1-3 + Accu
+        // Registers
         accuField = new JTextField(16);
+        accuLabel = new JLabel("Accu: ");
         register1Field = new JTextField(16);
+        register1Label = new JLabel("Reg1: ");
         register2Field = new JTextField(16);
+        register2Label = new JLabel("Reg2: ");
         register3Field = new JTextField(16);
-        registerPanel.add(accuField);
-        registerPanel.add(register1Field);
-        registerPanel.add(register2Field);
-        registerPanel.add(register3Field);
+        register3Label = new JLabel("Reg3: ");
+
         accuField.setEditable(false);
         register1Field.setEditable(false);
         register2Field.setEditable(false);
         register3Field.setEditable(false);
 
         centerPanel.add(registerPanel);
+        registerPanel.setLayout(null);
+        
+        accuLabel.setBounds(6, 6, 45, 16);
+        registerPanel.add(accuLabel);
+        
+        accuField.setBounds(60, 0, 134, 28);
+        registerPanel.add(accuField);
+        accuField.setColumns(10);
+        
+        register1Label.setBounds(6, 34, 61, 16);
+        registerPanel.add(register1Label);
+        
+        register2Label.setBounds(6, 62, 61, 16);
+        registerPanel.add(register2Label);
+        
+        register3Label.setBounds(6, 90, 61, 16);
+        registerPanel.add(register3Label);
+        
+        register1Field.setBounds(60, 28, 134, 28);
+        registerPanel.add(register1Field);
+        register1Field.setColumns(10);
+        
+        register2Field.setBounds(60, 56, 134, 28);
+        registerPanel.add(register2Field);
+        register2Field.setColumns(10);
+        
+        register3Field.setBounds(60, 84, 134, 28);
+        registerPanel.add(register3Field);
+        register3Field.setColumns(10);
+        
+        counterLabel = new JLabel("Counter:");
+        counterLabel.setBounds(6, 118, 61, 16);
+        registerPanel.add(counterLabel);
+        
+        counterField = new JTextField();
+        counterField.setBounds(60, 112, 134, 28);
+        registerPanel.add(counterField);
+        counterField.setColumns(10);
+        counterField.setEditable(false);
+        
+        JCheckBox chckbxCarryBit = new JCheckBox("Carry Bit?");
+        chckbxCarryBit.setBounds(6, 145, 128, 23);
+        registerPanel.add(chckbxCarryBit);
 
         // Create Data Panel
         dMemoryPanel = new JPanel();
@@ -157,7 +207,7 @@ public class Gui {
         commandPanel.add(commandArea);
         commandArea.setText("Command Register");
 
-        centerPanel.add(commandArea);
+        centerPanel.add(commandPanel);
 
         contentPane.add(centerPanel, BorderLayout.CENTER);
 
