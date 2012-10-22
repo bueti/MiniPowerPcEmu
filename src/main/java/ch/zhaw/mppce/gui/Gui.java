@@ -1,30 +1,16 @@
 package ch.zhaw.mppce.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
 import ch.zhaw.mppce.Emulator;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.tools.Tools;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.
@@ -57,11 +43,11 @@ public class Gui {
     private JTextArea dMemoryArea;
     private JTextArea pMemoryArea;
     private JTextArea commandArea;
-    
+
     // Scrollbars
-    private JScrollPane scrolldMemory = new JScrollPane();
-    private JScrollPane scrollpMemory = new JScrollPane();
-    private JScrollPane scrollCommand = new JScrollPane();
+    private JScrollPane dMemoryScroll;
+    private JScrollPane pMemoryScroll;
+    private JScrollPane commandRegScroll;
 
     // Textfields
     private JTextField accuField;
@@ -101,7 +87,7 @@ public class Gui {
 
         // Create Button Panel
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(0,6));
+        buttonPanel.setLayout(new GridLayout(0, 6));
 
         fastButton = new JButton("Fast");
         fastButton.addActionListener(new FastActionListener());
@@ -134,7 +120,7 @@ public class Gui {
 
         // Create center panel which is holding the register and memory
         centerPanel = new JPanel();
-        centerPanel.setLayout(new GridLayout(0,4));
+        centerPanel.setLayout(new GridLayout(0, 4));
 
         // Create Register Panel
         registerPanel = new JPanel();
@@ -156,45 +142,45 @@ public class Gui {
 
         centerPanel.add(registerPanel);
         registerPanel.setLayout(null);
-        
+
         accuLabel.setBounds(6, 6, 45, 16);
         registerPanel.add(accuLabel);
-        
+
         accuField.setBounds(60, 0, 134, 28);
         registerPanel.add(accuField);
         accuField.setColumns(10);
-        
+
         register1Label.setBounds(6, 34, 61, 16);
         registerPanel.add(register1Label);
-        
+
         register2Label.setBounds(6, 62, 61, 16);
         registerPanel.add(register2Label);
-        
+
         register3Label.setBounds(6, 90, 61, 16);
         registerPanel.add(register3Label);
-        
+
         register1Field.setBounds(60, 28, 134, 28);
         registerPanel.add(register1Field);
         register1Field.setColumns(10);
-        
+
         register2Field.setBounds(60, 56, 134, 28);
         registerPanel.add(register2Field);
         register2Field.setColumns(10);
-        
+
         register3Field.setBounds(60, 84, 134, 28);
         registerPanel.add(register3Field);
         register3Field.setColumns(10);
-        
+
         counterLabel = new JLabel("Counter:");
         counterLabel.setBounds(6, 118, 61, 16);
         registerPanel.add(counterLabel);
-        
+
         counterField = new JTextField();
         counterField.setBounds(60, 112, 134, 28);
         registerPanel.add(counterField);
         counterField.setColumns(10);
         counterField.setEditable(false);
-        
+
         chckbxCarryBit = new JCheckBox("Carry Bit?");
         chckbxCarryBit.setBounds(6, 145, 128, 23);
         registerPanel.add(chckbxCarryBit);
@@ -206,11 +192,9 @@ public class Gui {
         dMemoryArea = new JTextArea();
         dMemoryPanel.add(dMemoryArea);
         dMemoryArea.setText("Data Memory");
-        scrolldMemory.getViewport().setView(dMemoryArea);
-        scrolldMemory.getViewport().add(dMemoryArea, null);
-        centerPanel.add(scrolldMemory, BorderLayout.CENTER);
+        dMemoryScroll = new JScrollPane(dMemoryArea);
 
-        centerPanel.add(dMemoryPanel);
+        centerPanel.add(dMemoryScroll);
 
         // Create Memory Panel
         pMemoryPanel = new JPanel();
@@ -219,11 +203,9 @@ public class Gui {
         pMemoryArea = new JTextArea();
         pMemoryPanel.add(pMemoryArea);
         pMemoryArea.setText("Program Memory");
-        scrollpMemory.getViewport().setView(pMemoryArea);
-        scrollpMemory.getViewport().add(pMemoryArea, null);
-        centerPanel.add(scrollpMemory, BorderLayout.CENTER);
+        pMemoryScroll = new JScrollPane(pMemoryArea);
 
-        centerPanel.add(pMemoryPanel);
+        centerPanel.add(pMemoryScroll);
 
         // Create Command Register Panel
         commandPanel = new JPanel();
@@ -232,11 +214,9 @@ public class Gui {
         commandArea = new JTextArea();
         commandPanel.add(commandArea);
         commandArea.setText("Command Register");
-        scrollCommand.getViewport().setView(commandArea);
-        scrollCommand.getViewport().add(commandArea, null);
-        centerPanel.add(scrollCommand, BorderLayout.CENTER);
+        commandRegScroll = new JScrollPane(commandArea);
 
-        centerPanel.add(commandPanel);
+        centerPanel.add(commandRegScroll);
 
         contentPane.add(centerPanel, BorderLayout.CENTER);
 
@@ -296,9 +276,11 @@ public class Gui {
     public void setRegister1Field(String reg) {
         register1Field.setText(reg);
     }
+
     public void setRegister2Field(String reg) {
         register2Field.setText(reg);
     }
+
     public void setRegister3Field(String reg) {
         register3Field.setText(reg);
     }
@@ -321,8 +303,8 @@ public class Gui {
 
     // Inner Classes
     private class FastActionListener implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
             // Create Emulator
             Emulator emu = new Emulator(cpu, gui);
             emu.run("fast");
