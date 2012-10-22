@@ -238,7 +238,7 @@ public class Gui {
             public void actionPerformed(ActionEvent ae) {
             // Create Emulator
             Emulator emu = new Emulator(cpu, gui);
-            emu.run();
+            emu.run("fast");
         }
     }
 
@@ -247,7 +247,7 @@ public class Gui {
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
             Emulator emu = new Emulator(cpu, gui);
-            emu.run();
+            emu.run("slow");
         }
     }
 
@@ -256,7 +256,7 @@ public class Gui {
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
             Emulator emu = new Emulator(cpu, gui);
-            emu.run();
+            emu.run("step");
         }
     }
 

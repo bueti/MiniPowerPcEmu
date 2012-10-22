@@ -5,6 +5,8 @@ import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.gui.Gui;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bbu
@@ -34,9 +36,16 @@ public class Emulator {
     }
 
     // Run the program stored in programMemory
-    public void run() {
+    public void run(String mode) {
         String end = "";
         while (!end.equals("END")) {
+            if(mode.equals("slow")) {
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             Instruction instr = programMemory.getCommand(Integer.toString(cpu.getCommandPointer()));
             if (instr != null) {
                 instr.doIt(cpu);
