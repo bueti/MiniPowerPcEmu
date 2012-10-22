@@ -86,4 +86,17 @@ public class Memory {
             cpu.storeToCommandRegister(instr.convertToOpcode(cpu.getDataMemory()));
         }
     }
+
+    public String getDataMemoryAsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : dataMemory.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            sb.append(key + ": " + value);
+            sb.append(System.getProperty("line.separator"));
+        }
+
+        return sb.toString();
+    }
 }

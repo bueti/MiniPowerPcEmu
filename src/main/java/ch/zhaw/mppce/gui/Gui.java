@@ -2,6 +2,8 @@ package ch.zhaw.mppce.gui;
 
 import ch.zhaw.mppce.Emulator;
 import ch.zhaw.mppce.cpu.CPU;
+import ch.zhaw.mppce.cpu.Memory;
+import ch.zhaw.mppce.tools.Tools;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -48,6 +50,7 @@ public class Gui {
     private JTextField input1Field;
     private JTextField input2Field;
 
+
     // Constructor
 
     public Gui(CPU cpu) {
@@ -65,7 +68,7 @@ public class Gui {
 
         createMenubar();
 
-        // Create Button Panel TODO: Choose better Layout
+        // Create Button Panel
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(0,6));
 
@@ -82,11 +85,18 @@ public class Gui {
         buttonPanel.add(stepButton);
 
         inputLabel = new JLabel("Input: ");
-        input1Field = new JTextField();
-        input2Field = new JTextField();
+        input1Field = new JTextField(6);
+        input1Field.setText("");
+        input1Field.addActionListener(new Input1ActionListener());
+        input2Field = new JTextField(6);
+        input2Field.setText("");
+        input2Field.addActionListener(new Input2ActionListener());
         buttonPanel.add(inputLabel);
         buttonPanel.add(input1Field);
         buttonPanel.add(input2Field);
+        fastButton.setEnabled(false);
+        slowButton.setEnabled(false);
+        stepButton.setEnabled(false);
 
         // Add Button Panel to Main Panel
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
@@ -97,7 +107,9 @@ public class Gui {
 
         // Create Register Panel
         registerPanel = new JPanel();
+        registerPanel.setLayout(new GridLayout(4,0));
 
+        // TODO: Split Register1-3 + Accu
         registerArea = new JTextArea();
         registerPanel.add(registerArea);
         registerArea.setText("Register");
@@ -168,6 +180,11 @@ public class Gui {
 
         // Print Command Register
         commandArea.setText(commands);
+
+        // Enable Buttons
+        fastButton.setEnabled(true);
+        slowButton.setEnabled(true);
+        stepButton.setEnabled(true);
     }
 
     public File getProgramFile() {
@@ -207,6 +224,52 @@ public class Gui {
         public void actionPerformed(ActionEvent ae) {
             // Load file
             loadFile();
+        }
+    }
+
+    private class Input1ActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            // Get Value
+            String input1 = input1Field.getText();
+
+            // Convert to twos complement
+            Tools tools = new Tools();
+            String inputBin = tools.convertToBin(Integer.valueOf(input1), 16);
+
+            // Store into DataMemory (+ 1)
+            // Split into two 8 bit strings
+            String val1 = inputBin.substring(0, 8);
+            String val2 = inputBin.substring(8);
+
+            Memory dataMemory = cpu.getDataMemory();
+            dataMemory.setValue(500, val2);
+            dataMemory.setValue(501, val1);
+        }
+    }
+
+    private class Input2ActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            // Get Value
+            String input2 = input2Field.getText();
+            int input2Dec = Integer.valueOf(input2);
+
+            // Convert to twos complement
+            Tools tools = new Tools();
+            String inputBin = tools.convertToBin(input2Dec, 16);
+
+            // Store into DataMemory (+ 1)
+            // Split into two 8 bit strings
+            String val1 = inputBin.substring(0, 8);
+            String val2 = inputBin.substring(8);
+
+            Memory dataMemory = cpu.getDataMemory();
+            dataMemory.setValue(502, val2);
+            dataMemory.setValue(503, val1);
+
+            // Get DataMemory data
+            dMemoryArea.setText(dataMemory.getDataMemoryAsString());
         }
     }
 }

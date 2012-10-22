@@ -27,10 +27,10 @@ public class FileLoader {
         FileLoader fl = new FileLoader();
         List<String> program = new ArrayList<String>();
         List<String> data = new ArrayList<String>();
+        StringBuilder sb = new StringBuilder();
 
         try {
             program = fl.readFile(gui.getProgramFile());
-            data = fl.readFile(new File("/Users/bbu/Intellij/Schule/MiniPowerPcEmu/src/main/resources/multiply.data"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -40,16 +40,11 @@ public class FileLoader {
         // Create File Parser
         FileParser fp = new FileParser();
 
-        // Load Data File
-        for (String line : data) {
-            String[] parsedLine = fp.parseLine(line);
-            // Save command to data memory
-            cpu.addCommandToMemory(parsedLine[0], parsedLine[1]);
-        }
-
         // Load Assembler File
         for (String line : program) {
             String[] parsedLine = fp.parseLine(line);
+            sb.append(line);
+            sb.append(System.getProperty("line.separator"));
 
             // Store address, Store code
             Class cl = null;
@@ -82,35 +77,8 @@ public class FileLoader {
             // Convert Mnemonics to binary and store it
             Memory memory = cpu.getProgramMemory();
             memory.convertMnemonics2Binary(cpu);
-
-            StringBuilder sb = new StringBuilder();
-            BufferedReader reader = null;
-            File f = gui.getProgramFile();
-            try {
-                reader = new BufferedReader(new FileReader(f));
-
-                line = reader.readLine();
-                while (line != null) {
-                    sb.append(line);
-                    sb.append(System.getProperty("line.separator"));
-                    line = reader.readLine();
-                }
-                return sb.toString();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            } catch (IOException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-                    }
-                }
-            }
         }
-        return null;
+        return sb.toString();
     }
 
     public List<String> readFile(File file) throws IOException, ClassNotFoundException {
