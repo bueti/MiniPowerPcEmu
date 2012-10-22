@@ -99,4 +99,18 @@ public class Memory {
 
         return sb.toString();
     }
+
+    public String getProgramMemoryAsString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<String, Instruction> entry : programMemory.entrySet()) {
+            String key = entry.getKey();
+            Instruction instr = entry.getValue();
+            String value = instr.getClass().getSimpleName() + ": " + instr.getParameters();
+            sb.append(key + ": " + value);
+            sb.append(System.getProperty("line.separator"));
+        }
+
+        return sb.toString();
+    }
 }

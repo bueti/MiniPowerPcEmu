@@ -20,6 +20,7 @@ public class Emulator {
     private CPU cpu;
     private Gui gui;
     private Memory programMemory;
+    private Memory dataMemory;
     private int commandCounter;
 
     // Constructor
@@ -27,6 +28,7 @@ public class Emulator {
         this.cpu = cpu;
         this.gui = gui;
         this.programMemory = cpu.getProgramMemory();
+        this.dataMemory = cpu.getDataMemory();
 
         cpu.setCommandCounter(PROGRAM_START);
     }
@@ -44,7 +46,14 @@ public class Emulator {
 
             // Print ProgramMemory
             //cpu.printProgramMemory();
+            gui.setpMemoryArea(programMemory.getProgramMemoryAsString());
             //cpu.printDataMemory();
+            gui.setdMemoryArea(dataMemory.getDataMemoryAsString());
+
+            gui.setRegister1Field(cpu.printRegister1());
+            gui.setRegister2Field(cpu.printRegister2());
+            gui.setRegister3Field(cpu.printRegister3());
+            gui.setAccuField(cpu.printAccumulator());
 
         }
         cpu.printAccumulator();

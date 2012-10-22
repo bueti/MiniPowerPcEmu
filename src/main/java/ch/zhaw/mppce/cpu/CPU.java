@@ -70,8 +70,20 @@ public class CPU {
         commandCounter++;
     }
 
-    public void printAccumulator() {
-        System.out.println("Accu: " + accu.getRegister());
+    public String printRegister1() {
+        return register1.getRegister();
+    }
+
+    public String printRegister2() {
+        return register2.getRegister();
+    }
+
+    public String printRegister3() {
+        return register3.getRegister();
+    }
+
+    public String printAccumulator() {
+        return accu.getRegister();
     }
 
     public void printProgramMemory() {

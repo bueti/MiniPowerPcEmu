@@ -40,11 +40,15 @@ public class Gui {
     private JButton stepButton;
 
     // Text Areas
-    private JTextArea registerArea;
     private JTextArea dMemoryArea;
     private JTextArea pMemoryArea;
     private JTextArea commandArea;
 
+    // Textfields
+    private JTextField accuField;
+    private JTextField register1Field;
+    private JTextField register2Field;
+    private JTextField register3Field;
     // Input
     private JLabel inputLabel;
     private JTextField input1Field;
@@ -52,13 +56,13 @@ public class Gui {
 
 
     // Constructor
-
     public Gui(CPU cpu) {
         this.cpu = cpu;
         this.gui = this;
         init();
     }
 
+    // Methods
     private void init() {
         frame = new JFrame("Mini PowerPC Emulator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,9 +114,18 @@ public class Gui {
         registerPanel.setLayout(new GridLayout(4,0));
 
         // TODO: Split Register1-3 + Accu
-        registerArea = new JTextArea();
-        registerPanel.add(registerArea);
-        registerArea.setText("Register");
+        accuField = new JTextField(16);
+        register1Field = new JTextField(16);
+        register2Field = new JTextField(16);
+        register3Field = new JTextField(16);
+        registerPanel.add(accuField);
+        registerPanel.add(register1Field);
+        registerPanel.add(register2Field);
+        registerPanel.add(register3Field);
+        accuField.setEditable(false);
+        register1Field.setEditable(false);
+        register2Field.setEditable(false);
+        register3Field.setEditable(false);
 
         centerPanel.add(registerPanel);
 
@@ -187,8 +200,36 @@ public class Gui {
         stepButton.setEnabled(true);
     }
 
+    // Getter & Setter
     public File getProgramFile() {
         return programFile;
+    }
+
+    public void setdMemoryArea(String mem) {
+        dMemoryArea.setText(mem);
+    }
+
+    public void setpMemoryArea(String mem) {
+        pMemoryArea.setText(mem);
+    }
+
+    // this could be done with one method
+    public void setRegister1Field(String reg) {
+        register1Field.setText(reg);
+    }
+    public void setRegister2Field(String reg) {
+        register2Field.setText(reg);
+    }
+    public void setRegister3Field(String reg) {
+        register3Field.setText(reg);
+    }
+
+    public void setCommandArea(String commands) {
+        commandArea.setText(commands);
+    }
+
+    public void setAccuField(String accu) {
+        accuField.setText(accu);
     }
 
     // Inner Classes
@@ -269,7 +310,7 @@ public class Gui {
             dataMemory.setValue(503, val1);
 
             // Get DataMemory data
-            dMemoryArea.setText(dataMemory.getDataMemoryAsString());
+            setdMemoryArea(dataMemory.getDataMemoryAsString());
         }
     }
 }
