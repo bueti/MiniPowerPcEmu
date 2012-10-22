@@ -4,6 +4,7 @@ import ch.zhaw.mppce.compiler.instructions.Instruction;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,12 +14,12 @@ import java.util.Map;
  */
 public class Memory {
     // Instance Variables
-    private HashMap<String, Instruction> programMemory;
-    private HashMap<String, String> dataMemory;
+    private TreeMap<String, Instruction> programMemory;
+    private TreeMap<String, String> dataMemory;
 
     public Memory() {
-        programMemory = new HashMap<String, Instruction>();
-        dataMemory = new HashMap<String, String>();
+        programMemory = new TreeMap<String, Instruction>();
+        dataMemory = new TreeMap<String, String>();
     }
 
 //    public abstract HashMap<String, Instruction> getMemory();
@@ -42,11 +43,11 @@ public class Memory {
         return programMemory.get(instructionNr);
     }
 
-    public HashMap<String, Instruction> getProgramMemory() {
+    public TreeMap<String, Instruction> getProgramMemory() {
         return programMemory;
     }
 
-    public HashMap<String, String> getDataMemory() {
+    public TreeMap<String, String> getDataMemory() {
         return dataMemory;
     }
 
