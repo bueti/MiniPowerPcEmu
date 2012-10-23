@@ -7,6 +7,8 @@ import ch.zhaw.mppce.tools.Tools;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,6 +71,9 @@ public class Gui implements Observer {
     private JLabel counterLabel;
     private JTextField counterField;
     private JCheckBox chckbxCarryBit;
+
+    // JTable
+    private JTable tableCommandMemory;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -200,15 +205,15 @@ public class Gui implements Observer {
         centerPanel.add(dMemoryScroll);
 
         // Create Memory Panel
-        pMemoryPanel = new JPanel();
-        pMemoryPanel.setLayout(new BorderLayout());
+        //pMemoryPanel = new JPanel();
+        //pMemoryPanel.setLayout(new BorderLayout());
 
-        pMemoryArea = new JTextArea();
-        pMemoryPanel.add(pMemoryArea);
-        pMemoryArea.setText("Program Memory");
-        pMemoryScroll = new JScrollPane(pMemoryArea);
+        //pMemoryArea = new JTextArea();
+        //pMemoryPanel.add(pMemoryArea);
+        //pMemoryArea.setText("Program Memory");
+        //pMemoryScroll = new JScrollPane(pMemoryArea);
 
-        centerPanel.add(pMemoryScroll);
+        centerPanel.add(createOpcodeTable());
 
         // Create Command Register Panel
         commandPanel = new JPanel();
@@ -238,6 +243,28 @@ public class Gui implements Observer {
         frame.setJMenuBar(bar);
     }
 
+    private JScrollPane createOpcodeTable() {
+        DefaultTableModel model = new DefaultTableModel();
+        tableCommandMemory = new JTable(model);
+        tableCommandMemory.setEnabled(false);
+        tableCommandMemory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //          
+        model.addColumn("#");
+        model.addColumn("OpCode");
+        //model.addColumn("Op-Code");
+        TableColumn col = tableCommandMemory.getColumnModel().getColumn(0);
+        col.setPreferredWidth(40);
+        col = tableCommandMemory.getColumnModel().getColumn(1);
+        col.setPreferredWidth(140);
+        //col = tableCommandMemory.getColumnModel().getColumn(2);
+        //col.setPreferredWidth(150);
+        JScrollPane scrollPaneCommand = new JScrollPane(tableCommandMemory);
+        scrollPaneCommand.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneCommand.setPreferredSize(new Dimension(310,150));
+        return scrollPaneCommand;
+        //frame.getContentPane().add(scrollPaneCommand, BorderLayout.WEST);
+    }
+
     private void loadFile() {
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Mini PowerPC File Loader");
@@ -264,7 +291,7 @@ public class Gui implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        // Update GUI TODO: Make it really update
+        // Update GUI
         gui.setpMemoryArea(cpu.getCommandRegisterAsString());
         gui.setdMemoryArea(cpu.getDataMemoryAsString());
         //gui.setCommandArea(cpu.getProgramMemoryAsString());
