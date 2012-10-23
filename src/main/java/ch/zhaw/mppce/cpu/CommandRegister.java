@@ -22,4 +22,13 @@ public class CommandRegister extends Register {
     public void addCommand(String command) {
         commandRegister.add(command);
     }
+
+    public String getCommandRegisterAsString() {
+        StringBuilder sb = new StringBuilder();
+        for(String command : commandRegister) {
+            sb.append(command);
+            sb.append(System.getProperty("line.separator"));
+        }
+        return sb.toString();
+    }
 }

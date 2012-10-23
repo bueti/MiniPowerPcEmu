@@ -38,20 +38,22 @@ public class Emulator {
             if (instr != null) {
                 instr.doIt(cpu);
                 end = instr.getClass().getSimpleName();
+                cpu.storeToCommandRegister(instr.convertToOpcode(dataMemory));
+                //gui.setCommandArea(instr.convertToOpcode(dataMemory));
             }
             cpu.incCommandCounter();
 
-            // Update GUI TODO: Make it really update
-            gui.setpMemoryArea(programMemory.getProgramMemoryAsString());
-            gui.setdMemoryArea(dataMemory.getDataMemoryAsString());
-            gui.setRegister1Field(cpu.printRegister1());
-            gui.setRegister2Field(cpu.printRegister2());
-            gui.setRegister3Field(cpu.printRegister3());
-            gui.setAccuField(cpu.printAccumulator());
-            gui.setCounterField(cpu.getCommandCounter());
-            gui.displayCarryBit(cpu.getCarryBit());
-
         }
+        // Update GUI TODO: Make it really update
+        gui.setpMemoryArea(cpu.getCommandRegisterAsString());
+        gui.setdMemoryArea(dataMemory.getDataMemoryAsString());
+        gui.setCommandArea(programMemory.getProgramMemoryAsString());
+        gui.setRegister1Field(cpu.printRegister1());
+        gui.setRegister2Field(cpu.printRegister2());
+        gui.setRegister3Field(cpu.printRegister3());
+        gui.setAccuField(cpu.printAccumulator());
+        gui.setCounterField(cpu.getCommandCounter());
+        gui.displayCarryBit(cpu.getCarryBit());
     }
 
 }

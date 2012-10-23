@@ -164,4 +164,9 @@ public class CPU {
     public boolean getCarryBit() {
         return carryBit;
     }
+
+
+    public String getCommandRegisterAsString() {
+        return commandRegister.getCommandRegisterAsString();
+    }
 }

@@ -18,8 +18,5 @@ public class END extends Instruction {
     @Override
     public void doIt(CPU cpu) {
         System.out.println("Ende erreicht.");
-
-        // Set command counter
-        cpu.setCommandCounter(1000);
     }
 }
