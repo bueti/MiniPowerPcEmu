@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +20,7 @@ import java.io.File;
  * Date: 22/10/12
  * Time: 10:45
  */
-public class Gui {
+public class Gui implements Observer {
 
     // Instanzvariablen
     private CPU cpu;
@@ -72,6 +74,7 @@ public class Gui {
     public Gui(CPU cpu) {
         this.cpu = cpu;
         this.gui = this;
+
         init();
     }
 
@@ -259,6 +262,20 @@ public class Gui {
         stepButton.setEnabled(true);
     }
 
+    @Override
+    public void update(Observable observable, Object o) {
+        // Update GUI TODO: Make it really update
+        gui.setpMemoryArea(cpu.getCommandRegisterAsString());
+        //gui.setdMemoryArea(cpu.getDataMemoryAsString());
+        //gui.setCommandArea(cpu.getProgramMemoryAsString());
+        gui.setRegister1Field(cpu.printRegister1());
+        gui.setRegister2Field(cpu.printRegister2());
+        gui.setRegister3Field(cpu.printRegister3());
+        gui.setAccuField(cpu.printAccumulator());
+        gui.setCounterField(cpu.getCommandCounter());
+        gui.displayCarryBit(cpu.getCarryBit());
+    }
+
     // Getter & Setter
     public File getProgramFile() {
         return programFile;
@@ -306,8 +323,8 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
-            Emulator emu = new Emulator(cpu, gui);
-            emu.run("fast");
+            Emulator emu = new Emulator(cpu, gui, "fast");
+            new Thread(emu).start();
         }
     }
 
@@ -315,8 +332,8 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
-            Emulator emu = new Emulator(cpu, gui);
-            emu.run("slow");
+            Emulator emu = new Emulator(cpu, gui, "slow");
+            new Thread(emu).start();
         }
     }
 
@@ -324,8 +341,8 @@ public class Gui {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // Create Emulator
-            Emulator emu = new Emulator(cpu, gui);
-            emu.run("step");
+            Emulator emu = new Emulator(cpu, gui, "step");
+            new Thread(emu).start();
         }
     }
 

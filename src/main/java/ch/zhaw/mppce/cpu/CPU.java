@@ -26,7 +26,6 @@ public class CPU {
     private int commandCounter;
     private boolean carryBit;
 
-
     /**
      * Constructor
      */
