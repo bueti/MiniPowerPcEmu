@@ -65,7 +65,7 @@ public class ADD extends Instruction {
             // Save it to the accu
             accu.setRegister(converted);
             if (overflow)
-                accu.setCarryBit();
+                cpu.setCarryBit(true);
         }
 
         // Increase command counter

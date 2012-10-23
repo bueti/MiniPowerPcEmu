@@ -31,11 +31,11 @@ public class Emulator extends Observable implements Runnable {
         this.programMemory = cpu.getProgramMemory();
         this.dataMemory = cpu.getDataMemory();
         this.addObserver(gui);
-        this.mode = mode;
+        setMode(mode);
 
     }
 
-    // TODO: Implement Step mode and JTables
+    // TODO: Implement Step Mode
     @Override
     public void run() {
         String end = "";
@@ -49,17 +49,18 @@ public class Emulator extends Observable implements Runnable {
             }
             cpu.incCommandCounter();
 
-            this.setChanged();
-            this.notifyObservers();
-            if(getMode().equals("slow")) {
+            if (getMode().equals("slow")) {
+                this.setChanged();
+                this.notifyObservers();
                 try {
                     sleep(500);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
         }
-
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getMode() {

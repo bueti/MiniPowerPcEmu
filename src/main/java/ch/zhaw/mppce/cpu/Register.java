@@ -25,22 +25,4 @@ public class Register {
     public void addToRegister(String value) {
         register[0] = value;
     }
-
-    public void setCarryBit() {
-        String carryBit = register[0].substring(0, 0) + '1' + register[0].substring(2);
-        register[0] = carryBit;
-    }
-
-
-    public boolean hasCarryBit() {
-        if (register[0].substring(1, 1).equals("1")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void print() {
-        System.out.println(register[0]);
-    }
 }

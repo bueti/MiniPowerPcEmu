@@ -3,6 +3,7 @@ package ch.zhaw.mppce.cpu;
 import ch.zhaw.mppce.compiler.instructions.Instruction;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,9 +54,9 @@ public class CPU {
         programMemory.storeCommand(instructionNr, command);
     }
 
-    public void addCommandToMemory(String dataNr, String data) {
-        dataMemory.storeCommand(dataNr, data);
-    }
+//    public void addCommandToMemory(String dataNr, String data) {
+//        dataMemory.storeCommand(dataNr, data);
+//    }
 
     public void storeToCommandRegister(String command) {
         commandRegister.addCommand(command);
@@ -85,26 +86,17 @@ public class CPU {
         return accu.getRegister();
     }
 
-    public void printProgramMemory() {
-        programMemory.printProgramMemory();
-    }
-
-    public void printDataMemory() {
-        dataMemory.printDataMemory();
-    }
+//    public void printProgramMemory() {
+//        programMemory.printProgramMemory();
+//    }
+//
+//    public void printDataMemory() {
+//        dataMemory.printDataMemory();
+//    }
 
     // Return the command register as an ArrayList of Strings
     public ArrayList<String> showCommandRegister() {
         return commandRegister.getCommandRegister();
-    }
-
-    public void printRegisters() {
-        System.out.print("R1: ");
-        register1.print();
-        System.out.print("R2: ");
-        register2.print();
-        System.out.print("R3: ");
-        register3.print();
     }
 
     // Getter & Setter
@@ -160,20 +152,11 @@ public class CPU {
         this.carryBit = carryBit;
     }
 
-    public boolean getCarryBit() {
-        return carryBit;
+    public TreeMap<String, String> getDataMemoryAsTree() {
+        return dataMemory.getDataMemoryAsTree();
     }
 
-
-    public String getCommandRegisterAsString() {
-        return commandRegister.getCommandRegisterAsString();
-    }
-
-    public String getDataMemoryAsString() {
-        return dataMemory.getDataMemoryAsString();
-    }
-
-    public String getProgramMemoryAsString() {
-        return programMemory.getProgramMemoryAsString();
+    public TreeMap<String, Instruction> getProgramMemoryAsTree() {
+        return programMemory.getProgramMemoryAsTree();
     }
 }

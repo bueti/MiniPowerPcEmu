@@ -35,7 +35,7 @@ public class BC extends Instruction {
         String address = getParameters();
         Register register = tools.getRegisterFromParams(cpu, address);
 
-        if (register.hasCarryBit()) {
+        if (cpu.isCarryBit()) {
             // convert register value to decimal
             int newAddr = tools.convertToDec(register.getRegister());
 

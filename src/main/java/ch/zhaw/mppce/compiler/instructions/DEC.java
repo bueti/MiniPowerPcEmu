@@ -42,7 +42,7 @@ public class DEC extends Instruction {
 
         // Set carry bit if necessary
         if (overflow)
-            accu.setCarryBit();
+            cpu.setCarryBit(true);
 
         // Increase command counter
         cpu.incCommandPointer();

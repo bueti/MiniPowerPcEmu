@@ -1,6 +1,7 @@
 package ch.zhaw.mppce.gui;
 
 import ch.zhaw.mppce.Emulator;
+import ch.zhaw.mppce.compiler.instructions.Instruction;
 import ch.zhaw.mppce.cpu.CPU;
 import ch.zhaw.mppce.cpu.Memory;
 import ch.zhaw.mppce.tools.Tools;
@@ -13,8 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,25 +33,12 @@ public class Gui implements Observer {
     private static JFrame frame;
     private JPanel centerPanel;
     private JPanel registerPanel;
-    private JPanel pMemoryPanel;
-    private JPanel dMemoryPanel;
     private JPanel buttonPanel;
-    private JPanel commandPanel;
 
     // Buttons
     private JButton fastButton;
     private JButton slowButton;
     private JButton stepButton;
-
-    // Text Areas
-    private JTextArea dMemoryArea;
-    private JTextArea pMemoryArea;
-    private JTextArea commandArea;
-
-    // Scrollbars
-    private JScrollPane dMemoryScroll;
-    private JScrollPane pMemoryScroll;
-    private JScrollPane commandRegScroll;
 
     // Textfields
     private JTextField accuField;
@@ -73,7 +60,12 @@ public class Gui implements Observer {
     private JCheckBox chckbxCarryBit;
 
     // JTable
-    private JTable tableCommandMemory;
+    private JTable tableData;
+    private JTable tableProgram;
+    private JTable tableCr;
+    private DefaultTableModel modelData;
+    private DefaultTableModel modelProgram;
+    private DefaultTableModel modelCr;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -125,6 +117,14 @@ public class Gui implements Observer {
 
         // Add Button Panel to Main Panel
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Create Table models
+        modelCr = new DefaultTableModel();
+        modelData = new DefaultTableModel();
+        modelProgram = new DefaultTableModel();
+        tableCr = new JTable(modelCr);
+        tableData = new JTable(modelData);
+        tableProgram = new JTable(modelProgram);
 
         // Create center panel which is holding the register and memory
         centerPanel = new JPanel();
@@ -194,38 +194,15 @@ public class Gui implements Observer {
         registerPanel.add(chckbxCarryBit);
 
         // Create Data Panel
-        dMemoryPanel = new JPanel();
-        dMemoryPanel.setLayout(new BorderLayout());
-
-        dMemoryArea = new JTextArea();
-        dMemoryPanel.add(dMemoryArea);
-        dMemoryArea.setText("Data Memory");
-        dMemoryScroll = new JScrollPane(dMemoryArea);
-
-        centerPanel.add(dMemoryScroll);
+        centerPanel.add(createOpcodeTable(modelData, tableData, new String[]{"#", "Value", ""}));
 
         // Create Memory Panel
-        //pMemoryPanel = new JPanel();
-        //pMemoryPanel.setLayout(new BorderLayout());
-
-        //pMemoryArea = new JTextArea();
-        //pMemoryPanel.add(pMemoryArea);
-        //pMemoryArea.setText("Program Memory");
-        //pMemoryScroll = new JScrollPane(pMemoryArea);
-
-        centerPanel.add(createOpcodeTable());
+        centerPanel.add(createOpcodeTable(modelProgram, tableProgram, new String[]{"#", "Instruction", "Parameters"}));
 
         // Create Command Register Panel
-        commandPanel = new JPanel();
-        commandPanel.setLayout(new BorderLayout());
+        centerPanel.add(createOpcodeTable(modelCr, tableCr, new String[]{"OpCode", "", ""}));
 
-        commandArea = new JTextArea();
-        commandPanel.add(commandArea);
-        commandArea.setText("Command Register");
-        commandRegScroll = new JScrollPane(commandArea);
-
-        centerPanel.add(commandRegScroll);
-
+        // Add central panel to content pane
         contentPane.add(centerPanel, BorderLayout.CENTER);
 
         frame.setSize(800, 500);
@@ -243,26 +220,65 @@ public class Gui implements Observer {
         frame.setJMenuBar(bar);
     }
 
-    private JScrollPane createOpcodeTable() {
-        DefaultTableModel model = new DefaultTableModel();
-        tableCommandMemory = new JTable(model);
-        tableCommandMemory.setEnabled(false);
-        tableCommandMemory.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    private JScrollPane createOpcodeTable(DefaultTableModel model, JTable table, String[] columns) {
+        table.setEnabled(false);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         //          
-        model.addColumn("#");
-        model.addColumn("OpCode");
-        //model.addColumn("Op-Code");
-        TableColumn col = tableCommandMemory.getColumnModel().getColumn(0);
-        col.setPreferredWidth(40);
-        col = tableCommandMemory.getColumnModel().getColumn(1);
-        col.setPreferredWidth(140);
-        //col = tableCommandMemory.getColumnModel().getColumn(2);
-        //col.setPreferredWidth(150);
-        JScrollPane scrollPaneCommand = new JScrollPane(tableCommandMemory);
+        model.addColumn(columns[0]);
+        if (!columns[1].equals("")) {
+            model.addColumn(columns[1]);
+        }
+        if (!columns[2].equals("")) {
+            model.addColumn(columns[2]);
+        }
+        TableColumn col = table.getColumnModel().getColumn(0);
+        col.setPreferredWidth(50);
+
+        if (!columns[1].equals("")) {
+            col = table.getColumnModel().getColumn(1);
+            col.setPreferredWidth(120);
+        }
+        if (!columns[2].equals("")) {
+            col = table.getColumnModel().getColumn(2);
+            col.setPreferredWidth(160);
+        }
+
+        JScrollPane scrollPaneCommand = new JScrollPane(table);
         scrollPaneCommand.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPaneCommand.setPreferredSize(new Dimension(310,150));
+        scrollPaneCommand.setPreferredSize(new Dimension(310, 150));
         return scrollPaneCommand;
-        //frame.getContentPane().add(scrollPaneCommand, BorderLayout.WEST);
+    }
+
+    public void addDataRow(TreeMap<String, String> map) {
+        String[] row = new String[2];
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            row[0] = entry.getKey();
+            row[1] = entry.getValue();
+            modelData.addRow(row);
+        }
+    }
+
+    public void addCrRow(ArrayList<String> commands) {
+        String[] row = new String[2];
+
+        for (String command : commands) {
+            row[0] = command;
+            modelCr.addRow(row);
+        }
+    }
+
+    public void addProgramRow(TreeMap<String, Instruction> map) {
+        String[] row = new String[3];
+
+        for (Map.Entry<String, Instruction> entry : map.entrySet()) {
+            row[0] = entry.getKey();
+            Instruction instr = entry.getValue();
+            String command = instr.getClass().getSimpleName();
+            row[1] = command;
+            row[2] = instr.getParameters();
+            modelProgram.addRow(row);
+        }
     }
 
     private void loadFile() {
@@ -281,7 +297,8 @@ public class Gui implements Observer {
         String commands = fl.parseFile(cpu, gui);
 
         // Print Command Register
-        commandArea.setText(commands);
+        addProgramRow(cpu.getProgramMemoryAsTree());
+        addCrRow(cpu.showCommandRegister());
 
         // Enable Buttons
         fastButton.setEnabled(true);
@@ -289,31 +306,33 @@ public class Gui implements Observer {
         stepButton.setEnabled(true);
     }
 
+    private void highlightRow(int commandPointer, JTable table) {
+        table.changeSelection(commandPointer, 0, false, false);
+    }
+
+    private void updateDataRow(TreeMap<String, String> dataMemoryAsTree) {
+        modelData.getDataVector().removeAllElements();
+        addDataRow(dataMemoryAsTree);
+    }
+
     @Override
     public void update(Observable observable, Object o) {
         // Update GUI
-        gui.setpMemoryArea(cpu.getCommandRegisterAsString());
-        gui.setdMemoryArea(cpu.getDataMemoryAsString());
-        //gui.setCommandArea(cpu.getProgramMemoryAsString());
-        gui.setRegister1Field(cpu.printRegister1());
-        gui.setRegister2Field(cpu.printRegister2());
-        gui.setRegister3Field(cpu.printRegister3());
-        gui.setAccuField(cpu.printAccumulator());
-        gui.setCounterField(cpu.getCommandCounter());
-        gui.displayCarryBit(cpu.getCarryBit());
+        int counter = (cpu.getCommandPointer() - 100) / 2;
+        highlightRow(counter, tableCr);
+        highlightRow(counter, tableProgram);
+        updateDataRow(cpu.getDataMemoryAsTree());
+        setRegister1Field(cpu.printRegister1());
+        setRegister2Field(cpu.printRegister2());
+        setRegister3Field(cpu.printRegister3());
+        setAccuField(cpu.printAccumulator());
+        setCounterField(cpu.getCommandCounter());
+        displayCarryBit(cpu.isCarryBit());
     }
 
     // Getter & Setter
     public File getProgramFile() {
         return programFile;
-    }
-
-    public void setdMemoryArea(String mem) {
-        dMemoryArea.setText(mem);
-    }
-
-    public void setpMemoryArea(String mem) {
-        pMemoryArea.setText(mem);
     }
 
     // this could be done with one method
@@ -327,10 +346,6 @@ public class Gui implements Observer {
 
     public void setRegister3Field(String reg) {
         register3Field.setText(reg);
-    }
-
-    public void setCommandArea(String commands) {
-        commandArea.setText(commands);
     }
 
     public void setAccuField(String accu) {
@@ -423,7 +438,7 @@ public class Gui implements Observer {
             dataMemory.setValue(503, val1);
 
             // Get DataMemory data
-            setdMemoryArea(dataMemory.getDataMemoryAsString());
+            addDataRow(cpu.getDataMemoryAsTree());
         }
     }
 }
