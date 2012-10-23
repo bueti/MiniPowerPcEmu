@@ -168,4 +168,12 @@ public class CPU {
     public String getCommandRegisterAsString() {
         return commandRegister.getCommandRegisterAsString();
     }
+
+    public String getDataMemoryAsString() {
+        return dataMemory.getDataMemoryAsString();
+    }
+
+    public String getProgramMemoryAsString() {
+        return programMemory.getProgramMemoryAsString();
+    }
 }

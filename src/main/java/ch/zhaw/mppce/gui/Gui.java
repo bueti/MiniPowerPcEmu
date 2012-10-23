@@ -266,7 +266,7 @@ public class Gui implements Observer {
     public void update(Observable observable, Object o) {
         // Update GUI TODO: Make it really update
         gui.setpMemoryArea(cpu.getCommandRegisterAsString());
-        //gui.setdMemoryArea(cpu.getDataMemoryAsString());
+        gui.setdMemoryArea(cpu.getDataMemoryAsString());
         //gui.setCommandArea(cpu.getProgramMemoryAsString());
         gui.setRegister1Field(cpu.printRegister1());
         gui.setRegister2Field(cpu.printRegister2());
