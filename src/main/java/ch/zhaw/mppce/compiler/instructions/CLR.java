@@ -30,7 +30,9 @@ public class CLR extends Instruction {
         // Get Register from Params
         Register registerData = tools.getRegisterFromParams(cpu, getParameters());
 
+        // Delete Register and set Carry Bit to false
         registerData.setRegister("0000000000000000");
+        cpu.setCarryBit(false);
 
         // Increase command counter
         cpu.incCommandPointer();
