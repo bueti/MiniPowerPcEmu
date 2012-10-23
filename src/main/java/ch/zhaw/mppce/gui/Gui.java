@@ -194,13 +194,13 @@ public class Gui implements Observer {
         registerPanel.add(chckbxCarryBit);
 
         // Create Data Panel
-        centerPanel.add(createOpcodeTable(modelData, tableData, new String[]{"#", "Value", ""}));
+        centerPanel.add(createTable(modelData, tableData, new String[]{"#", "Value", ""}));
 
         // Create Memory Panel
-        centerPanel.add(createOpcodeTable(modelProgram, tableProgram, new String[]{"#", "Instruction", "Parameters"}));
+        centerPanel.add(createTable(modelProgram, tableProgram, new String[]{"#", "Instruction", "Parameters"}));
 
         // Create Command Register Panel
-        centerPanel.add(createOpcodeTable(modelCr, tableCr, new String[]{"OpCode", "", ""}));
+        centerPanel.add(createTable(modelCr, tableCr, new String[]{"OpCode", "", ""}));
 
         // Add central panel to content pane
         contentPane.add(centerPanel, BorderLayout.CENTER);
@@ -220,7 +220,7 @@ public class Gui implements Observer {
         frame.setJMenuBar(bar);
     }
 
-    private JScrollPane createOpcodeTable(DefaultTableModel model, JTable table, String[] columns) {
+    private JScrollPane createTable(DefaultTableModel model, JTable table, String[] columns) {
         table.setEnabled(false);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         //          
