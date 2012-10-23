@@ -35,7 +35,7 @@ public class Emulator extends Observable implements Runnable {
 
     }
 
-    // Run the program stored in programMemory
+    // TODO: Implement Step mode and JTables
     @Override
     public void run() {
         String end = "";
