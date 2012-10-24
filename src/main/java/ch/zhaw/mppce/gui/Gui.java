@@ -103,10 +103,7 @@ public class Gui implements Observer {
 
         inputLabel = new JLabel("Input: ");
         input1Field = new JTextField(6);
-        input1Field.setText("");
-        input1Field.addActionListener(new Input1ActionListener());
         input2Field = new JTextField(6);
-        input2Field.setText("");
         input2Field.addActionListener(new Input2ActionListener());
         buttonPanel.add(inputLabel);
         buttonPanel.add(input1Field);
@@ -200,7 +197,7 @@ public class Gui implements Observer {
         centerPanel.add(createTable(modelProgram, tableProgram, new String[]{"#", "Instruction", "Parameters"}));
 
         // Create Command Register Panel
-        centerPanel.add(createTable(modelCr, tableCr, new String[]{"OpCode", "", ""}));
+        centerPanel.add(createTable(modelCr, tableCr, new String[]{"#", "OpCode", ""}));
 
         // Add central panel to content pane
         contentPane.add(centerPanel, BorderLayout.CENTER);
@@ -249,22 +246,13 @@ public class Gui implements Observer {
         return scrollPaneCommand;
     }
 
-    public void addDataRow(TreeMap<String, String> map) {
+    public void addRow(DefaultTableModel model, TreeMap<String, String> map) {
         String[] row = new String[2];
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
             row[0] = entry.getKey();
             row[1] = entry.getValue();
-            modelData.addRow(row);
-        }
-    }
-
-    public void addCrRow(ArrayList<String> commands) {
-        String[] row = new String[2];
-
-        for (String command : commands) {
-            row[0] = command;
-            modelCr.addRow(row);
+            model.addRow(row);
         }
     }
 
@@ -298,7 +286,7 @@ public class Gui implements Observer {
 
         // Print Command Register
         addProgramRow(cpu.getProgramMemoryAsTree());
-        addCrRow(cpu.showCommandRegister());
+
 
         // Enable Buttons
         fastButton.setEnabled(true);
@@ -307,12 +295,13 @@ public class Gui implements Observer {
     }
 
     private void highlightRow(int commandPointer, JTable table) {
+        table.clearSelection();
         table.changeSelection(commandPointer, 0, false, false);
     }
 
-    private void updateDataRow(TreeMap<String, String> dataMemoryAsTree) {
-        modelData.getDataVector().removeAllElements();
-        addDataRow(dataMemoryAsTree);
+    private void updateRow(DefaultTableModel model, TreeMap<String, String> memoryAsTree) {
+        model.getDataVector().removeAllElements();
+        addRow(model, memoryAsTree);
     }
 
     @Override
@@ -321,7 +310,8 @@ public class Gui implements Observer {
         int counter = (cpu.getCommandPointer() - 100) / 2;
         highlightRow(counter, tableCr);
         highlightRow(counter, tableProgram);
-        updateDataRow(cpu.getDataMemoryAsTree());
+        updateRow(modelData, cpu.getDataMemoryAsTree());
+        updateRow(modelCr, cpu.getCommandRegisterAsTree());
         setRegisterField(register1Field, cpu.printRegister1());
         setRegisterField(register2Field, cpu.printRegister2());
         setRegisterField(register3Field, cpu.printRegister3());
@@ -384,49 +374,35 @@ public class Gui implements Observer {
         }
     }
 
-    private class Input1ActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            // Get Value
-            String input1 = input1Field.getText();
-
-            // Convert to twos complement
-            Tools tools = new Tools();
-            String inputBin = tools.convertToBin(Integer.valueOf(input1), 16);
-
-            // Store into DataMemory (+ 1)
-            // Split into two 8 bit strings
-            String val1 = inputBin.substring(0, 8);
-            String val2 = inputBin.substring(8);
-
-            Memory dataMemory = cpu.getDataMemory();
-            dataMemory.setValue(500, val2);
-            dataMemory.setValue(501, val1);
-        }
-    }
-
     private class Input2ActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent ae) {
             // Get Value
+            String input1 = input1Field.getText();
             String input2 = input2Field.getText();
+            int input1Dec = Integer.valueOf(input1);
             int input2Dec = Integer.valueOf(input2);
 
             // Convert to twos complement
             Tools tools = new Tools();
-            String inputBin = tools.convertToBin(input2Dec, 16);
+            String input1Bin = tools.convertToBin(input1Dec, 16);
+            String input2Bin = tools.convertToBin(input2Dec, 16);
 
             // Store into DataMemory (+ 1)
             // Split into two 8 bit strings
-            String val1 = inputBin.substring(0, 8);
-            String val2 = inputBin.substring(8);
+            String val1 = input1Bin.substring(0, 8);
+            String val2 = input1Bin.substring(8);
+            String val3 = input2Bin.substring(0, 8);
+            String val4 = input2Bin.substring(8);
 
             Memory dataMemory = cpu.getDataMemory();
-            dataMemory.setValue(502, val2);
-            dataMemory.setValue(503, val1);
+            dataMemory.setValue(500, val1);
+            dataMemory.setValue(501, val2);
+            dataMemory.setValue(502, val3);
+            dataMemory.setValue(503, val4);
 
             // Get DataMemory data
-            addDataRow(cpu.getDataMemoryAsTree());
+            addRow(modelData, cpu.getDataMemoryAsTree());
         }
     }
 }

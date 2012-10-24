@@ -45,7 +45,7 @@ public class Emulator extends Observable implements Runnable {
             if (instr != null) {
                 instr.doIt(cpu);
                 end = instr.getClass().getSimpleName();
-                cpu.storeToCommandRegister(instr.convertToOpcode(dataMemory));
+                cpu.storeToCommandRegister(Integer.toString(cpu.getCommandPointer()), instr.convertToOpcode(dataMemory));
             }
             cpu.incCommandCounter();
 

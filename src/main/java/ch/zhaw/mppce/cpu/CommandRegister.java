@@ -1,6 +1,7 @@
 package ch.zhaw.mppce.cpu;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,17 +10,21 @@ import java.util.ArrayList;
  * Time: 21:17
  */
 public class CommandRegister extends Register {
-    ArrayList<String> commandRegister;
+    TreeMap<String, String> commandRegister;
 
     public CommandRegister() {
-        commandRegister = new ArrayList<String>();
+        commandRegister = new TreeMap<String, String>();
     }
 
-    public ArrayList<String> getCommandRegister() {
+    public String getCommandRegister(int pointer) {
+        return commandRegister.get(pointer);
+    }
+
+    public void addCommand(String addr, String command) {
+        commandRegister.put(addr, command);
+    }
+
+    public TreeMap<String, String> getCommandRegisterAsTree() {
         return commandRegister;
-    }
-
-    public void addCommand(String command) {
-        commandRegister.add(command);
     }
 }

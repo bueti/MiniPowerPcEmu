@@ -75,8 +75,8 @@ public class FileLoader {
             cpu.addCommandToMemory(parsedLine[0], instr);
 
             // Convert Mnemonics to binary and store it
-            Memory memory = cpu.getProgramMemory();
-            memory.convertMnemonics2Binary(cpu);
+            //Memory memory = cpu.getProgramMemory();
+            //memory.convertMnemonics2Binary(cpu);
         }
         return sb.toString();
     }

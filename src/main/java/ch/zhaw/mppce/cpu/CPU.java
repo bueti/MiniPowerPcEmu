@@ -54,12 +54,8 @@ public class CPU {
         programMemory.storeCommand(instructionNr, command);
     }
 
-//    public void addCommandToMemory(String dataNr, String data) {
-//        dataMemory.storeCommand(dataNr, data);
-//    }
-
-    public void storeToCommandRegister(String command) {
-        commandRegister.addCommand(command);
+    public void storeToCommandRegister(String addr, String command) {
+        commandRegister.addCommand(addr, command);
     }
 
     public void incCommandPointer() {
@@ -84,19 +80,6 @@ public class CPU {
 
     public String printAccumulator() {
         return accu.getRegister();
-    }
-
-//    public void printProgramMemory() {
-//        programMemory.printProgramMemory();
-//    }
-//
-//    public void printDataMemory() {
-//        dataMemory.printDataMemory();
-//    }
-
-    // Return the command register as an ArrayList of Strings
-    public ArrayList<String> showCommandRegister() {
-        return commandRegister.getCommandRegister();
     }
 
     // Getter & Setter
@@ -124,10 +107,6 @@ public class CPU {
         return register3;
     }
 
-    public CommandRegister getCommandRegister() {
-        return commandRegister;
-    }
-
     public int getCommandPointer() {
         return commandPointer;
     }
@@ -138,10 +117,6 @@ public class CPU {
 
     public int getCommandCounter() {
         return commandCounter;
-    }
-
-    public void setCommandCounter(int commandCounter) {
-        this.commandCounter = commandCounter;
     }
 
     public boolean isCarryBit() {
@@ -158,5 +133,9 @@ public class CPU {
 
     public TreeMap<String, Instruction> getProgramMemoryAsTree() {
         return programMemory.getProgramMemoryAsTree();
+    }
+
+    public TreeMap<String,String> getCommandRegisterAsTree() {
+        return commandRegister.getCommandRegisterAsTree();
     }
 }
