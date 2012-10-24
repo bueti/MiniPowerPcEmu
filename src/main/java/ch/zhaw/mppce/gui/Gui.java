@@ -322,10 +322,10 @@ public class Gui implements Observer {
         highlightRow(counter, tableCr);
         highlightRow(counter, tableProgram);
         updateDataRow(cpu.getDataMemoryAsTree());
-        setRegister1Field(cpu.printRegister1());
-        setRegister2Field(cpu.printRegister2());
-        setRegister3Field(cpu.printRegister3());
-        setAccuField(cpu.printAccumulator());
+        setRegisterField(register1Field, cpu.printRegister1());
+        setRegisterField(register2Field, cpu.printRegister2());
+        setRegisterField(register3Field, cpu.printRegister3());
+        setRegisterField(accuField, cpu.printAccumulator());
         setCounterField(cpu.getCommandCounter());
         displayCarryBit(cpu.isCarryBit());
     }
@@ -336,20 +336,8 @@ public class Gui implements Observer {
     }
 
     // this could be done with one method
-    public void setRegister1Field(String reg) {
-        register1Field.setText(reg);
-    }
-
-    public void setRegister2Field(String reg) {
-        register2Field.setText(reg);
-    }
-
-    public void setRegister3Field(String reg) {
-        register3Field.setText(reg);
-    }
-
-    public void setAccuField(String accu) {
-        accuField.setText(accu);
+    public void setRegisterField(JTextField register, String reg) {
+        register.setText(reg);
     }
 
     public void setCounterField(int counter) {
@@ -357,7 +345,7 @@ public class Gui implements Observer {
     }
 
     public void displayCarryBit(boolean carry) {
-        chckbxCarryBit.enable(carry);
+        chckbxCarryBit.setSelected(carry);
     }
 
     // Inner Classes
