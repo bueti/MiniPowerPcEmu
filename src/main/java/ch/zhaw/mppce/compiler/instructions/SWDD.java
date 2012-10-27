@@ -63,9 +63,9 @@ public class SWDD extends Instruction {
             // Get Value from Address
             value = data.getValue(params[2].replace("#", ""));
             if (value == null)   // TODO: that happens because we run this command before there is data in the data memory
-                value = "00000000";
+                value = "000000000000";
         } else {
-            value = tools.convertToBin(Integer.valueOf(params[2]), 10);
+            value = tools.convertToBin(Integer.valueOf(params[2]), 12);
         }
 
         return "011-" + register + value;

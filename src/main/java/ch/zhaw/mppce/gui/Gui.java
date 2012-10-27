@@ -14,7 +14,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.*;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.TreeMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -305,7 +308,7 @@ public class Gui implements Observer {
     }
 
     private void updateCrTable(int address, String value) {
-        //addRow(modelCr, crAsTree);
+        addRow(modelCr, cpu.getCommandRegisterAsTree());
         modelCr.setValueAt(value, address, 1);
     }
 
@@ -313,11 +316,10 @@ public class Gui implements Observer {
     public void update(Observable observable, Object o) {
         // Update GUI
         int counter = (cpu.getCommandPointer() - 100) / 2;
-        highlightRow(counter, tableCr);
         highlightRow(counter, tableProgram);
         updateRow(modelData, cpu.getDataMemoryAsTree());
-        String pointer = cpu.getcommandRegisterPointer();
-        //updateCrTable(Integer.getInteger(pointer), cpu.getCommandRegister(Integer.getInteger(pointer)));
+        updateRow(modelCr, cpu.getCommandRegisterAsTree());
+        highlightRow(counter, tableCr); // FIXME: Doesn't really work
         setRegisterField(register1Field, cpu.printRegister1());
         setRegisterField(register2Field, cpu.printRegister2());
         setRegisterField(register3Field, cpu.printRegister3());
