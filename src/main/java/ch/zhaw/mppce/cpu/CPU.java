@@ -138,4 +138,12 @@ public class CPU {
     public TreeMap<String,String> getCommandRegisterAsTree() {
         return commandRegister.getCommandRegisterAsTree();
     }
+
+    public String getcommandRegisterPointer() {
+        return commandRegister.getPointer();
+    }
+
+    public String getCommandRegister(int pointer) {
+        return commandRegister.getCommandRegister(pointer);
+    }
 }

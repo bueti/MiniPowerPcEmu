@@ -304,6 +304,11 @@ public class Gui implements Observer {
         addRow(model, memoryAsTree);
     }
 
+    private void updateCrTable(int address, String value) {
+        //addRow(modelCr, crAsTree);
+        modelCr.setValueAt(value, address, 1);
+    }
+
     @Override
     public void update(Observable observable, Object o) {
         // Update GUI
@@ -311,7 +316,8 @@ public class Gui implements Observer {
         highlightRow(counter, tableCr);
         highlightRow(counter, tableProgram);
         updateRow(modelData, cpu.getDataMemoryAsTree());
-        updateRow(modelCr, cpu.getCommandRegisterAsTree());
+        String pointer = cpu.getcommandRegisterPointer();
+        //updateCrTable(Integer.getInteger(pointer), cpu.getCommandRegister(Integer.getInteger(pointer)));
         setRegisterField(register1Field, cpu.printRegister1());
         setRegisterField(register2Field, cpu.printRegister2());
         setRegisterField(register3Field, cpu.printRegister3());

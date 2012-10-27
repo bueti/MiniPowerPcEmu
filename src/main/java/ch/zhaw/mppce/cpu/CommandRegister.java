@@ -10,7 +10,8 @@ import java.util.TreeMap;
  * Time: 21:17
  */
 public class CommandRegister extends Register {
-    TreeMap<String, String> commandRegister;
+    private TreeMap<String, String> commandRegister;
+    private String pointer;
 
     public CommandRegister() {
         commandRegister = new TreeMap<String, String>();
@@ -26,5 +27,9 @@ public class CommandRegister extends Register {
 
     public TreeMap<String, String> getCommandRegisterAsTree() {
         return commandRegister;
+    }
+
+    public String getPointer() {
+        return pointer;
     }
 }
