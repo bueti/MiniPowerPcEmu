@@ -18,7 +18,6 @@ import static java.lang.Thread.sleep;
 public class Emulator extends Observable implements Runnable {
     // Instance Variables
     private CPU cpu;
-    private Gui gui;
     private Memory programMemory;
     private Memory dataMemory;
 
@@ -27,7 +26,6 @@ public class Emulator extends Observable implements Runnable {
     // Constructor
     public Emulator(CPU cpu, Gui gui, String mode) {
         this.cpu = cpu;
-        this.gui = gui;
         this.programMemory = cpu.getProgramMemory();
         this.dataMemory = cpu.getDataMemory();
         this.addObserver(gui);
@@ -53,7 +51,7 @@ public class Emulator extends Observable implements Runnable {
                 this.setChanged();
                 this.notifyObservers();
                 try {
-                    sleep(500);
+                    sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

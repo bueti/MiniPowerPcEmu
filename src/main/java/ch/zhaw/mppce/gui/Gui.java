@@ -69,6 +69,10 @@ public class Gui implements Observer {
     private DefaultTableModel modelData;
     private DefaultTableModel modelProgram;
     private DefaultTableModel modelCr;
+    private JTextField register1DecField;
+    private JTextField register2DecField;
+    private JTextField register3DecField;
+    private JTextField accuDecField;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -158,40 +162,60 @@ public class Gui implements Observer {
         registerPanel.add(accuField);
         accuField.setColumns(10);
 
-        register1Label.setBounds(6, 34, 61, 16);
+        register1Label.setBounds(6, 60, 61, 16);
         registerPanel.add(register1Label);
 
-        register2Label.setBounds(6, 62, 61, 16);
+        register2Label.setBounds(6, 112, 61, 16);
         registerPanel.add(register2Label);
 
-        register3Label.setBounds(6, 90, 61, 16);
+        register3Label.setBounds(6, 166, 61, 16);
         registerPanel.add(register3Label);
 
-        register1Field.setBounds(60, 28, 134, 28);
+        register1Field.setBounds(60, 54, 134, 28);
         registerPanel.add(register1Field);
         register1Field.setColumns(10);
 
-        register2Field.setBounds(60, 56, 134, 28);
+        register2Field.setBounds(60, 106, 134, 28);
         registerPanel.add(register2Field);
         register2Field.setColumns(10);
 
-        register3Field.setBounds(60, 84, 134, 28);
+        register3Field.setBounds(60, 160, 134, 28);
         registerPanel.add(register3Field);
         register3Field.setColumns(10);
 
         counterLabel = new JLabel("Counter:");
-        counterLabel.setBounds(6, 118, 61, 16);
+        counterLabel.setBounds(6, 243, 61, 16);
         registerPanel.add(counterLabel);
 
         counterField = new JTextField();
-        counterField.setBounds(60, 112, 134, 28);
+        counterField.setBounds(60, 237, 134, 28);
         registerPanel.add(counterField);
         counterField.setColumns(10);
         counterField.setEditable(false);
 
         chckbxCarryBit = new JCheckBox("Carry Bit?");
-        chckbxCarryBit.setBounds(6, 145, 128, 23);
+        chckbxCarryBit.setBounds(6, 323, 128, 23);
         registerPanel.add(chckbxCarryBit);
+
+        register1DecField = new JTextField(10);
+        register1DecField.setEditable(false);
+        register1DecField.setBounds(60, 77, 134, 28);
+        registerPanel.add(register1DecField);
+
+        register2DecField = new JTextField(10);
+        register2DecField.setEditable(false);
+        register2DecField.setBounds(60, 129, 134, 28);
+        registerPanel.add(register2DecField);
+
+        register3DecField = new JTextField(10);
+        register3DecField.setEditable(false);
+        register3DecField.setBounds(60, 183, 134, 28);
+        registerPanel.add(register3DecField);
+
+        accuDecField = new JTextField(10);
+        accuDecField.setEditable(false);
+        accuDecField.setBounds(60, 23, 134, 28);
+        registerPanel.add(accuDecField);
 
         // Create Data Panel
         centerPanel.add(createTable(modelData, tableData, new String[]{"#", "Value", ""}));
@@ -285,7 +309,7 @@ public class Gui implements Observer {
         }
 
         FileLoader fl = new FileLoader();
-        String commands = fl.parseFile(cpu, gui);
+        fl.parseFile(cpu, gui);
 
         // Print Command Register
         addProgramRow(cpu.getProgramMemoryAsTree());
@@ -320,10 +344,10 @@ public class Gui implements Observer {
         updateRow(modelData, cpu.getDataMemoryAsTree());
         updateRow(modelCr, cpu.getCommandRegisterAsTree());
         highlightRow(counter, tableCr); // FIXME: Doesn't really work
-        setRegisterField(register1Field, cpu.printRegister1());
-        setRegisterField(register2Field, cpu.printRegister2());
-        setRegisterField(register3Field, cpu.printRegister3());
-        setRegisterField(accuField, cpu.printAccumulator());
+        setRegisterField(register1Field, register1DecField, cpu.printRegister1());
+        setRegisterField(register2Field, register2DecField, cpu.printRegister2());
+        setRegisterField(register3Field, register3DecField, cpu.printRegister3());
+        setRegisterField(accuField, accuDecField, cpu.printAccumulator());
         setCounterField(cpu.getCommandCounter());
         displayCarryBit(cpu.isCarryBit());
     }
@@ -334,8 +358,11 @@ public class Gui implements Observer {
     }
 
     // this could be done with one method
-    public void setRegisterField(JTextField register, String reg) {
+    public void setRegisterField(JTextField register, JTextField registerDec, String reg) {
+        Tools tools = new Tools();
         register.setText(reg);
+        int valDec = tools.convertToDec(reg);
+        registerDec.setText(Integer.toString(valDec));
     }
 
     public void setCounterField(int counter) {
@@ -404,10 +431,10 @@ public class Gui implements Observer {
             String val4 = input2Bin.substring(8);
 
             Memory dataMemory = cpu.getDataMemory();
-            dataMemory.setValue(500, val1);
-            dataMemory.setValue(501, val2);
-            dataMemory.setValue(502, val3);
-            dataMemory.setValue(503, val4);
+            dataMemory.setValue(500, val2);
+            dataMemory.setValue(501, val1);
+            dataMemory.setValue(502, val4);
+            dataMemory.setValue(503, val3);
 
             // Get DataMemory data
             addRow(modelData, cpu.getDataMemoryAsTree());

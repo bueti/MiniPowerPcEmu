@@ -63,7 +63,7 @@ public class SWDD extends Instruction {
             // Get Value from Address
             value = data.getValue(params[2].replace("#", ""));
             if (value == null)   // TODO: that happens because we run this command before there is data in the data memory
-                value = "000000000000";
+                value = "n/a";
         } else {
             value = tools.convertToBin(Integer.valueOf(params[2]), 12);
         }
