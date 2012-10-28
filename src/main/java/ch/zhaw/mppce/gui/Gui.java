@@ -329,7 +329,6 @@ public class Gui implements Observer {
         // Print Command Register
         addProgramRow(cpu.getProgramMemoryAsTree());
 
-
         // Enable Buttons
         fastButton.setEnabled(true);
         slowButton.setEnabled(true);
@@ -463,7 +462,18 @@ public class Gui implements Observer {
     private class ResetActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            // Reset CPU and GUI
+            // Disable Buttons
+            fastButton.setEnabled(false);
+            slowButton.setEnabled(false);
+            stepButton.setEnabled(false);
+
+            // Reset CPU
+            cpu.reset();
+
+            // Reset GUI
+            frame.setVisible(false);
+            frame = new JFrame();
+            init();
         }
     }
 }

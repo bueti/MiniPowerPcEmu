@@ -153,8 +153,27 @@ public class CPU {
         String v506 = dataMemory.getValue("506");
         String v507 = dataMemory.getValue("507");
 
-        String result = v507 + v506 + v505 + v504;
+//        String result = v507 + v506 + v505 + v504;
+        String result = v505 + v504;
         System.out.println("Debug: " + result);
         return new Tools().convertToDec(result);
+    }
+
+    public void reset() {
+        // Initialize Registers
+        register1 = new Register();
+        register2 = new Register();
+        register3 = new Register();
+        accu = new Register();
+        commandRegister = new CommandRegister();
+
+        // Initialize Memory
+        programMemory = new Memory();
+        dataMemory = new Memory();
+
+        // Misc
+        commandPointer = 100;
+        commandCounter = 0;
+        carryBit = false;
     }
 }
