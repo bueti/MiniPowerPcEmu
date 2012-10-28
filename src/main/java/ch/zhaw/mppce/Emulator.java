@@ -20,6 +20,7 @@ public class Emulator extends Observable implements Runnable {
     private CPU cpu;
     private Memory programMemory;
     private Memory dataMemory;
+    private Gui gui;
 
     private String mode;
 
@@ -28,6 +29,7 @@ public class Emulator extends Observable implements Runnable {
         this.cpu = cpu;
         this.programMemory = cpu.getProgramMemory();
         this.dataMemory = cpu.getDataMemory();
+        this.gui = gui;
         this.addObserver(gui);
         setMode(mode);
 
@@ -59,6 +61,7 @@ public class Emulator extends Observable implements Runnable {
         }
         this.setChanged();
         this.notifyObservers();
+        gui.setResultField(cpu.getResult());
     }
 
     public String getMode() {

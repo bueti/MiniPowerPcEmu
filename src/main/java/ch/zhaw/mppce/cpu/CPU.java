@@ -1,8 +1,8 @@
 package ch.zhaw.mppce.cpu;
 
 import ch.zhaw.mppce.compiler.instructions.Instruction;
+import ch.zhaw.mppce.tools.Tools;
 
-import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
@@ -135,7 +135,7 @@ public class CPU {
         return programMemory.getProgramMemoryAsTree();
     }
 
-    public TreeMap<String,String> getCommandRegisterAsTree() {
+    public TreeMap<String, String> getCommandRegisterAsTree() {
         return commandRegister.getCommandRegisterAsTree();
     }
 
@@ -145,5 +145,16 @@ public class CPU {
 
     public String getCommandRegister(int pointer) {
         return commandRegister.getCommandRegister(pointer);
+    }
+
+    public int getResult() {
+        String v504 = dataMemory.getValue("504");
+        String v505 = dataMemory.getValue("505");
+        String v506 = dataMemory.getValue("506");
+        String v507 = dataMemory.getValue("507");
+
+        String result = v507 + v506 + v505 + v504;
+        System.out.println("Debug: " + result);
+        return new Tools().convertToDec(result);
     }
 }

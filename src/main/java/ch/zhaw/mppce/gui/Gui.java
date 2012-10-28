@@ -42,6 +42,7 @@ public class Gui implements Observer {
     private JButton fastButton;
     private JButton slowButton;
     private JButton stepButton;
+    private JButton resetButton;
 
     // Textfields
     private JTextField accuField;
@@ -73,6 +74,7 @@ public class Gui implements Observer {
     private JTextField register2DecField;
     private JTextField register3DecField;
     private JTextField accuDecField;
+    private JTextField resultField;
 
     // Constructor
     public Gui(CPU cpu) {
@@ -94,7 +96,7 @@ public class Gui implements Observer {
 
         // Create Button Panel
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(0, 6));
+        buttonPanel.setLayout(new GridLayout(0, 7));
 
         fastButton = new JButton("Fast");
         fastButton.addActionListener(new FastActionListener());
@@ -107,6 +109,10 @@ public class Gui implements Observer {
         stepButton = new JButton("Step");
         stepButton.addActionListener(new StepActionListener());
         buttonPanel.add(stepButton);
+
+        resetButton = new JButton("Reset");
+        resetButton.addActionListener(new ResetActionListener());
+        buttonPanel.add(resetButton);
 
         inputLabel = new JLabel("Input: ");
         input1Field = new JTextField(6);
@@ -158,7 +164,7 @@ public class Gui implements Observer {
         accuLabel.setBounds(6, 6, 45, 16);
         registerPanel.add(accuLabel);
 
-        accuField.setBounds(60, 0, 134, 28);
+        accuField.setBounds(60, 0, 142, 28);
         registerPanel.add(accuField);
         accuField.setColumns(10);
 
@@ -171,51 +177,60 @@ public class Gui implements Observer {
         register3Label.setBounds(6, 166, 61, 16);
         registerPanel.add(register3Label);
 
-        register1Field.setBounds(60, 54, 134, 28);
+        register1Field.setBounds(60, 54, 142, 28);
         registerPanel.add(register1Field);
         register1Field.setColumns(10);
 
-        register2Field.setBounds(60, 106, 134, 28);
+        register2Field.setBounds(60, 106, 142, 28);
         registerPanel.add(register2Field);
         register2Field.setColumns(10);
 
-        register3Field.setBounds(60, 160, 134, 28);
+        register3Field.setBounds(60, 160, 142, 28);
         registerPanel.add(register3Field);
         register3Field.setColumns(10);
 
         counterLabel = new JLabel("Counter:");
-        counterLabel.setBounds(6, 243, 61, 16);
+        counterLabel.setBounds(6, 218, 61, 16);
         registerPanel.add(counterLabel);
 
         counterField = new JTextField();
-        counterField.setBounds(60, 237, 134, 28);
+        counterField.setBounds(60, 212, 142, 28);
         registerPanel.add(counterField);
         counterField.setColumns(10);
         counterField.setEditable(false);
 
         chckbxCarryBit = new JCheckBox("Carry Bit?");
-        chckbxCarryBit.setBounds(6, 323, 128, 23);
+        chckbxCarryBit.setBounds(60, 246, 128, 23);
         registerPanel.add(chckbxCarryBit);
 
         register1DecField = new JTextField(10);
         register1DecField.setEditable(false);
-        register1DecField.setBounds(60, 77, 134, 28);
+        register1DecField.setBounds(60, 77, 142, 28);
         registerPanel.add(register1DecField);
 
         register2DecField = new JTextField(10);
         register2DecField.setEditable(false);
-        register2DecField.setBounds(60, 129, 134, 28);
+        register2DecField.setBounds(60, 129, 142, 28);
         registerPanel.add(register2DecField);
 
         register3DecField = new JTextField(10);
         register3DecField.setEditable(false);
-        register3DecField.setBounds(60, 183, 134, 28);
+        register3DecField.setBounds(60, 183, 142, 28);
         registerPanel.add(register3DecField);
 
         accuDecField = new JTextField(10);
         accuDecField.setEditable(false);
-        accuDecField.setBounds(60, 23, 134, 28);
+        accuDecField.setBounds(60, 23, 142, 28);
         registerPanel.add(accuDecField);
+
+        JLabel resultLabel = new JLabel("Result:");
+        resultLabel.setBounds(6, 337, 61, 16);
+        registerPanel.add(resultLabel);
+
+        resultField = new JTextField();
+        resultField.setBounds(60, 331, 142, 28);
+        registerPanel.add(resultField);
+        resultField.setColumns(10);
 
         // Create Data Panel
         centerPanel.add(createTable(modelData, tableData, new String[]{"#", "Value", ""}));
@@ -369,6 +384,10 @@ public class Gui implements Observer {
         counterField.setText(Integer.toString(counter));
     }
 
+    public void setResultField(int result) {
+        resultField.setText(Integer.toString(result));
+    }
+
     public void displayCarryBit(boolean carry) {
         chckbxCarryBit.setSelected(carry);
     }
@@ -438,6 +457,13 @@ public class Gui implements Observer {
 
             // Get DataMemory data
             addRow(modelData, cpu.getDataMemoryAsTree());
+        }
+    }
+
+    private class ResetActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            // Reset CPU and GUI
         }
     }
 }

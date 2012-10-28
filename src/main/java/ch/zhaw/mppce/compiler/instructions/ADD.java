@@ -34,13 +34,12 @@ public class ADD extends Instruction {
 
     @Override
     public void doIt(CPU cpu) {
-        Register registerData = null;
         Register accu = cpu.getAccu();
         Tools tools = new Tools();
         boolean overflow = false;
 
         // Get Register from Params
-        registerData = tools.getRegisterFromParams(cpu, getParameters());
+        Register registerData = tools.getRegisterFromParams(cpu, getParameters());
 
         // Calculate: accu = accu + registerData
         String accuVal = accu.getRegister();
