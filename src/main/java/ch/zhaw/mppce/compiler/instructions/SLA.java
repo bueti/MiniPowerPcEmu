@@ -24,19 +24,20 @@ public class SLA extends Instruction {
         Register accu = cpu.getAccu();
 
         String accuVal = accu.getRegister();
+        int accuValDec = tools.convertToDec(accuVal);
 
         // Get second bit and set it as carry bit
         String carryBit = accuVal.substring(1, 2);
         if (carryBit.equals("0")) {
             cpu.setCarryBit(false);
+
+            accu.setRegister(tools.convertToBin(accuValDec * 2, 16));
         } else {
             cpu.setCarryBit(true);
+            String bin = tools.convertToBin(accuValDec * 2, 16);
+            accu.setRegister(bin.replaceFirst("1", "0"));
+
         }
-
-        int accuValDec = tools.convertToDec(accuVal);
-
-        accu.setRegister(tools.convertToBin(accuValDec * 2, 16));
-
 
         // Increase command counter
         cpu.incCommandPointer();
