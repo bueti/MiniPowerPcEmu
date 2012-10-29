@@ -63,8 +63,11 @@ public class ADD extends Instruction {
             String converted = tools.convertToBin(finalValue, 16);
             // Save it to the accu
             accu.setRegister(converted);
-            if (overflow)
+            if (overflow) {
                 cpu.setCarryBit(true);
+            } else {
+                cpu.setCarryBit(false);
+            }
         }
 
         // Increase command counter
