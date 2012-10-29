@@ -148,15 +148,18 @@ public class CPU {
     }
 
     public int getResult() {
+        Tools tools = new Tools();
         String v504 = dataMemory.getValue("504");
         String v505 = dataMemory.getValue("505");
         String v506 = dataMemory.getValue("506");
         String v507 = dataMemory.getValue("507");
 
-//        String result2 = v507 + v506 + v505 + v504; // 507+506 * 32'768 + 505+504
-        String result = v505 + v504;
-        System.out.println("Debug: " + result);
-        return new Tools().convertToDec(result);
+        String first = v507 + v506;
+        int firstDec = tools.convertToDec(first);
+        String second = v505 + v504;
+        int secondDec = tools.convertToDec(second);
+
+        return firstDec * 32768 + secondDec; // 507+506 * 32'768 + 505+504
     }
 
     public void reset() {
