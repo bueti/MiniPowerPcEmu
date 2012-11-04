@@ -63,7 +63,15 @@ public class CPU {
     }
 
     public void incCommandCounter() {
-        commandCounter++;
+        if (commandCounter > 100) {
+            if (commandCounter % 7 == 0) {
+                commandCounter = commandCounter + 3;
+            } else {
+                commandCounter++;
+            }
+        } else {
+            commandCounter++;
+        }
     }
 
     public String printRegister1() {
