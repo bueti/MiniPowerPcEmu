@@ -53,7 +53,7 @@ public class Emulator extends Observable implements Runnable {
                 this.setChanged();
                 this.notifyObservers();
                 try {
-                    sleep(1000);
+                    sleep(750);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
