@@ -38,7 +38,6 @@ public class Emulator extends Observable implements Runnable {
     // TODO: Implement Step Mode
     @Override
     public void run() {
-        String end = "";
         while (!end.equals("END")) {
 
             Instruction instr = programMemory.getCommand(Integer.toString(cpu.getCommandPointer()));
@@ -53,7 +52,7 @@ public class Emulator extends Observable implements Runnable {
                 this.setChanged();
                 this.notifyObservers();
                 try {
-                    sleep(750);
+                    sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
