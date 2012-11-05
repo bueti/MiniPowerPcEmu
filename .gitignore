@@ -9,6 +9,8 @@
 # Idea #
 .idea
 *.iml
+*.ipr
+*.iws
 atlassian-ide-plugin.xml
 target
 *.eml
